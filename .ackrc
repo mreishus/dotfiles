@@ -1,0 +1,7 @@
+--type-set=ctp=.ctp
+--type-set=thtml=.thtml
+--type-set=sass=.sass
+--smart-case
+--ignore-dir=ckfinder
+--ignore-dir=ckeditor
+--ignore-dir=assets

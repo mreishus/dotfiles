@@ -1,0 +1,59 @@
+startup_message off #kill the "welcome to screen" message
+nethack on
+defscrollback 20000
+utf8 on on
+defutf8 on
+caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%i<"
+#caption always "%m/%d/%y %0c%{=b kW}  %l  %{=r kd}%-Lw%{= bd}%50>%n%f* %t%{-}%+Lw%<%{- Wk}"
+#caption always "%{yK}   -=%H=- | $LOGNAME | %{yK}%c |  %{yK}%-Lw%{yK}%50>%{Ky}%n%f* %t%{-}%+Lw%<%{- Wk}"
+caption always "%{ck}$LOGNAME@%H | %l | %{ck}%-Lw%{ck}%50>%{Ck}%n%f* %t%{-}%+Lw%<%{- Wk}"
+#caption always "%{Kk}$LOGNAME@%H | %l | %{Kk}%-Lw%{Kk}%50>%{wk}%n%f* %t%{-}%+Lw%<%{- Wk}"
+
+#start at 1 instead of 0
+bind c screen 1
+bind 0 select 10                                                            
+screen 1
+select 1
+
+#defmonitor on
+defmonitor off
+monitor off
+activity "%"
+
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
+defbce "on" 
+
+#bind G screen -t 'google' lynx http://www.google.com
+
+bindkey "^[1" select 1
+bindkey "^[2" select 2
+bindkey "^[3" select 3
+bindkey "^[4" select 4
+bindkey "^[5" select 5
+bindkey "^[6" select 6
+bindkey "^[7" select 7
+bindkey "^[8" select 8
+bindkey "^[9" select 9
+bindkey "^[0" select 10
+bindkey -e
+#termcapinfo xterm "ks=\E[?1l\E=:ku=\E[A:kd=\E[B:kl=\E[D:kr=\E[C:kh=\E[5~:kH=\E[F"
+
+#termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+
+#vbell off
+#activity "%c activity -> %n%f %t"
+#bell_msg "%c bell -> %n%f %t^G"
+#vbell_msg " *beep* "
+
+vbell_msg 'o_O;'
+bell_msg 'o_O;; [%n]'
+activity ':o [%n]'
+
+setenv LC_CTYPE en_US.UTF-8
+deflogin off
+
