@@ -36,6 +36,10 @@ filetype off
     Bundle 'https://github.com/scrooloose/nerdcommenter'
     " TagBar - ctags support
     Bundle 'https://github.com/majutsushi/tagbar'
+	" Ack
+	Bundle 'https://github.com/mileszs/ack.vim'
+	" Matchit - % bounces on html tags
+	Bundle 'https://github.com/tsaleh/vim-matchit'
 
     " clang_complete - only for c/c++, no use for now.
     " Bundle 'https://github.com/Rip-Rip/clang_complete'
@@ -90,7 +94,7 @@ set pastetoggle=<F7>          " f7 toggles paste
 set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
-set scrolloff=5               " keep 5 lines on the screen when scrolling
+set scrolloff=3               " keep 3 lines on the screen when scrolling
 
 " make search results appear in the middle of the screen
 nmap n nzz
@@ -145,3 +149,5 @@ let g:tagbar_type_php = {
     \ ],
 \ }
 
+" ctrlp config - persistant cache
+let g:ctrlp_clear_cache_on_exit = 0
