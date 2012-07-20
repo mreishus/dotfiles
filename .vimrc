@@ -40,6 +40,14 @@ filetype off
 	Bundle 'https://github.com/mileszs/ack.vim'
 	" Matchit - % bounces on html tags
 	Bundle 'https://github.com/tsaleh/vim-matchit'
+	" Cake.vim - Hop between model/view/controller
+	Bundle 'https://github.com/violetyk/cake.vim'
+	" Gundo - Visual undo tree
+	Bundle 'http://github.com/sjl/gundo.vim.git'
+	" Vim pad - Note taking
+	Bundle 'https://github.com/fmoralesc/vim-pad'
+	" Evervim - evernote integration - doesn't seem to work.
+	" Bundle 'https://github.com/kakkyz81/evervim'
 
     " clang_complete - only for c/c++, no use for now.
     " Bundle 'https://github.com/Rip-Rip/clang_complete'
@@ -90,11 +98,12 @@ set nolist                    " hidden characters off by default
 set listchars=tab:>-,trail:*  " show tabs as -->, trailing whitespace as * with list=on
 nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>  " f5 toggles line numbers
 nnoremap <F6> :set list!<cr>  " f6 toggles list
-set pastetoggle=<F7>          " f7 toggles paste
+set pastetoggle=<F1>          " f1 toggles paste
 set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
 set scrolloff=3               " keep 3 lines on the screen when scrolling
+autocmd FileType * setlocal formatoptions-=ro " I hate auto comments
 
 " make search results appear in the middle of the screen
 nmap n nzz
@@ -138,6 +147,9 @@ let g:Powerline_symbols = 'fancy'
 
 " tagbars config
 nmap <F8> :TagbarToggle<CR>  " f8 to turn on/off
+let g:tagbar_autofocus = 1   " auto focus after opening tagbar
+let g:tagbar_autoclose = 1   " auto close after choosing a tag
+
 " turn off variables for php
 let g:tagbar_type_php = {
     \ 'kinds' : [
@@ -151,3 +163,32 @@ let g:tagbar_type_php = {
 
 " ctrlp config - persistant cache
 let g:ctrlp_clear_cache_on_exit = 0
+
+" cake config
+let g:cakephp_enable_auto_mode = 1     " auto detect cake project
+nnoremap <leader>1 :Cmodeltab<cr>      " open model in new tab
+nnoremap <leader>2 :Ccontrollertab<cr> " open controller in new tab
+nnoremap <leader>3 :Cviewtab<space>
+" ^^^open view in new tab - you must type function name :(
+
+"todo: usetagbar to figure out the current view to open
+"function! Asdf()
+	"let l:foo = tagbar#currenttag('%s', '')
+"endfunction
+
+" fugitive config
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>ge :Gedit<cr>
+
+"  todo - figure out how to include custom ultisnips in .vimrc instead of .vim/
+"  pr( Debugger::trace() );
+
+" gundo
+nnoremap <F9> :GundoToggle<CR>
+
+" vimpad
+let g:pad_dir = "~/notes/"
+let g:pad_format = "text"
+let g:pad_window_height = 12
+let g:pad_search_backend = "ack"
