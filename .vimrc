@@ -16,8 +16,6 @@ filetype off
 
     " Syntastic - compiler checking for errors on the fly
     Bundle 'Syntastic'
-    " Autoclose - Automatically close brackets
-    Bundle 'https://github.com/Townk/vim-autoclose/'
     " Fugitive - GIT integration
     Bundle 'https://github.com/tpope/vim-fugitive'
     " Surround - change surrounding characters, tags
@@ -26,6 +24,8 @@ filetype off
     Bundle 'https://github.com/tpope/vim-haml'
     " Jellybeans - Color scheme
     Bundle 'https://github.com/nanotech/jellybeans.vim'
+	" Tommmorrow - Color Scheme
+	Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     " CTRL-P - Fuzzy file searching
     Bundle 'https://github.com/kien/ctrlp.vim/'
     " Ultisnips - text snippets
@@ -44,14 +44,24 @@ filetype off
 	Bundle 'https://github.com/violetyk/cake.vim'
 	" Gundo - Visual undo tree
 	Bundle 'http://github.com/sjl/gundo.vim.git'
-	" Vim pad - Note taking
-	Bundle 'https://github.com/fmoralesc/vim-pad'
+	
+	""" Disabled Bundles
+
+    " Autoclose - Automatically close brackets - not worth it imo
+    " Bundle 'https://github.com/Townk/vim-autoclose/'
+
 	" Evervim - evernote integration - doesn't seem to work.
 	" Bundle 'https://github.com/kakkyz81/evervim'
+
+	" Supertab - Changes the way ^n/^p works, no me gusta
+	" Bundle 'https://github.com/ervandew/supertab'
 
     " clang_complete - only for c/c++, no use for now.
     " Bundle 'https://github.com/Rip-Rip/clang_complete'
     " sudo apt-get install libclang1 libclang-dev
+
+	" Vim pad - Note taking - I like the idea but it's buggy atm.
+	" Bundle 'https://github.com/fmoralesc/vim-pad'
 
     " User Bundles End
     if iCanHazVundle == 0
@@ -96,14 +106,10 @@ set wildmenu                  " better completion
 set wildmode=list:longest     " show lots of stuff
 set nolist                    " hidden characters off by default
 set listchars=tab:>-,trail:*  " show tabs as -->, trailing whitespace as * with list=on
-nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>  " f5 toggles line numbers
-nnoremap <F6> :set list!<cr>  " f6 toggles list
-set pastetoggle=<F1>          " f1 toggles paste
 set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
 set scrolloff=3               " keep 3 lines on the screen when scrolling
-autocmd FileType * setlocal formatoptions-=ro " I hate auto comments
 
 " make search results appear in the middle of the screen
 nmap n nzz
@@ -123,16 +129,23 @@ vmap    _Y      :w! ~/.vi_tmp<CR>
 nmap    _P      :r ~/.vi_tmp<CR>
 
 " color, syntax highlighting
+au BufRead,BufNewFile *.ctp setfiletype phtml " ctp, must be before filetype plugin. not 100%, % doesn't work on tags..
 filetype plugin indent on                   " enable ft+plugin detect
 syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
+
 colors jellybeans                           " select colorscheme
-highlight Normal ctermbg=NONE               " use terminal background
-highlight nonText ctermbg=NONE              " use terminal background
-au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
+"highlight Normal ctermbg=NONE               " use terminal background
+"highlight nonText ctermbg=NONE              " use terminal background
 highlight Search ctermfg=0 ctermbg=122      " i don't like jellybeans default search higlighting colors
 
+"colors Tomorrow-Night
+"colors Tomorrow-Night-Eighties
+"colors Tomorrow-Night-Blue
+"colors Tomorrow-Night-Bright
+
+au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
 " ultisnips config
 set runtimepath+=~/.vim/bundle/ultisnips      " include filepath
 let g:UltiSnipsUsePythonVersion = 2           " force to use python2, not 3
@@ -146,7 +159,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"  " use shift-tab to go back
 let g:Powerline_symbols = 'fancy'
 
 " tagbars config
-nmap <F8> :TagbarToggle<CR>  " f8 to turn on/off
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
 
@@ -163,6 +175,7 @@ let g:tagbar_type_php = {
 
 " ctrlp config - persistant cache
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_max_height = 20
 
 " cake config
 let g:cakephp_enable_auto_mode = 1     " auto detect cake project
@@ -180,15 +193,32 @@ nnoremap <leader>3 :Cviewtab<space>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
+nnoremap <leader>gs :Gstatus<cr>
+
+" tabs
+nnoremap <C-t> :tabnew<cr>
+nnoremap <C-y> :tabclose<cr>
 
 "  todo - figure out how to include custom ultisnips in .vimrc instead of .vim/
 "  pr( Debugger::trace() );
-
-" gundo
-nnoremap <F9> :GundoToggle<CR>
 
 " vimpad
 let g:pad_dir = "~/notes/"
 let g:pad_format = "text"
 let g:pad_window_height = 12
 let g:pad_search_backend = "ack"
+
+" misc filetype
+autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
+autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
+
+" clear search highlighting
+noremap <silent><leader><space> :nohls<CR>
+
+" f keys
+set pastetoggle=<F1>									" f1 toggles paste
+nnoremap <F2> :AutoCloseToggle<cr>						" f2 toggles autoclose
+nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>	" f5 toggles line numbers
+nnoremap <F6> :set list!<cr>							" f6 toggles list
+nnoremap <F8> :TagbarToggle<cr>							" f8 toggles tagbar
+nnoremap <F9> :GundoToggle<cr>							" f9 toggles Gundo
