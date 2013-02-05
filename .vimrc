@@ -15,7 +15,8 @@ filetype off
     """" User Bundles Begin """"
 
     " Syntastic - compiler checking for errors on the fly
-    Bundle 'Syntastic'
+    "Bundle 'Syntastic' "<-- Old
+	Bundle 'https://github.com/scrooloose/syntastic'
     " Fugitive - GIT integration
     Bundle 'https://github.com/tpope/vim-fugitive'
     " Surround - change surrounding characters, tags
@@ -44,6 +45,13 @@ filetype off
 	Bundle 'https://github.com/violetyk/cake.vim'
 	" Gundo - Visual undo tree
 	Bundle 'http://github.com/sjl/gundo.vim.git'
+
+	Bundle 'https://github.com/mattn/webapi-vim'
+	Bundle 'https://github.com/mattn/gist-vim'
+
+	Bundle 'https://github.com/goldfeld/vim-seek'
+
+	Bundle 'Valloric/YouCompleteMe'
 	
 	""" Disabled Bundles
 
