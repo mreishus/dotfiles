@@ -101,9 +101,9 @@ set tabstop=4      " indent is 4 chars wide
 set shiftwidth=4   " << >> use 4
 set shiftround     " << >> find the nearest 'tabstop'
 set smarttab       " pressing tab also rounds to nearest (?unsure if i should keep this?)
-set noexpandtab    """ put tabs in files.
-"""set expandtab   """ don't put tabs in files, convert to spaces.
-"""set softtabstop=4  " also use this when using spaces.
+"""set noexpandtab    """ put tabs in files.
+set expandtab   """ don't put tabs in files, convert to spaces.
+set softtabstop=4  " also use this when using spaces.
 
 " interface
 set laststatus=2 " always show status line
