@@ -51,7 +51,7 @@ filetype off
 
 	Bundle 'https://github.com/goldfeld/vim-seek'
 
-	Bundle 'Valloric/YouCompleteMe'
+	"Bundle 'Valloric/YouCompleteMe'
 	
 	""" Disabled Bundles
 
