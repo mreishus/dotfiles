@@ -25,6 +25,8 @@ filetype off
     Bundle 'https://github.com/tpope/vim-haml'
     " Jellybeans - Color scheme
     Bundle 'https://github.com/nanotech/jellybeans.vim'
+	" Vim Hybrid - Colors Scheme
+	Bundle 'https://github.com/w0ng/vim-hybrid'
 	" Tommmorrow - Color Scheme
 	Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     " CTRL-P - Fuzzy file searching
@@ -51,7 +53,7 @@ filetype off
 
 	Bundle 'https://github.com/goldfeld/vim-seek'
 
-	Bundle 'Valloric/YouCompleteMe'
+	"Bundle 'Valloric/YouCompleteMe'
 	
 	""" Disabled Bundles
 
@@ -143,7 +145,10 @@ syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
 
+let g:jellybeans_use_lowcolor_black = 1
 colors jellybeans                           " select colorscheme
+
+"colors hybrid
 "highlight Normal ctermbg=NONE               " use terminal background
 "highlight nonText ctermbg=NONE              " use terminal background
 highlight Search ctermfg=0 ctermbg=122      " i don't like jellybeans default search higlighting colors
@@ -230,3 +235,7 @@ nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>	" f5 toggles line numbers
 nnoremap <F6> :set list!<cr>							" f6 toggles list
 nnoremap <F8> :TagbarToggle<cr>							" f8 toggles tagbar
 nnoremap <F9> :GundoToggle<cr>							" f9 toggles Gundo
+
+let g:ctrlp_custom_ignore = {
+\ 'dir': 'tmp',
+\ }
