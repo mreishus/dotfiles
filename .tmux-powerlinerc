@@ -81,10 +81,11 @@
 
 # now_playing.sh {
 	# Music player to use. Can be any of {audacious, banshee, cmus, itunes, lastfm, mocp, mpd, mpd_simple, pithos, rdio, rhythmbox, spotify, spotify_wine}.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_MUSIC_PLAYER=""
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_MUSIC_PLAYER="lastfm"
 	# Maximum output length.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_MAX_LEN="40"
 	# How to handle too long strings. Can be {trim, roll}.
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_TRIM_METHOD="roll"
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_TRIM_METHOD="trim"
 	# Charcters per second to roll if rolling trim method is used.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_ROLL_SPEED="2"
@@ -97,7 +98,7 @@
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_MPD_SIMPLE_FORMAT="%artist% - %title%"
 	
 	# Username for Last.fm if that music player is used.
-	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_USERNAME=""
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_USERNAME="itslfm"
 	# How often in seconds to update the data from last.fm.
 	export TMUX_POWERLINE_SEG_NOW_PLAYING_LASTFM_UPDATE_PERIOD="30"
 # }
