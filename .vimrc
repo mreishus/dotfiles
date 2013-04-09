@@ -23,12 +23,6 @@ filetype off
     Bundle 'https://github.com/tpope/vim-surround/'
     " HAML - Support for haml/sass/scss
     Bundle 'https://github.com/tpope/vim-haml'
-    " Jellybeans - Color scheme
-    Bundle 'https://github.com/nanotech/jellybeans.vim'
-	" Vim Hybrid - Colors Scheme
-	Bundle 'https://github.com/w0ng/vim-hybrid'
-	" Tommmorrow - Color Scheme
-	Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
     " CTRL-P - Fuzzy file searching
     Bundle 'https://github.com/kien/ctrlp.vim/'
     " Ultisnips - text snippets
@@ -47,11 +41,23 @@ filetype off
 	Bundle 'https://github.com/violetyk/cake.vim'
 	" Gundo - Visual undo tree
 	Bundle 'http://github.com/sjl/gundo.vim.git'
+	" Dispatch - Run Tests in background
+	Bundle 'https://github.com/tpope/vim-dispatch'
+	" SimpleNote Sync
+	Bundle 'https://github.com/mrtazz/simplenote.vim'
 
 	Bundle 'https://github.com/mattn/webapi-vim'
 	Bundle 'https://github.com/mattn/gist-vim'
-
 	Bundle 'https://github.com/goldfeld/vim-seek'
+
+    " Color schemes
+    Bundle 'https://github.com/nanotech/jellybeans.vim'
+	Bundle 'https://github.com/w0ng/vim-hybrid'
+	Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+	Bundle 'https://github.com/tomasr/molokai'
+	Bundle 'https://github.com/sjl/badwolf'
+	Bundle 'https://github.com/gregsexton/Muon'
+	Bundle 'https://github.com/altercation/vim-colors-solarized'
 
 	"Bundle 'Valloric/YouCompleteMe'
 	
@@ -115,7 +121,7 @@ set number       " line numbers
 set wildmenu                  " better completion
 set wildmode=list:longest     " show lots of stuff
 set nolist                    " hidden characters off by default
-set listchars=tab:>-,trail:*  " show tabs as -->, trailing whitespace as * with list=on
+set listchars=eol:¬,extends:»,tab:»\ ,trail:›
 set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
@@ -145,18 +151,18 @@ syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
 
+let g:solarized_termcolors=256
 let g:jellybeans_use_lowcolor_black = 1
 colors jellybeans                           " select colorscheme
-
 "colors hybrid
-"highlight Normal ctermbg=NONE               " use terminal background
-"highlight nonText ctermbg=NONE              " use terminal background
-highlight Search ctermfg=0 ctermbg=122      " i don't like jellybeans default search higlighting colors
-
 "colors Tomorrow-Night
 "colors Tomorrow-Night-Eighties
 "colors Tomorrow-Night-Blue
 "colors Tomorrow-Night-Bright
+
+"highlight Normal ctermbg=NONE               " use terminal background
+"highlight nonText ctermbg=NONE              " use terminal background
+highlight Search ctermfg=0 ctermbg=122      " i don't like jellybeans default search higlighting colors
 
 au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
 " ultisnips config
@@ -239,3 +245,14 @@ nnoremap <F9> :GundoToggle<cr>							" f9 toggles Gundo
 let g:ctrlp_custom_ignore = {
 \ 'dir': 'tmp',
 \ }
+
+" \W strip all trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Simplenote password goes in here (s3kr3t, not managed by git)
+if filereadable($HOME."/.vim-simplenoterc")
+	exec ":source ". $HOME . "/.vim-simplenoterc"
+endif
+
+nnoremap <leader>l :Simplenote -l<CR>
+nnoremap <leader>n :Simplenote -n<CR>
