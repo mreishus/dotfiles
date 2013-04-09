@@ -229,6 +229,7 @@ let g:pad_search_backend = "ack"
 
 " misc filetype
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
+autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
 
 " clear search highlighting
