@@ -16,7 +16,7 @@ filetype off
 
     " Syntastic - compiler checking for errors on the fly
     "Bundle 'Syntastic' "<-- Old
-	Bundle 'https://github.com/scrooloose/syntastic'
+    Bundle 'https://github.com/scrooloose/syntastic'
     " Fugitive - GIT integration
     Bundle 'https://github.com/tpope/vim-fugitive'
     " Surround - change surrounding characters, tags
@@ -33,51 +33,51 @@ filetype off
     Bundle 'https://github.com/scrooloose/nerdcommenter'
     " TagBar - ctags support
     Bundle 'https://github.com/majutsushi/tagbar'
-	" Ack
-	Bundle 'https://github.com/mileszs/ack.vim'
-	" Matchit - % bounces on html tags
-	Bundle 'https://github.com/tsaleh/vim-matchit'
-	" Cake.vim - Hop between model/view/controller
-	Bundle 'https://github.com/violetyk/cake.vim'
-	" Gundo - Visual undo tree
-	Bundle 'http://github.com/sjl/gundo.vim.git'
-	" Dispatch - Run Tests in background
-	Bundle 'https://github.com/tpope/vim-dispatch'
-	" SimpleNote Sync
-	Bundle 'https://github.com/mrtazz/simplenote.vim'
+    " Ack
+    Bundle 'https://github.com/mileszs/ack.vim'
+    " Matchit - % bounces on html tags
+    Bundle 'https://github.com/tsaleh/vim-matchit'
+    " Cake.vim - Hop between model/view/controller
+    Bundle 'https://github.com/violetyk/cake.vim'
+    " Gundo - Visual undo tree
+    Bundle 'http://github.com/sjl/gundo.vim.git'
+    " Dispatch - Run Tests in background
+    Bundle 'https://github.com/tpope/vim-dispatch'
+    " SimpleNote Sync
+    Bundle 'https://github.com/mrtazz/simplenote.vim'
 
-	Bundle 'https://github.com/mattn/webapi-vim'
-	Bundle 'https://github.com/mattn/gist-vim'
-	Bundle 'https://github.com/goldfeld/vim-seek'
+    Bundle 'https://github.com/mattn/webapi-vim'
+    Bundle 'https://github.com/mattn/gist-vim'
+    Bundle 'https://github.com/goldfeld/vim-seek'
 
     " Color schemes
     Bundle 'https://github.com/nanotech/jellybeans.vim'
-	Bundle 'https://github.com/w0ng/vim-hybrid'
-	Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-	Bundle 'https://github.com/tomasr/molokai'
-	Bundle 'https://github.com/sjl/badwolf'
-	Bundle 'https://github.com/gregsexton/Muon'
-	Bundle 'https://github.com/altercation/vim-colors-solarized'
+    Bundle 'https://github.com/w0ng/vim-hybrid'
+    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+    Bundle 'https://github.com/tomasr/molokai'
+    Bundle 'https://github.com/sjl/badwolf'
+    Bundle 'https://github.com/gregsexton/Muon'
+    Bundle 'https://github.com/altercation/vim-colors-solarized'
 
-	"Bundle 'Valloric/YouCompleteMe'
-	
-	""" Disabled Bundles
+    "Bundle 'Valloric/YouCompleteMe'
+
+    """ Disabled Bundles
 
     " Autoclose - Automatically close brackets - not worth it imo
     " Bundle 'https://github.com/Townk/vim-autoclose/'
 
-	" Evervim - evernote integration - doesn't seem to work.
-	" Bundle 'https://github.com/kakkyz81/evervim'
+    " Evervim - evernote integration - doesn't seem to work.
+    " Bundle 'https://github.com/kakkyz81/evervim'
 
-	" Supertab - Changes the way ^n/^p works, no me gusta
-	" Bundle 'https://github.com/ervandew/supertab'
+    " Supertab - Changes the way ^n/^p works, no me gusta
+    " Bundle 'https://github.com/ervandew/supertab'
 
     " clang_complete - only for c/c++, no use for now.
     " Bundle 'https://github.com/Rip-Rip/clang_complete'
     " sudo apt-get install libclang1 libclang-dev
 
-	" Vim pad - Note taking - I like the idea but it's buggy atm.
-	" Bundle 'https://github.com/fmoralesc/vim-pad'
+    " Vim pad - Note taking - I like the idea but it's buggy atm.
+    " Bundle 'https://github.com/fmoralesc/vim-pad'
 
     " User Bundles End
     if iCanHazVundle == 0
@@ -205,7 +205,7 @@ nnoremap <leader>3 :Cviewtab<space>
 
 "todo: usetagbar to figure out the current view to open
 "function! Asdf()
-	"let l:foo = tagbar#currenttag('%s', '')
+    "let l:foo = tagbar#currenttag('%s', '')
 "endfunction
 
 " fugitive config
@@ -235,12 +235,12 @@ autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be a
 noremap <silent><leader><space> :nohls<CR>
 
 " f keys
-set pastetoggle=<F1>									" f1 toggles paste
-nnoremap <F2> :AutoCloseToggle<cr>						" f2 toggles autoclose
-nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>	" f5 toggles line numbers
-nnoremap <F6> :set list!<cr>							" f6 toggles list
-nnoremap <F8> :TagbarToggle<cr>							" f8 toggles tagbar
-nnoremap <F9> :GundoToggle<cr>							" f9 toggles Gundo
+set pastetoggle=<F1>                                    " f1 toggles paste
+nnoremap <F2> :AutoCloseToggle<cr>                      " f2 toggles autoclose
+nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>   " f5 toggles line numbers
+nnoremap <F6> :set list!<cr>                            " f6 toggles list
+nnoremap <F8> :TagbarToggle<cr>                         " f8 toggles tagbar
+nnoremap <F9> :GundoToggle<cr>                          " f9 toggles Gundo
 
 let g:ctrlp_custom_ignore = {
 \ 'dir': 'tmp',
@@ -251,7 +251,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 " Simplenote password goes in here (s3kr3t, not managed by git)
 if filereadable($HOME."/.vim-simplenoterc")
-	exec ":source ". $HOME . "/.vim-simplenoterc"
+    exec ":source ". $HOME . "/.vim-simplenoterc"
 endif
 
 nnoremap <leader>l :Simplenote -l<CR>
