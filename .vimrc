@@ -47,6 +47,8 @@ filetype off
     Bundle 'https://github.com/mrtazz/simplenote.vim'
     " Autodetect spaces vs tabs
     Bundle 'https://github.com/tpope/vim-sleuth'
+    " Git diffs in gutter
+    Bundle 'https://github.com/airblade/vim-gitgutter'
 
     Bundle 'https://github.com/mattn/webapi-vim'
     Bundle 'https://github.com/mattn/gist-vim'
