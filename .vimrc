@@ -50,6 +50,8 @@ filetype off
     " Git diffs in gutter
     Bundle 'https://github.com/airblade/vim-gitgutter'
 
+    "Bundle 'https://github.com/joonty/vdebug'
+
     Bundle 'https://github.com/mattn/webapi-vim'
     Bundle 'https://github.com/mattn/gist-vim'
     Bundle 'https://github.com/goldfeld/vim-seek'
@@ -156,7 +158,7 @@ set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
 
 let g:solarized_termcolors=256
-let g:jellybeans_use_lowcolor_black = 1
+"let g:jellybeans_use_lowcolor_black = 1
 colors jellybeans                           " select colorscheme
 "colors hybrid
 "colors Tomorrow-Night
@@ -261,3 +263,5 @@ endif
 
 nnoremap <leader>l :Simplenote -l<CR>
 nnoremap <leader>n :Simplenote -n<CR>
+
+nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
