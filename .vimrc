@@ -65,6 +65,8 @@ filetype off
     Bundle 'https://github.com/gregsexton/Muon'
     Bundle 'https://github.com/altercation/vim-colors-solarized'
 
+    Bundle 'puppetlabs/puppet-syntax-vim' 
+
     "Bundle 'Valloric/YouCompleteMe'
 
     """ Disabled Bundles
