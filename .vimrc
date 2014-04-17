@@ -170,7 +170,7 @@ colors jellybeans                           " select colorscheme
 
 "highlight Normal ctermbg=NONE               " use terminal background
 "highlight nonText ctermbg=NONE              " use terminal background
-highlight Search ctermfg=0 ctermbg=122      " i don't like jellybeans default search higlighting colors
+highlight Search ctermfg=0 ctermbg=102      " i don't like jellybeans default search higlighting colors
 
 au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
 " ultisnips config
