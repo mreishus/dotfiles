@@ -36,7 +36,7 @@ filetype off
     " Ack
     Bundle 'https://github.com/mileszs/ack.vim'
     " Matchit - % bounces on html tags
-    Bundle 'https://github.com/tsaleh/vim-matchit'
+    Bundle 'vim-scripts/matchit.zip'
     " Cake.vim - Hop between model/view/controller
     Bundle 'https://github.com/violetyk/cake.vim'
     " Gundo - Visual undo tree
@@ -267,3 +267,5 @@ nnoremap <leader>l :Simplenote -l<CR>
 nnoremap <leader>n :Simplenote -n<CR>
 
 nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
+
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
