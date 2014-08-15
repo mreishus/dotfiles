@@ -27,8 +27,9 @@ filetype off
     Bundle 'https://github.com/kien/ctrlp.vim/'
     " Ultisnips - text snippets
     Bundle 'https://github.com/SirVer/ultisnips'
-    " Powerline - badass status bar
-    Bundle 'https://github.com/Lokaltog/vim-powerline/'
+
+    " Airline - status bar
+    Bundle 'bling/vim-airline'
     " NerdCommenter - comment block commands
     Bundle 'https://github.com/scrooloose/nerdcommenter'
     " TagBar - ctags support
@@ -65,7 +66,7 @@ filetype off
     Bundle 'https://github.com/gregsexton/Muon'
     Bundle 'https://github.com/altercation/vim-colors-solarized'
 
-    Bundle 'puppetlabs/puppet-syntax-vim' 
+    Bundle 'puppetlabs/puppet-syntax-vim'
 
     "Bundle 'Valloric/YouCompleteMe'
 
@@ -181,10 +182,6 @@ let g:UltiSnipsExpandTrigger="<tab>"          " tab expands
 let g:UltiSnipsJumpForwardTrigger="<tab>"     " use tab to go to next part of the snipper
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"  " use shift-tab to go back
 
-" use powerline symbols - requires patched font - see
-" https://github.com/Lokaltog/vim-powerline/wiki/Patched-fonts
-let g:Powerline_symbols = 'fancy'
-
 " tagbars config
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
@@ -269,3 +266,5 @@ nnoremap <leader>n :Simplenote -n<CR>
 nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
 
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
+
+let g:airline#extensions#tabline#enabled = 1
