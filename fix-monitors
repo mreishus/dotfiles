@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## Change DisplayPort output to primary
+xrandr --output DP-1 --primary
+## Move DVI 0 to the right of DP-1
+xrandr --output DVI-I-0 --off
+sleep 3
+xrandr --output DVI-I-0 --auto --right-of DP-1
