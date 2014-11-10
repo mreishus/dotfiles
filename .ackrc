@@ -5,6 +5,7 @@
 --ignore-dir=ckfinder
 --ignore-dir=ckeditor
 --ignore-dir=assets
+--ignore-dir=tmp
 --ignore-file=is:layerLoader.jsp
 --ignore-file=is:tundra.css
 --ignore-file=is:widget115.css

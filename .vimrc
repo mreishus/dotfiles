@@ -103,7 +103,7 @@ set encoding=utf-8 " utf8
 
 "files
 set backup                     " make backups
-set backupdir=~/.backup,/tmp   " backups go here
+set backupdir=~/.backup//,/tmp//   " backups go here
 
 "search
 set hlsearch    " highlight search results
