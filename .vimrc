@@ -70,6 +70,9 @@ filetype off
 
     "Bundle 'Valloric/YouCompleteMe'
 
+    Bundle 'pangloss/vim-javascript'
+    Bundle 'mxw/vim-jsx'
+
     """ Disabled Bundles
 
     " Autoclose - Automatically close brackets - not worth it imo
@@ -268,3 +271,10 @@ nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
 
 let g:airline#extensions#tabline#enabled = 1
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
+
+" npm install -g eslint
+" npm install -g babel-eslint
+" npm install -g eslint-plugin-react
