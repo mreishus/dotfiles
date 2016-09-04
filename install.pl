@@ -6,7 +6,7 @@ use File::Copy;
 
 my $h = $ENV{HOME};
 
-foreach my $file (qw(.vimrc .ackrc .screenrc .ctags .tmux-powerlinerc .tmux.conf .ssh/config)) {
+foreach my $file (qw(.vimrc .ackrc .screenrc .ctags .tmux-powerlinerc .tmux.conf .ssh/config .eslintrc)) {
     next if -l "$h/$file";
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
