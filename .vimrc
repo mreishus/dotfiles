@@ -36,8 +36,6 @@ filetype off
     Bundle 'https://github.com/mileszs/ack.vim'
     " Matchit - % bounces on html tags
     Bundle 'vim-scripts/matchit.zip'
-    " Cake.vim - Hop between model/view/controller
-    Bundle 'https://github.com/violetyk/cake.vim'
     " Gundo - Visual undo tree
     Bundle 'http://github.com/sjl/gundo.vim.git'
     " Dispatch - Run Tests in background
@@ -194,13 +192,6 @@ let g:tagbar_type_php = {
 " ctrlp config - persistant cache
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_height = 20
-
-" cake config
-let g:cakephp_enable_auto_mode = 1     " auto detect cake project
-nnoremap <leader>1 :Cmodeltab<cr>      " open model in new tab
-nnoremap <leader>2 :Ccontrollertab<cr> " open controller in new tab
-nnoremap <leader>3 :Cviewtab<space>
-" ^^^open view in new tab - you must type function name :(
 
 "todo: usetagbar to figure out the current view to open
 "function! Asdf()
