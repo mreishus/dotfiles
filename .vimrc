@@ -62,19 +62,19 @@ filetype off
     " Airline - status bar
     Bundle 'bling/vim-airline'
     " NerdCommenter - comment block commands
-    Bundle 'https://github.com/scrooloose/nerdcommenter'
+    "Bundle 'https://github.com/scrooloose/nerdcommenter'
     " TagBar - ctags support
-    Bundle 'https://github.com/majutsushi/tagbar'
+    "Bundle 'https://github.com/majutsushi/tagbar'
     " Ack
-    Bundle 'https://github.com/mileszs/ack.vim'
+    "Bundle 'https://github.com/mileszs/ack.vim'
     " Matchit - % bounces on html tags
-    Bundle 'vim-scripts/matchit.zip'
+    "Bundle 'vim-scripts/matchit.zip'
     " Gundo - Visual undo tree
-    Bundle 'http://github.com/sjl/gundo.vim.git'
+    "Bundle 'http://github.com/sjl/gundo.vim.git'
     " Dispatch - Run Tests in background
-    Bundle 'https://github.com/tpope/vim-dispatch'
+    "Bundle 'https://github.com/tpope/vim-dispatch'
     " SimpleNote Sync
-    Bundle 'https://github.com/mrtazz/simplenote.vim'
+    "Bundle 'https://github.com/mrtazz/simplenote.vim'
     " Autodetect spaces vs tabs
     Bundle 'https://github.com/tpope/vim-sleuth'
     " Git diffs in gutter
@@ -82,9 +82,9 @@ filetype off
 
     "Bundle 'https://github.com/joonty/vdebug'
 
-    Bundle 'https://github.com/mattn/webapi-vim'
-    Bundle 'https://github.com/mattn/gist-vim'
-    Bundle 'https://github.com/goldfeld/vim-seek'
+    "Bundle 'https://github.com/mattn/webapi-vim'
+    "Bundle 'https://github.com/mattn/gist-vim'
+    "Bundle 'https://github.com/goldfeld/vim-seek'
 
     " Color schemes
     Bundle 'https://github.com/nanotech/jellybeans.vim'
@@ -95,12 +95,12 @@ filetype off
     Bundle 'https://github.com/gregsexton/Muon'
     Bundle 'https://github.com/altercation/vim-colors-solarized'
 
-    Bundle 'puppetlabs/puppet-syntax-vim'
+    "Bundle 'puppetlabs/puppet-syntax-vim'
 
     "Bundle 'Valloric/YouCompleteMe'
 
-    Bundle 'pangloss/vim-javascript'
-    Bundle 'mxw/vim-jsx'
+    Bundle 'https://github.com/pangloss/vim-javascript'
+    Bundle 'https://github.com/mxw/vim-jsx'
 
     """ Disabled Bundles
 
@@ -135,7 +135,11 @@ set encoding=utf-8 " utf8
 
 "files
 set backup                     " make backups
-set backupdir=~/.backup//,/tmp//   " backups go here
+if has('win32') || has('win64')
+    set backupdir=$HOME/vimbackup// " backups go here
+else
+    set backupdir=~/.backup//,/tmp//   " backups go here
+endif
 
 "search
 set hlsearch    " highlight search results
@@ -181,9 +185,15 @@ map :W :w
 map :Q :q
 
 " allow cross-session copy paste with _Y _P
-nmap    _Y      :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
-vmap    _Y      :w! ~/.vi_tmp<CR>
-nmap    _P      :r ~/.vi_tmp<CR>
+if has('win32') || has('win64')
+    nmap    _Y      :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
+    vmap    _Y      :w! $HOME/_vi_tmp<CR>
+    nmap    _P      :r $HOME/_vi_tmp<CR>
+else
+    nmap    _Y      :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
+    vmap    _Y      :w! ~/.vi_tmp<CR>
+    nmap    _P      :r ~/.vi_tmp<CR>
+endif
 
 " color, syntax highlighting
 au BufRead,BufNewFile *.ctp setfiletype phtml " ctp, must be before filetype plugin. not 100%, % doesn't work on tags..
@@ -192,6 +202,13 @@ syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
 
+if !empty($CONEMUBUILD)
+	set term=pcansi
+	set t_Co=256
+	let &t_AB="\e[48;5;%dm"
+	let &t_AF="\e[38;5;%dm"
+	set bs=indent,eol,start
+endif
 let g:solarized_termcolors=256
 "let g:jellybeans_use_lowcolor_black = 1
 colors jellybeans                           " select colorscheme
@@ -225,6 +242,8 @@ let g:tagbar_type_php = {
 " ctrlp config - persistant cache
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_max_height = 20
+
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/obj/*,*/node_modules/*
 
 "todo: usetagbar to figure out the current view to open
 "function! Asdf()
@@ -290,3 +309,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 " npm install -g eslint
 " npm install -g babel-eslint
 " npm install -g eslint-plugin-react
+
+map <C-n> :NERDTreeTabsToggle<cr>
+if has("gui_running")
+    set guifont=Fantasque_Sans_Mono:h12:cANSI
+endif
