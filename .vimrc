@@ -6,19 +6,38 @@
 :set guioptions-=e  "remove gui tab
 :set guioptions+=c  "use console
 
+
 filetype off
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+
+    if has('win32') || has('win64')
+        let vundle_readme=expand('$HOME/vimfiles/bundle/vundle/README.md')
+    else
+        let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    endif
+
     if !filereadable(vundle_readme)
         echo "Installing Vundle.."
         echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        if has('win32') || has('win64')
+            silent !mkdir -p $HOME/vimfiles/bundle
+            silent !git clone https://github.com/gmarik/vundle $HOME/vimfiles/bundle/vundle
+        else
+            silent !mkdir -p ~/.vim/bundle
+            silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        endif
         let iCanHazVundle=0
     endif
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
+
+    if has('win32') || has('win64')
+        set rtp+=$HOME/vimfiles/Bundle/Vundle.vim/
+        call vundle#rc('$HOME/vimfiles/Bundle')
+    else
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
+    endif
+
     Bundle 'gmarik/vundle'
     """" User Bundles Begin """"
 
