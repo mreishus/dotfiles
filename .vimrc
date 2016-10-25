@@ -25,8 +25,6 @@ filetype off
     Bundle 'https://github.com/tpope/vim-haml'
     " CTRL-P - Fuzzy file searching
     Bundle 'https://github.com/kien/ctrlp.vim/'
-    " Ultisnips - text snippets
-    Bundle 'https://github.com/SirVer/ultisnips'
 
     " Airline - status bar
     Bundle 'bling/vim-airline'
@@ -177,13 +175,6 @@ colors jellybeans                           " select colorscheme
 highlight Search ctermfg=0 ctermbg=102      " i don't like jellybeans default search higlighting colors
 
 au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
-" ultisnips config
-set runtimepath+=~/.vim/bundle/ultisnips      " include filepath
-let g:UltiSnipsUsePythonVersion = 2           " force to use python2, not 3
-let g:UltiSnipsListSnippets="<c-j>"           " list snippets with control-j, the default control-tab doesn't work in putty
-let g:UltiSnipsExpandTrigger="<tab>"          " tab expands
-let g:UltiSnipsJumpForwardTrigger="<tab>"     " use tab to go to next part of the snipper
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"  " use shift-tab to go back
 
 " tagbars config
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
@@ -225,9 +216,6 @@ nnoremap <leader>gs :Gstatus<cr>
 " tabs
 nnoremap <C-t> :tabnew<cr>
 nnoremap <C-y> :tabclose<cr>
-
-"  todo - figure out how to include custom ultisnips in .vimrc instead of .vim/
-"  pr( Debugger::trace() );
 
 " vimpad
 let g:pad_dir = "~/notes/"
