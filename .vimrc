@@ -1,3 +1,11 @@
+:set guioptions-=m  "remove menu bar
+:set guioptions+=M  "remove menu bar menu.vim
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
+:set guioptions-=e  "remove gui tab
+:set guioptions+=c  "use console
+
 filetype off
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
