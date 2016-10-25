@@ -32,7 +32,7 @@ filetype off
     " HAML - Support for haml/sass/scss
     Bundle 'https://github.com/tpope/vim-haml'
     " CTRL-P - Fuzzy file searching
-    Bundle 'https://github.com/kien/ctrlp.vim/'
+    Bundle 'https://github.com/ctrlpvim/ctrlp.vim/'
 
     " Airline - status bar
     Bundle 'bling/vim-airline'
