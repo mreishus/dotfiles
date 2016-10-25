@@ -34,6 +34,12 @@ filetype off
     " CTRL-P - Fuzzy file searching
     Bundle 'https://github.com/ctrlpvim/ctrlp.vim/'
 
+    " NERD TREE?
+    Bundle 'https://github.com/scrooloose/nerdtree'
+    Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
+    " STYLUS
+    Bundle 'https://github.com/wavded/vim-stylus'
+
     " Airline - status bar
     Bundle 'bling/vim-airline'
     " NerdCommenter - comment block commands
