@@ -94,6 +94,8 @@ filetype off
     Bundle 'https://github.com/sjl/badwolf'
     Bundle 'https://github.com/gregsexton/Muon'
     Bundle 'https://github.com/altercation/vim-colors-solarized'
+    Bundle 'https://github.com/mreishus/vim-mnemosyne'
+    Bundle 'https://github.com/mreishus/vim-astraios'
 
     "Bundle 'puppetlabs/puppet-syntax-vim'
 
@@ -211,12 +213,14 @@ if !empty($CONEMUBUILD)
 endif
 let g:solarized_termcolors=256
 "let g:jellybeans_use_lowcolor_black = 1
-colors jellybeans                           " select colorscheme
+"colors jellybeans                           " select colorscheme
 "colors hybrid
 "colors Tomorrow-Night
 "colors Tomorrow-Night-Eighties
 "colors Tomorrow-Night-Blue
 "colors Tomorrow-Night-Bright
+"colors mnemosyne
+colors astraios
 
 "highlight Normal ctermbg=NONE               " use terminal background
 "highlight nonText ctermbg=NONE              " use terminal background
