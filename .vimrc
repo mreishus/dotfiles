@@ -318,3 +318,7 @@ map <C-n> :NERDTreeTabsToggle<cr>
 if has("gui_running")
     set guifont=Fantasque_Sans_Mono:h12:cANSI
 endif
+
+nnoremap <leader>ve :tabe $MYVIMRC<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR>
+nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
