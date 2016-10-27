@@ -103,6 +103,9 @@ filetype off
 
     Bundle 'https://github.com/pangloss/vim-javascript'
     Bundle 'https://github.com/mxw/vim-jsx'
+    
+    Bundle 'https://github.com/OrangeT/vim-csharp'
+
 
     """ Disabled Bundles
 
