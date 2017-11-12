@@ -13,6 +13,8 @@ let g:ascii = [
     \ ' \___/ |__||__|__|__|',
     \ ''
     \]
+let g:startify_custom_header =
+        \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
 
 filetype off
 
@@ -353,7 +355,7 @@ if !empty($CONEMUBUILD)
     let &t_AB="\e[48;5;%dm"
     let &t_AF="\e[38;5;%dm"
     inoremap <Char-0x07F> <BS>
-    nnoremap <Char-0x07F> <BS
+    nnoremap <Char-0x07F> <BS>
     " termcap codes for cursor shape changes on entry and exit to
     " /from insert mode
     " doesn't work
