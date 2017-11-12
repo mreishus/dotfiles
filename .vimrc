@@ -6,150 +6,274 @@
 :set guioptions-=e  "remove gui tab
 :set guioptions+=c  "use console
 
+let g:ascii = [
+    \ '        __',
+    \ '.--.--.|__|.--.--.--.',
+    \ '|  |  ||  ||        |',
+    \ ' \___/ |__||__|__|__|',
+    \ ''
+    \]
 
 filetype off
-" Setting up Vundle - the vim plugin bundler
-    let iCanHazVundle=1
 
-    if has('win32') || has('win64')
-        let vundle_readme=expand('$HOME/vimfiles/bundle/vundle/README.md')
-    else
-        let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-    endif
+""" BEGIN Vundle autoinstall
+let isVundleInstalled=1
 
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle.."
-        echo ""
-        if has('win32') || has('win64')
-            silent !mkdir -p $HOME/vimfiles/bundle
-            silent !git clone https://github.com/gmarik/vundle $HOME/vimfiles/bundle/vundle
-        else
-            silent !mkdir -p ~/.vim/bundle
-            silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-        endif
-        let iCanHazVundle=0
-    endif
-
-    if has('win32') || has('win64')
-        set rtp+=$HOME/vimfiles/Bundle/Vundle.vim/
-        call vundle#rc('$HOME/vimfiles/Bundle')
-    else
-        set rtp+=~/.vim/bundle/vundle/
-        call vundle#rc()
-    endif
-
-    Bundle 'gmarik/vundle'
-    """" User Bundles Begin """"
-
-    " Syntastic - compiler checking for errors on the fly
-    "Bundle 'Syntastic' "<-- Old
-    Bundle 'https://github.com/scrooloose/syntastic'
-    " Fugitive - GIT integration
-    Bundle 'https://github.com/tpope/vim-fugitive'
-    " Surround - change surrounding characters, tags
-    Bundle 'https://github.com/tpope/vim-surround/'
-    " HAML - Support for haml/sass/scss
-    Bundle 'https://github.com/tpope/vim-haml'
-    " CTRL-P - Fuzzy file searching
-    Bundle 'https://github.com/ctrlpvim/ctrlp.vim/'
-
-    " NERD TREE?
-    Bundle 'https://github.com/scrooloose/nerdtree'
-    Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
-    " STYLUS
-    Bundle 'https://github.com/wavded/vim-stylus'
-
-    " Airline - status bar
-    Bundle 'bling/vim-airline'
-    " NerdCommenter - comment block commands
-    "Bundle 'https://github.com/scrooloose/nerdcommenter'
-    " TagBar - ctags support
-    "Bundle 'https://github.com/majutsushi/tagbar'
-    " Ack
-    "Bundle 'https://github.com/mileszs/ack.vim'
-    " Matchit - % bounces on html tags
-    "Bundle 'vim-scripts/matchit.zip'
-    " Gundo - Visual undo tree
-    "Bundle 'http://github.com/sjl/gundo.vim.git'
-    " Dispatch - Run Tests in background
-    "Bundle 'https://github.com/tpope/vim-dispatch'
-    " SimpleNote Sync
-    "Bundle 'https://github.com/mrtazz/simplenote.vim'
-    " Autodetect spaces vs tabs
-    Bundle 'https://github.com/tpope/vim-sleuth'
-    " Git diffs in gutter
-    Bundle 'https://github.com/airblade/vim-gitgutter'
-
-    "Bundle 'https://github.com/joonty/vdebug'
-
-    "Bundle 'https://github.com/mattn/webapi-vim'
-    "Bundle 'https://github.com/mattn/gist-vim'
-    "Bundle 'https://github.com/goldfeld/vim-seek'
-
-    " Color schemes
-    Bundle 'https://github.com/nanotech/jellybeans.vim'
-    Bundle 'https://github.com/w0ng/vim-hybrid'
-    Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-    Bundle 'https://github.com/tomasr/molokai'
-    Bundle 'https://github.com/sjl/badwolf'
-    Bundle 'https://github.com/gregsexton/Muon'
-    Bundle 'https://github.com/altercation/vim-colors-solarized'
-    Bundle 'https://github.com/mreishus/vim-mnemosyne'
-    Bundle 'https://github.com/mreishus/vim-astraios'
-
-    "Bundle 'puppetlabs/puppet-syntax-vim'
-
-    "Bundle 'Valloric/YouCompleteMe'
-
-    Bundle 'https://github.com/pangloss/vim-javascript'
-    Bundle 'https://github.com/mxw/vim-jsx'
-    
-    Bundle 'https://github.com/OrangeT/vim-csharp'
-
-
-    """ Disabled Bundles
-
-    " Autoclose - Automatically close brackets - not worth it imo
-    " Bundle 'https://github.com/Townk/vim-autoclose/'
-
-    " Evervim - evernote integration - doesn't seem to work.
-    " Bundle 'https://github.com/kakkyz81/evervim'
-
-    " Supertab - Changes the way ^n/^p works, no me gusta
-    " Bundle 'https://github.com/ervandew/supertab'
-
-    " clang_complete - only for c/c++, no use for now.
-    " Bundle 'https://github.com/Rip-Rip/clang_complete'
-    " sudo apt-get install libclang1 libclang-dev
-
-    " Vim pad - Note taking - I like the idea but it's buggy atm.
-    " Bundle 'https://github.com/fmoralesc/vim-pad'
-
-    " User Bundles End
-    if iCanHazVundle == 0
-        echo "Installing Bundles, please ignore key map error messages"
-        echo ""
-        :BundleInstall
-    endif
-" Setting up Vundle - the vim plugin bundler end
-
-"basics
-set nocompatible   " don't be compatible with vi
-set vb t_vb=       " visual bell off
-set encoding=utf-8 " utf8
-
-"files
-set backup                     " make backups
 if has('win32') || has('win64')
-    set backupdir=$HOME/vimbackup// " backups go here
+    let vundle_readme=expand('$HOME/vimfiles/bundle/vundle/README.md')
 else
-    set backupdir=~/.backup//,/tmp//   " backups go here
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
 endif
 
-"search
-set hlsearch    " highlight search results
-set ignorecase  " case insenstive search
-set smartcase   " .. unless there's a capital
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    if has('win32') || has('win64')
+        silent !mkdir -p $HOME/vimfiles/bundle
+        silent !git clone https://github.com/gmarik/vundle $HOME/vimfiles/bundle/vundle
+    else
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    endif
+    let isVundleInstalled=0
+endif
+
+if has('win32') || has('win64')
+    set rtp+=$HOME/vimfiles/bundle/vundle/
+    call vundle#rc('$HOME/vimfiles/bundle')
+else
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+endif
+Bundle 'gmarik/vundle'
+""" END Vundle autoinstall (also see bottom of file)
+
+""""""""""""""""""
+
+""" Airline - status bar
+
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+let g:airline_theme='papercolor'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" do not show the buffer when only one tab exists
+let g:airline#extensions#tabline#show_buffers=0
+
+""" File Searching
+
+"Bundle 'https://github.com/ctrlpvim/ctrlp.vim/' " Outdone by FZF
+"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
+"let g:ctrlp_custom_ignore = {
+"\ 'dir': 'tmp',
+"\ }
+"let g:ctrlp_clear_cache_on_exit = 0 " persistant cache
+"let g:ctrlp_max_height = 20
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
+let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
+nnoremap <c-p> :FZF<cr> "ctrl-p
+
+""" Searching
+
+Bundle 'jremmen/vim-ripgrep'
+
+""" Syntax checking
+
+"Bundle 'https://github.com/vim-syntastic/syntastic' " Trying ALE
+"let g:syntastic_javascript_checkers = ['eslint']
+
+"Bundle 'https://github.com/neomake/neomake'         " Trying ALE
+"let g:neomake_javascript_enabled_makers = ['eslint']
+"augroup my_neomake_signs
+"    au!
+"    autocmd ColorScheme *
+"        \ hi NeomakeErrorSign ctermfg=white |
+"        \ hi NeomakeWarningSign ctermfg=yellow
+"augroup END
+"let g:neomake_error_sign = {'text': 'x', 'texthl': 'ErrorMsg'}
+"let g:neomake_warning_sign = {
+"    \   'text': 'W',
+"    \   'texthl': 'NeomakeWarningSign',
+"    \ }
+"let g:neomake_message_sign = {
+"    \   'text': '➤',
+"    \   'texthl': 'NeomakeMessageSign',
+"    \ }
+"let g:neomake_info_sign = {'text': 'i', 'texthl': 'NeomakeInfoSign'}
+
+"autocmd! BufWritePost,BufEnter * Neomake
+
+Bundle 'w0rp/ale'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_delay = 250
+" disable the Ale HTML linters
+" Disable flow for javascript
+"let g:ale_linters = {
+"\   'html': [],
+"\   'javascript': ['eslint'],
+"\}
+"let g:ale_set_highlights = 0
+let g:ale_fixers = {}
+let g:ale_fixers['javascript'] = [
+\ 'prettier', 'eslint'
+\]
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+let g:airline#extensions#ale#enabled = 1
+
+""" File Tree - Nerd Tree (ctrl-n)
+
+Bundle 'https://github.com/scrooloose/nerdtree'
+Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
+map <C-n> :NERDTreeTabsToggle<cr>
+"let g:NERDTreeHijackNetrw=0
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+""" Enhance editor commands
+
+Bundle 'wellle/targets.vim'
+Bundle 'https://github.com/tpope/vim-fugitive'
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>ge :Gedit<cr>
+nnoremap <leader>gs :Gstatus<cr>
+Bundle 'https://github.com/tpope/vim-surround/' 
+Bundle 'https://github.com/tpope/vim-sleuth'
+Bundle 'https://github.com/airblade/vim-gitgutter'
+
+""" Filetypes
+
+Bundle 'https://github.com/tpope/vim-haml'
+Bundle 'https://github.com/wavded/vim-stylus'
+Bundle 'https://github.com/pangloss/vim-javascript'
+let g:javascript_plugin_flow = 1
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+" let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+" let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+" let g:javascript_conceal_noarg_arrow_function = "🞅"
+" let g:javascript_conceal_underscore_arrow_function = "🞅"
+" set conceallevel=1
+Bundle 'https://github.com/mxw/vim-jsx'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+Bundle 'https://github.com/OrangeT/vim-csharp'
+
+"""  Color schemes
+
+Bundle 'https://github.com/nanotech/jellybeans.vim'
+Bundle 'https://github.com/w0ng/vim-hybrid'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'https://github.com/tomasr/molokai'
+Bundle 'https://github.com/sjl/badwolf'
+Bundle 'https://github.com/gregsexton/Muon'
+Bundle 'https://github.com/altercation/vim-colors-solarized'
+Bundle 'https://github.com/mreishus/vim-mnemosyne'
+Bundle 'https://github.com/mreishus/vim-astraios'
+
+""" Session related
+
+Bundle 'https://github.com/mhinz/vim-startify'
+nnoremap <leader>s :Startify<CR>
+Bundle 'https://github.com/tpope/vim-obsession'
+if has('win32') || has('win64')
+	nnoremap <leader>o :Obsess $HOME\vimfiles\session\
+else
+	nnoremap <leader>o :Obsess ~/.vim/session/
+endif
+nnoremap <leader>O :Obsess!
+
+""" Snippets
+
+Bundle 'https://github.com/SirVer/ultisnips'
+Bundle 'https://github.com/honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""" Disabled Bundles
+
+"Bundle 'https://github.com/maksimr/vim-jsbeautify'
+"Bundle 'puppetlabs/puppet-syntax-vim'
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'https://github.com/mattn/webapi-vim'
+"Bundle 'https://github.com/mattn/gist-vim'
+"Bundle 'https://github.com/goldfeld/vim-seek'
+"Bundle 'https://github.com/joonty/vdebug'
+
+"NerdCommenter - comment block commands
+"Bundle 'https://github.com/scrooloose/nerdcommenter'
+
+"TagBar - ctags support
+"Bundle 'https://github.com/majutsushi/tagbar'
+" tagbars config
+let g:tagbar_autofocus = 1   " auto focus after opening tagbar
+let g:tagbar_autoclose = 1   " auto close after choosing a tag
+
+" turn off variables for php
+let g:tagbar_type_php = {
+    \ 'kinds' : [
+        \ 'i:interfaces',
+        \ 'c:classes',
+        \ 'd:constant definitions:0:0',
+        \ 'f:functions',
+        \ 'j:javascript functions',
+    \ ],
+\ }
+"todo: usetagbar to figure out the current view to open
+"function! sdfg()
+    "let l:foo = tagbar#currenttag('%s', '')
+"endfunction
+
+"Matchit - % bounces on html tags
+"Bundle 'vim-scripts/matchit.zip'
+
+"Gundo - Visual undo tree
+"Bundle 'http://github.com/sjl/gundo.vim.git'
+
+"Dispatch - Run Tests in background
+"Bundle 'https://github.com/tpope/vim-dispatch'
+
+"SimpleNote Sync
+"Bundle 'https://github.com/mrtazz/simplenote.vim'
+" Simplenote password goes in here (s3kr3t, not managed by git)
+"if filereadable($HOME."/.vim-simplenoterc")
+"    exec ":source ". $HOME . "/.vim-simplenoterc"
+"endif
+"nnoremap <leader>l :Simplenote -l<CR>
+"nnoremap <leader>n :Simplenote -n<CR>
+
+
+"Autoclose - Automatically close brackets - not worth it imo
+"Bundle 'https://github.com/Townk/vim-autoclose/'
+
+"Evervim - evernote integration - doesn't seem to work.
+"Bundle 'https://github.com/kakkyz81/evervim'
+
+"Supertab - Changes the way ^n/^p works, no me gusta
+"Bundle 'https://github.com/ervandew/supertab'
+
+"clang_complete - only for c/c++, no use for now.
+"Bundle 'https://github.com/Rip-Rip/clang_complete'
+"sudo apt-get install libclang1 libclang-dev
+
+"Vim pad - Note taking - I like the idea but it's buggy atm.
+"Bundle 'https://github.com/fmoralesc/vim-pad'
+" vimpad
+"let g:pad_dir = "~/notes/"
+"let g:pad_format = "text"
+"let g:pad_window_height = 12
+"let g:pad_search_backend = "ack"
 
 "tabs/indent
 set autoindent     " auto/smart indent
@@ -159,9 +283,10 @@ set tabstop=4      " indent is 4 chars wide
 set shiftwidth=4   " << >> use 4
 set shiftround     " << >> find the nearest 'tabstop'
 set smarttab       " pressing tab also rounds to nearest (?unsure if i should keep this?)
-set noexpandtab    """ put tabs in files.
-"""set expandtab   """ don't put tabs in files, convert to spaces.
-"""set softtabstop=4  " also use this when using spaces.
+"" These are commented out because I'm using vim-sleuth.
+"set noexpandtab    " put tabs in files.
+"set expandtab      " don't put tabs in files, convert to spaces.
+"set softtabstop=4  " also use this when using spaces.
 
 " interface
 set laststatus=2 " always show status line
@@ -171,7 +296,7 @@ set number       " line numbers
 set wildmenu                  " better completion
 set wildmode=list:longest     " show lots of stuff
 set nolist                    " hidden characters off by default
-set listchars=eol:¬,extends:»,tab:»\ ,trail:›
+"set listchars=eol:¬,extends:»,tab:»\ ,trail:›
 set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
@@ -207,6 +332,9 @@ syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
 set background=dark                         " we're using a dark bg
 
+"" Need to test/consolidate these conemu sections
+
+" I think this is the w/o chcp 65001 section
 if !empty($CONEMUBUILD)
 	set term=pcansi
 	set t_Co=256
@@ -214,6 +342,27 @@ if !empty($CONEMUBUILD)
 	let &t_AF="\e[38;5;%dm"
 	set bs=indent,eol,start
 endif
+
+" ConEmu
+" for this section, you must run "chcp 65001" before running vim
+if !empty($CONEMUBUILD)
+    " echom "Running in conemu"
+    set termencoding=utf8
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    inoremap <Char-0x07F> <BS>
+    nnoremap <Char-0x07F> <BS
+    " termcap codes for cursor shape changes on entry and exit to
+    " /from insert mode
+    " doesn't work
+    "let &t_ti="\e[1 q"
+    "let &t_SI="\e[5 q"
+    "let &t_EI="\e[1 q"
+    "let &t_te="\e[0 q"
+endif
+
 let g:solarized_termcolors=256
 "let g:jellybeans_use_lowcolor_black = 1
 "colors jellybeans                           " select colorscheme
@@ -227,51 +376,15 @@ colors astraios
 
 "highlight Normal ctermbg=NONE               " use terminal background
 "highlight nonText ctermbg=NONE              " use terminal background
-highlight Search ctermfg=0 ctermbg=102      " i don't like jellybeans default search higlighting colors
+"highlight Search ctermfg=0 ctermbg=102      " i don't like jellybeans default search higlighting colors
 
 au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
 
-" tagbars config
-let g:tagbar_autofocus = 1   " auto focus after opening tagbar
-let g:tagbar_autoclose = 1   " auto close after choosing a tag
-
-" turn off variables for php
-let g:tagbar_type_php = {
-    \ 'kinds' : [
-        \ 'i:interfaces',
-        \ 'c:classes',
-        \ 'd:constant definitions:0:0',
-        \ 'f:functions',
-        \ 'j:javascript functions',
-    \ ],
-\ }
-
-" ctrlp config - persistant cache
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_max_height = 20
-
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/obj/*,*/node_modules/*
-
-"todo: usetagbar to figure out the current view to open
-"function! Asdf()
-    "let l:foo = tagbar#currenttag('%s', '')
-"endfunction
-
-" fugitive config
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>ge :Gedit<cr>
-nnoremap <leader>gs :Gstatus<cr>
 
 " tabs
 nnoremap <C-t> :tabnew<cr>
 nnoremap <C-y> :tabclose<cr>
-
-" vimpad
-let g:pad_dir = "~/notes/"
-let g:pad_format = "text"
-let g:pad_window_height = 12
-let g:pad_search_backend = "ack"
 
 " misc filetype
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
@@ -283,45 +396,43 @@ noremap <silent><leader><space> :nohls<CR>
 
 " f keys
 set pastetoggle=<F1>                                    " f1 toggles paste
-nnoremap <F2> :AutoCloseToggle<cr>                      " f2 toggles autoclose
+"nnoremap <F2> :AutoCloseToggle<cr>                      " f2 toggles autoclose
 nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>   " f5 toggles line numbers
 nnoremap <F6> :set list!<cr>                            " f6 toggles list
-nnoremap <F8> :TagbarToggle<cr>                         " f8 toggles tagbar
-nnoremap <F9> :GundoToggle<cr>                          " f9 toggles Gundo
-
-let g:ctrlp_custom_ignore = {
-\ 'dir': 'tmp',
-\ }
+"nnoremap <F8> :TagbarToggle<cr>                         " f8 toggles tagbar
+"nnoremap <F9> :GundoToggle<cr>                          " f9 toggles Gundo
 
 " \W strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Simplenote password goes in here (s3kr3t, not managed by git)
-if filereadable($HOME."/.vim-simplenoterc")
-    exec ":source ". $HOME . "/.vim-simplenoterc"
-endif
-
-nnoremap <leader>l :Simplenote -l<CR>
-nnoremap <leader>n :Simplenote -n<CR>
-
 nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
+nnoremap <leader>ve :tabe $MYVIMRC<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR>
+" \z close all other tabs
+nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
 
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
-
-let g:airline#extensions#tabline#enabled = 1
-
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:syntastic_javascript_checkers = ['eslint']
-
-" npm install -g eslint
-" npm install -g babel-eslint
-" npm install -g eslint-plugin-react
-
-map <C-n> :NERDTreeTabsToggle<cr>
 if has("gui_running")
     set guifont=Fantasque_Sans_Mono:h12:cANSI
 endif
 
-nnoremap <leader>ve :tabe $MYVIMRC<CR>
-nnoremap <leader>vr :source $MYVIMRC<CR>
-nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
+" Guifont Fantasque Sans Mono:h12
+set noincsearch
+
+set backupcopy=yes "For webpack
+set tabpagemax=100
+
+" My work laptop needs this to make vimdiff work?
+"set diffexpr=MyDiff()
+"function MyDiff()
+"  let opt = ''
+"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+"  silent execute '!"'.$VIMRUNTIME.'\diff" -a ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
+"endfunction
+
+""" BEGIN Vundle autoinstall
+if isVundleInstalled == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
+""" END Vundle autoinstall
