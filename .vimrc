@@ -193,15 +193,86 @@ endif
 nnoremap <leader>O :Obsess!
 
 """ Snippets
-
-Bundle 'https://github.com/SirVer/ultisnips'
-Bundle 'https://github.com/honza/vim-snippets'
+"Disabled while working out deoplete setup
+"Bundle 'https://github.com/SirVer/ultisnips'
+"Bundle 'https://github.com/honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsEditSplit="vertical"
+
+""" Flowtype (does this work better than ale's?)
+" Right now, I disabled its syncronous checking, and I'm only using it for
+" ^X ^O, which seems to be working better than Deoplete's
+" As well as \ft = :FlowType
+let g:flow#flowpath="C:\\dev\\redacted\\redacted\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
+let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
+if matchstr(local_flow, "^\/\\w") == ''
+    let local_flow= getcwd() . "/" . local_flow
+endif
+if executable(local_flow)
+  let g:flow#flowpath = local_flow
+endif
+
+let g:flow#enable = 0
+let g:flow#timeout = 10
+let g:flow#showquickfix = 0
+Bundle 'flowtype/vim-flow'
+nnoremap <leader>ft :FlowType<CR>
+
+""" Autocomplete
+" This takes quite a bit of setup, and I'm not yet sure how to 
+" trigger the popup menu quickly
+Bundle 'Shougo/deoplete.nvim'
+Bundle 'roxma/nvim-yarp'
+Bundle 'roxma/vim-hug-neovim-rpc'
+" On windows, get python3
+" 0. Install chocolately.
+" 1. If you installed vim on your own, uninstall it and run "choco install vim".
+" 2. choco install python3 --version 3.5.4
+" 3. choco pin add -n=python3 --version 3.5.4
+" 4. Add C:\python35 to path and run refreshenv in powershell
+" 5. Copy C:\Python35\python.exe to C:\Python35\python3.exe 
+" 6. C:\Python35\Scripts\pip.exe install neovim
+" Wasn't that easy?
+
+"let g:deoplete#complete_method="omnifunc"
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
+
+" Press C-Y to accept a completion.
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
+
+" Pressing tab invokes manual deoplete
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" Both of these seem less useful than flow-type's ^X^O? 
+Bundle 'wokalski/autocomplete-flow'
+"let g:deoplete#sources#flow#flow_bin="C:\\dev\\OAP\\OmniActivation\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
+"Bundle 'steelsojka/deoplete-flow'
+
+""" Disabled Bundles
+
 
 """ Disabled Bundles
 
@@ -276,6 +347,27 @@ let g:tagbar_type_php = {
 "let g:pad_format = "text"
 "let g:pad_window_height = 12
 "let g:pad_search_backend = "ack"
+
+"basics
+set nocompatible   " don't be compatible with vi
+set vb t_vb=       " visual bell off
+if has("autocmd") && has("gui")
+    au GUIEnter * set t_vb=
+endif
+set encoding=utf-8 " utf8
+
+"files
+set backup                     " make backups
+if has('win32') || has('win64')
+    set backupdir=$HOME/vimbackup// " backups go here
+else
+    set backupdir=~/.backup//,/tmp//   " backups go here
+endif
+
+"search
+set hlsearch    " highlight search results
+set ignorecase  " case insenstive search
+set smartcase   " .. unless there's a capital
 
 "tabs/indent
 set autoindent     " auto/smart indent
