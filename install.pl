@@ -6,7 +6,8 @@ use File::Copy;
 
 my $h = $ENV{HOME};
 
-foreach my $file (qw(.vimrc .ackrc .screenrc .ctags .tmux-powerlinerc .tmux.conf .ssh/config .eslintrc)) {
+# old files - .screenrc .tmux-powerlinerc .tmux.conf
+foreach my $file (qw(.vimrc .ackrc .ctags .ssh/config .eslintrc .tmux.conf.local)) {
     next if -l "$h/$file";
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
@@ -20,4 +21,10 @@ foreach my $file (qw(.vimrc .ackrc .screenrc .ctags .tmux-powerlinerc .tmux.conf
     }
     system("ln -s $h/dotfiles/$file $h/$file");
     say "Added link $h/$file -> $h/dotfiles/$file";
+}
+
+# oh-my-tmux 
+if (!-d "$h/.tmux") {
+    system("git clone https://github.com/gpakosz/.tmux.git $h/.tmux");
+    system("ln -s $h/.tmux/.tmux.conf $h/.tmux.conf");
 }
