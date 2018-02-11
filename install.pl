@@ -6,7 +6,7 @@ use File::Copy;
 
 my $h = $ENV{HOME};
 
-# old files - .screenrc .tmux-powerlinerc .tmux.conf
+# old files - .screenrc .tmux.conf
 foreach my $file (qw(.vimrc .ackrc .ctags .ssh/config .eslintrc .tmux.conf.local)) {
     next if -l "$h/$file";
     if (!-e "$h/dotfiles/$file") {
@@ -23,7 +23,7 @@ foreach my $file (qw(.vimrc .ackrc .ctags .ssh/config .eslintrc .tmux.conf.local
     say "Added link $h/$file -> $h/dotfiles/$file";
 }
 
-# oh-my-tmux 
+# oh-my-tmux
 if (!-d "$h/.tmux") {
     system("git clone https://github.com/gpakosz/.tmux.git $h/.tmux");
     system("ln -s $h/.tmux/.tmux.conf $h/.tmux.conf");
