@@ -509,7 +509,11 @@ nnoremap <leader>vr :source $MYVIMRC<CR>
 nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
 
 if has("gui_running")
-    set guifont=Fantasque_Sans_Mono:h12:cANSI
+    "set guifont=Fantasque_Sans_Mono:h12:cANSI
+    "set guifont=Fantasque_Sans_Mono:h12:cANSI
+    set guifont=Iosevka_Term:h12:cANSI:qDRAFT
+    "set renderoptions=type:directx " vim isn't compiled with it
+    "set guiFont=Fira_Code:h11:cANSI:qDRAFT
 endif
 
 " Guifont Fantasque Sans Mono:h12

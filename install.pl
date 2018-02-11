@@ -28,3 +28,12 @@ if (!-d "$h/.tmux") {
     system("git clone https://github.com/gpakosz/.tmux.git $h/.tmux");
     system("ln -s $h/.tmux/.tmux.conf $h/.tmux.conf");
 }
+
+# logbook
+if (!-d "$h/txt") {
+    system("mkdir $h/txt");
+}
+if (!-d "$h/txt/logbook") {
+    system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
+    system("$h/txt/logbook/install.pl");
+}
