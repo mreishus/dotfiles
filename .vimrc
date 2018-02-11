@@ -74,7 +74,7 @@ let g:airline#extensions#tabline#show_buffers=0
 Bundle 'junegunn/fzf'
 Bundle 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
-nnoremap <c-p> :FZF<cr> "ctrl-p
+nnoremap <c-p> :FZF<cr>
 
 """ Searching
 
@@ -108,8 +108,10 @@ Bundle 'jremmen/vim-ripgrep'
 
 Bundle 'w0rp/ale'
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_delay = 250
+" let g:ale_lint_on_text_changed = 'always'
+" let g:ale_lint_delay = 250
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 " disable the Ale HTML linters
 " Disable flow for javascript
 "let g:ale_linters = {
@@ -144,6 +146,8 @@ nnoremap <leader>gs :Gstatus<cr>
 Bundle 'https://github.com/tpope/vim-surround/' 
 Bundle 'https://github.com/tpope/vim-sleuth'
 Bundle 'https://github.com/airblade/vim-gitgutter'
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 
 """ Filetypes
 
@@ -530,3 +534,6 @@ if isVundleInstalled == 0
     :BundleInstall
 endif
 """ END Vundle autoinstall
+
+"" For my mac only
+set rtp+=/usr/local/opt/fzf
