@@ -229,9 +229,9 @@ nnoremap <leader>ft :FlowType<CR>
 """ Autocomplete
 " This takes quite a bit of setup, and I'm not yet sure how to 
 " trigger the popup menu quickly
-Bundle 'Shougo/deoplete.nvim'
-Bundle 'roxma/nvim-yarp'
-Bundle 'roxma/vim-hug-neovim-rpc'
+"Bundle 'Shougo/deoplete.nvim'
+"Bundle 'roxma/nvim-yarp'
+"Bundle 'roxma/vim-hug-neovim-rpc'
 " On windows, get python3
 " 0. Install chocolately.
 " 1. If you installed vim on your own, uninstall it and run "choco install vim".
@@ -251,11 +251,11 @@ let g:deoplete#enable_smart_case = 1
 " Press C-Y to accept a completion.
 
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
 endfunction
@@ -541,3 +541,6 @@ endif
 
 "" For my mac only
 set rtp+=/usr/local/opt/fzf
+
+" Tweak
+highlight ALEWarning ctermbg=DarkMagenta
