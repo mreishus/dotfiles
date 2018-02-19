@@ -37,3 +37,7 @@ if (!-d "$h/txt/logbook") {
     system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
     system("$h/txt/logbook/install.pl");
 }
+# pandoc-starter
+if (!-d "$h/txt/pandoc-starter") {
+    system("git clone git\@github.com:mreishus/pandoc-starter.git $h/txt/pandoc-starter");
+}
