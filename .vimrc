@@ -275,6 +275,15 @@ Bundle 'wokalski/autocomplete-flow'
 "let g:deoplete#sources#flow#flow_bin="C:\\dev\\OAP\\OmniActivation\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
 "Bundle 'steelsojka/deoplete-flow'
 
+" Pandoc
+
+Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'vim-pandoc/vim-pandoc-syntax' 
+let g:pandoc#modules#disabled = [ "spell" ]
+
+Bundle 'junegunn/goyo.vim'
+nnoremap <leader>gg :Goyo<cr>
+
 """ Disabled Bundles
 
 
@@ -544,3 +553,15 @@ set rtp+=/usr/local/opt/fzf
 
 " Tweak
 highlight ALEWarning ctermbg=DarkMagenta
+highlight ALEError  ctermbg=DarkMagenta
+"highlight SpellBad  ctermbg=DarkMagenta ctermfg=249
+highlight SpellBad  ctermbg=1 ctermfg=0
+
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Open folds when opening file
+"au BufRead * normal zR
+autocmd BufWinEnter * silent! :%foldopen!
+
