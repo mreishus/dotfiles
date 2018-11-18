@@ -6,9 +6,11 @@ use File::Copy;
 
 my $h = $ENV{HOME};
 
+system("mkdir -p $h/.ssh/sockets");
+
 # old files - .screenrc .tmux.conf
 foreach my $file (qw(.vimrc .ackrc .ctags .ssh/config .eslintrc .tmux.conf.local)) {
-    next if -l "$h/$file";
+    next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
         exit;
@@ -41,3 +43,7 @@ if (!-d "$h/txt/logbook") {
 if (!-d "$h/txt/pandoc-starter") {
     system("git clone git\@github.com:mreishus/pandoc-starter.git $h/txt/pandoc-starter");
 }
+
+say "\nSetting git name+email...\n";
+system("git config --global user.name \"Matthew Reishus\"");
+system("git config --global user.email \"mreishus\@users.noreply.github.com\"");
