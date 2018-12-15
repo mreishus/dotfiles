@@ -248,6 +248,9 @@ let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
 
+" Try this completion.. 
+Bundle 'zxqfl/tabnine-vim'
+
 " Press C-Y to accept a completion.
 
 " <C-h>, <BS>: close popup and delete backword char.
