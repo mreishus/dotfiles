@@ -151,6 +151,7 @@ let g:gitgutter_eager = 0
 
 """ Filetypes
 
+Bundle 'elixir-editors/vim-elixir'
 Bundle 'https://github.com/tpope/vim-haml'
 Bundle 'https://github.com/wavded/vim-stylus'
 Bundle 'https://github.com/pangloss/vim-javascript'
@@ -387,7 +388,6 @@ set smartcase   " .. unless there's a capital
 
 "tabs/indent
 set autoindent     " auto/smart indent
-set smartindent    " ^^^
 set bs=2           " smart backspace
 set tabstop=4      " indent is 4 chars wide
 set shiftwidth=4   " << >> use 4
@@ -568,3 +568,4 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 "au BufRead * normal zR
 autocmd BufWinEnter * silent! :%foldopen!
 
+hi ALEWarning ctermbg=4
