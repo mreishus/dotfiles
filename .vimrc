@@ -16,46 +16,20 @@ let g:ascii = [
 let g:startify_custom_header =
         \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
 
-filetype off
-
-""" BEGIN Vundle autoinstall
-let isVundleInstalled=1
-
-if has('win32') || has('win64')
-    let vundle_readme=expand('$HOME/vimfiles/bundle/vundle/README.md')
-else
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+""" BEGIN vim-plug auto install
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+""" END vim-plug autoinstall
 
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    if has('win32') || has('win64')
-        silent !mkdir -p $HOME/vimfiles/bundle
-        silent !git clone https://github.com/gmarik/vundle $HOME/vimfiles/bundle/vundle
-    else
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    endif
-    let isVundleInstalled=0
-endif
-
-if has('win32') || has('win64')
-    set rtp+=$HOME/vimfiles/bundle/vundle/
-    call vundle#rc('$HOME/vimfiles/bundle')
-else
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-endif
-Bundle 'gmarik/vundle'
-""" END Vundle autoinstall (also see bottom of file)
-
-""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
 """ Airline - status bar
 
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='papercolor'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -64,28 +38,28 @@ let g:airline#extensions#tabline#show_buffers=0
 
 """ File Searching
 
-"Bundle 'https://github.com/ctrlpvim/ctrlp.vim/' " Outdone by FZF
+"Plug 'https://github.com/ctrlpvim/ctrlp.vim/' " Outdone by FZF
 "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
 "let g:ctrlp_custom_ignore = {
 "\ 'dir': 'tmp',
 "\ }
 "let g:ctrlp_clear_cache_on_exit = 0 " persistant cache
 "let g:ctrlp_max_height = 20
-Bundle 'junegunn/fzf'
-Bundle 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
 nnoremap <c-p> :FZF<cr>
 
 """ Searching
 
-Bundle 'jremmen/vim-ripgrep'
+Plug 'jremmen/vim-ripgrep'
 
 """ Syntax checking
 
-"Bundle 'https://github.com/vim-syntastic/syntastic' " Trying ALE
+"Plug 'https://github.com/vim-syntastic/syntastic' " Trying ALE
 "let g:syntastic_javascript_checkers = ['eslint']
 
-"Bundle 'https://github.com/neomake/neomake'         " Trying ALE
+"Plug 'https://github.com/neomake/neomake'         " Trying ALE
 "let g:neomake_javascript_enabled_makers = ['eslint']
 "augroup my_neomake_signs
 "    au!
@@ -106,7 +80,7 @@ Bundle 'jremmen/vim-ripgrep'
 
 "autocmd! BufWritePost,BufEnter * Neomake
 
-Bundle 'w0rp/ale'
+Plug 'w0rp/ale'
 let g:ale_lint_on_save = 1
 " let g:ale_lint_on_text_changed = 'always'
 " let g:ale_lint_delay = 250
@@ -129,32 +103,32 @@ let g:airline#extensions#ale#enabled = 1
 
 """ File Tree - Nerd Tree (ctrl-n)
 
-Bundle 'https://github.com/scrooloose/nerdtree'
-Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
+Plug 'https://github.com/scrooloose/nerdtree'
+Plug 'https://github.com/jistr/vim-nerdtree-tabs'
 map <C-n> :NERDTreeTabsToggle<cr>
 "let g:NERDTreeHijackNetrw=0
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 """ Enhance editor commands
 
-Bundle 'wellle/targets.vim'
-Bundle 'https://github.com/tpope/vim-fugitive'
+Plug 'wellle/targets.vim'
+Plug 'https://github.com/tpope/vim-fugitive'
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
-Bundle 'https://github.com/tpope/vim-surround/' 
-Bundle 'https://github.com/tpope/vim-sleuth'
-Bundle 'https://github.com/airblade/vim-gitgutter'
+Plug 'https://github.com/tpope/vim-surround/' 
+Plug 'https://github.com/tpope/vim-sleuth'
+Plug 'https://github.com/airblade/vim-gitgutter'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 """ Filetypes
 
-Bundle 'elixir-editors/vim-elixir'
-Bundle 'https://github.com/tpope/vim-haml'
-Bundle 'https://github.com/wavded/vim-stylus'
-Bundle 'https://github.com/pangloss/vim-javascript'
+Plug 'elixir-editors/vim-elixir'
+Plug 'https://github.com/tpope/vim-haml'
+Plug 'https://github.com/wavded/vim-stylus'
+Plug 'https://github.com/pangloss/vim-javascript'
 let g:javascript_plugin_flow = 1
 let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
@@ -169,27 +143,27 @@ let g:javascript_conceal_arrow_function       = "⇒"
 " let g:javascript_conceal_noarg_arrow_function = "🞅"
 " let g:javascript_conceal_underscore_arrow_function = "🞅"
 " set conceallevel=1
-Bundle 'https://github.com/mxw/vim-jsx'
+Plug 'https://github.com/mxw/vim-jsx'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-Bundle 'https://github.com/OrangeT/vim-csharp'
+Plug 'https://github.com/OrangeT/vim-csharp'
 
 """  Color schemes
 
-Bundle 'https://github.com/nanotech/jellybeans.vim'
-Bundle 'https://github.com/w0ng/vim-hybrid'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'https://github.com/tomasr/molokai'
-Bundle 'https://github.com/sjl/badwolf'
-Bundle 'https://github.com/gregsexton/Muon'
-Bundle 'https://github.com/altercation/vim-colors-solarized'
-Bundle 'https://github.com/mreishus/vim-mnemosyne'
-Bundle 'https://github.com/mreishus/vim-astraios'
+Plug 'https://github.com/nanotech/jellybeans.vim'
+Plug 'https://github.com/w0ng/vim-hybrid'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'https://github.com/tomasr/molokai'
+Plug 'https://github.com/sjl/badwolf'
+Plug 'https://github.com/gregsexton/Muon'
+Plug 'https://github.com/altercation/vim-colors-solarized'
+Plug 'https://github.com/mreishus/vim-mnemosyne'
+Plug 'https://github.com/mreishus/vim-astraios'
 
 """ Session related
 
-Bundle 'https://github.com/mhinz/vim-startify'
+Plug 'https://github.com/mhinz/vim-startify'
 nnoremap <leader>s :Startify<CR>
-Bundle 'https://github.com/tpope/vim-obsession'
+Plug 'https://github.com/tpope/vim-obsession'
 if has('win32') || has('win64')
 	nnoremap <leader>o :Obsess $HOME\vimfiles\session\
 else
@@ -199,8 +173,8 @@ nnoremap <leader>O :Obsess!
 
 """ Snippets
 "Disabled while working out deoplete setup
-"Bundle 'https://github.com/SirVer/ultisnips'
-"Bundle 'https://github.com/honza/vim-snippets'
+"Plug 'https://github.com/SirVer/ultisnips'
+"Plug 'https://github.com/honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -224,15 +198,15 @@ endif
 let g:flow#enable = 0
 let g:flow#timeout = 10
 let g:flow#showquickfix = 0
-Bundle 'flowtype/vim-flow'
+Plug 'flowtype/vim-flow'
 nnoremap <leader>ft :FlowType<CR>
 
 """ Autocomplete
 " This takes quite a bit of setup, and I'm not yet sure how to 
 " trigger the popup menu quickly
-"Bundle 'Shougo/deoplete.nvim'
-"Bundle 'roxma/nvim-yarp'
-"Bundle 'roxma/vim-hug-neovim-rpc'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 " On windows, get python3
 " 0. Install chocolately.
 " 1. If you installed vim on your own, uninstall it and run "choco install vim".
@@ -250,7 +224,7 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 
 " Try this completion.. 
-Bundle 'zxqfl/tabnine-vim'
+Plug 'zxqfl/tabnine-vim'
 
 " Press C-Y to accept a completion.
 
@@ -275,37 +249,37 @@ return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 
 " Both of these seem less useful than flow-type's ^X^O? 
-Bundle 'wokalski/autocomplete-flow'
+Plug 'wokalski/autocomplete-flow'
 "let g:deoplete#sources#flow#flow_bin="C:\\dev\\OAP\\OmniActivation\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
-"Bundle 'steelsojka/deoplete-flow'
+"Plug 'steelsojka/deoplete-flow'
 
 " Pandoc
 
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax' 
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax' 
 let g:pandoc#modules#disabled = [ "spell" ]
 
-Bundle 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 nnoremap <leader>gg :Goyo<cr>
 
-""" Disabled Bundles
+""" Disabled Plugs
 
 
-""" Disabled Bundles
+""" Disabled Plugs
 
-"Bundle 'https://github.com/maksimr/vim-jsbeautify'
-"Bundle 'puppetlabs/puppet-syntax-vim'
-"Bundle 'Valloric/YouCompleteMe'
-"Bundle 'https://github.com/mattn/webapi-vim'
-"Bundle 'https://github.com/mattn/gist-vim'
-"Bundle 'https://github.com/goldfeld/vim-seek'
-"Bundle 'https://github.com/joonty/vdebug'
+"Plug 'https://github.com/maksimr/vim-jsbeautify'
+"Plug 'puppetlabs/puppet-syntax-vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'https://github.com/mattn/webapi-vim'
+"Plug 'https://github.com/mattn/gist-vim'
+"Plug 'https://github.com/goldfeld/vim-seek'
+"Plug 'https://github.com/joonty/vdebug'
 
 "NerdCommenter - comment block commands
-"Bundle 'https://github.com/scrooloose/nerdcommenter'
+"Plug 'https://github.com/scrooloose/nerdcommenter'
 
 "TagBar - ctags support
-"Bundle 'https://github.com/majutsushi/tagbar'
+"Plug 'https://github.com/majutsushi/tagbar'
 " tagbars config
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
@@ -326,16 +300,16 @@ let g:tagbar_type_php = {
 "endfunction
 
 "Matchit - % bounces on html tags
-"Bundle 'vim-scripts/matchit.zip'
+"Plug 'vim-scripts/matchit.zip'
 
 "Gundo - Visual undo tree
-"Bundle 'http://github.com/sjl/gundo.vim.git'
+"Plug 'http://github.com/sjl/gundo.vim.git'
 
 "Dispatch - Run Tests in background
-"Bundle 'https://github.com/tpope/vim-dispatch'
+"Plug 'https://github.com/tpope/vim-dispatch'
 
 "SimpleNote Sync
-"Bundle 'https://github.com/mrtazz/simplenote.vim'
+"Plug 'https://github.com/mrtazz/simplenote.vim'
 " Simplenote password goes in here (s3kr3t, not managed by git)
 "if filereadable($HOME."/.vim-simplenoterc")
 "    exec ":source ". $HOME . "/.vim-simplenoterc"
@@ -345,25 +319,27 @@ let g:tagbar_type_php = {
 
 
 "Autoclose - Automatically close brackets - not worth it imo
-"Bundle 'https://github.com/Townk/vim-autoclose/'
+"Plug 'https://github.com/Townk/vim-autoclose/'
 
 "Evervim - evernote integration - doesn't seem to work.
-"Bundle 'https://github.com/kakkyz81/evervim'
+"Plug 'https://github.com/kakkyz81/evervim'
 
 "Supertab - Changes the way ^n/^p works, no me gusta
-"Bundle 'https://github.com/ervandew/supertab'
+"Plug 'https://github.com/ervandew/supertab'
 
 "clang_complete - only for c/c++, no use for now.
-"Bundle 'https://github.com/Rip-Rip/clang_complete'
+"Plug 'https://github.com/Rip-Rip/clang_complete'
 "sudo apt-get install libclang1 libclang-dev
 
 "Vim pad - Note taking - I like the idea but it's buggy atm.
-"Bundle 'https://github.com/fmoralesc/vim-pad'
+"Plug 'https://github.com/fmoralesc/vim-pad'
 " vimpad
 "let g:pad_dir = "~/notes/"
 "let g:pad_format = "text"
 "let g:pad_window_height = 12
 "let g:pad_search_backend = "ack"
+
+call plug#end()
 
 "basics
 set nocompatible   " don't be compatible with vi
@@ -543,14 +519,6 @@ set tabpagemax=100
 "  silent execute '!"'.$VIMRUNTIME.'\diff" -a ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
 "endfunction
 
-""" BEGIN Vundle autoinstall
-if isVundleInstalled == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :BundleInstall
-endif
-""" END Vundle autoinstall
-
 "" For my mac only
 set rtp+=/usr/local/opt/fzf
 
@@ -569,3 +537,4 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 autocmd BufWinEnter * silent! :%foldopen!
 
 hi ALEWarning ctermbg=4
+
