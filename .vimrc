@@ -198,59 +198,11 @@ nnoremap <leader>O :Obsess!
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
-""" Autocomplete
-" This takes quite a bit of setup, and I'm not yet sure how to 
-" trigger the popup menu quickly
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-hug-neovim-rpc'
-" On windows, get python3
-" 0. Install chocolately.
-" 1. If you installed vim on your own, uninstall it and run "choco install vim".
-" 2. choco install python3 --version 3.5.4
-" 3. choco pin add -n=python3 --version 3.5.4
-" 4. Add C:\python35 to path and run refreshenv in powershell
-" 5. Copy C:\Python35\python.exe to C:\Python35\python3.exe 
-" 6. C:\Python35\Scripts\pip.exe install neovim
-" Wasn't that easy?
-
-"let g:deoplete#complete_method="omnifunc"
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
-
-" Try this completion.. 
+" Tabnine completion
 Plug 'zxqfl/tabnine-vim'
 
+" Sonic-pi
 Plug 'dermusikman/sonicpi.vim'
-
-" Press C-Y to accept a completion.
-
-" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
-
-" Pressing tab invokes manual deoplete
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-" Both of these seem less useful than flow-type's ^X^O? 
-Plug 'wokalski/autocomplete-flow'
-"let g:deoplete#sources#flow#flow_bin="C:\\dev\\OAP\\OmniActivation\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
-"Plug 'steelsojka/deoplete-flow'
 
 " Pandoc
 
