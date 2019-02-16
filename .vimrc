@@ -98,10 +98,13 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 Plug 'w0rp/ale'
 let g:ale_lint_on_save = 1
-" let g:ale_lint_on_text_changed = 'always'
-" let g:ale_lint_delay = 250
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_insert_leave = 0
+
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_lint_delay = 250
+
+" let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_insert_leave = 0
+
 " disable the Ale HTML linters
 " Disable flow for javascript
 "let g:ale_linters = {
@@ -109,10 +112,18 @@ let g:ale_lint_on_insert_leave = 0
 "\   'javascript': ['eslint'],
 "\}
 "let g:ale_set_highlights = 0
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = [
-\ 'prettier', 'eslint'
-\]
+
+let g:ale_linters = {
+  \   'elixir': ['credo', 'mix'],
+  \}
+let g:ale_fixers = {
+  \   'javascript': [
+  \       'prettier', 'eslint'
+  \   ],
+  \   'elixir': [
+  \       'mix_format',
+  \   ],
+  \}
 let g:ale_fix_on_save = 1
 let g:ale_javascript_prettier_use_local_config = 1
 let g:airline#extensions#ale#enabled = 1
@@ -280,6 +291,13 @@ let g:tagbar_autoclose = 1   " auto close after choosing a tag
 "let g:pad_window_height = 12
 "let g:pad_search_backend = "ack"
 
+" Zen mode
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+nnoremap <leader>z :Goyo<CR>
+
 call plug#end()
 
 "basics
@@ -435,7 +453,7 @@ nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
 nnoremap <leader>ve :tabe $MYVIMRC<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR>
 " \z close all other tabs
-nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
+" nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
 
 if has("gui_running")
     "set guifont=Fantasque_Sans_Mono:h12:cANSI
