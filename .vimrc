@@ -80,6 +80,22 @@ Plug 'jremmen/vim-ripgrep'
 
 "autocmd! BufWritePost,BufEnter * Neomake
 
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+"set rtp+=~/.vim/pack/XXX/start/LanguageClient-neovim
+let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
 Plug 'w0rp/ale'
 let g:ale_lint_on_save = 1
 " let g:ale_lint_on_text_changed = 'always'
@@ -225,6 +241,8 @@ let g:deoplete#enable_smart_case = 1
 
 " Try this completion.. 
 Plug 'zxqfl/tabnine-vim'
+
+Plug 'dermusikman/sonicpi.vim'
 
 " Press C-Y to accept a completion.
 
@@ -499,7 +517,8 @@ nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
 if has("gui_running")
     "set guifont=Fantasque_Sans_Mono:h12:cANSI
     "set guifont=Fantasque_Sans_Mono:h12:cANSI
-    set guifont=Iosevka_Term:h12:cANSI:qDRAFT
+    "set guifont=Iosevka_Term:h12:cANSI:qDRAFT
+    set guifont=Iosevka\ Term\ 14
     "set renderoptions=type:directx " vim isn't compiled with it
     "set guiFont=Fira_Code:h11:cANSI:qDRAFT
 endif
