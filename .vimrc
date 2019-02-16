@@ -235,16 +235,6 @@ nnoremap <leader>gg :Goyo<cr>
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
 
-" turn off variables for php
-let g:tagbar_type_php = {
-    \ 'kinds' : [
-        \ 'i:interfaces',
-        \ 'c:classes',
-        \ 'd:constant definitions:0:0',
-        \ 'f:functions',
-        \ 'j:javascript functions',
-    \ ],
-\ }
 "todo: usetagbar to figure out the current view to open
 "function! sdfg()
     "let l:foo = tagbar#currenttag('%s', '')
