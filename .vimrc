@@ -198,25 +198,6 @@ nnoremap <leader>O :Obsess!
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
 
-""" Flowtype (does this work better than ale's?)
-" Right now, I disabled its syncronous checking, and I'm only using it for
-" ^X ^O, which seems to be working better than Deoplete's
-" As well as \ft = :FlowType
-let g:flow#flowpath="C:\\dev\\redacted\\redacted\\node_modules\\flow-bin\\flow-win64-v0.59.0\\flow.exe"
-let local_flow = finddir('node_modules', '.;') . '/.bin/flow'
-if matchstr(local_flow, "^\/\\w") == ''
-    let local_flow= getcwd() . "/" . local_flow
-endif
-if executable(local_flow)
-  let g:flow#flowpath = local_flow
-endif
-
-let g:flow#enable = 0
-let g:flow#timeout = 10
-let g:flow#showquickfix = 0
-Plug 'flowtype/vim-flow'
-nnoremap <leader>ft :FlowType<CR>
-
 """ Autocomplete
 " This takes quite a bit of setup, and I'm not yet sure how to 
 " trigger the popup menu quickly
