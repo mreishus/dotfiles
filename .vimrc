@@ -38,13 +38,6 @@ let g:airline#extensions#tabline#show_buffers=0
 
 """ File Searching
 
-"Plug 'ctrlpvim/ctrlp.vim/' " Outdone by FZF
-"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
-"let g:ctrlp_custom_ignore = {
-"\ 'dir': 'tmp',
-"\ }
-"let g:ctrlp_clear_cache_on_exit = 0 " persistant cache
-"let g:ctrlp_max_height = 20
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
