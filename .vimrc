@@ -219,10 +219,7 @@ Plug 'dermusikman/sonicpi.vim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
-let g:pandoc#modules#disabled = [ "spell" ]
-
-Plug 'junegunn/goyo.vim'
-nnoremap <leader>gg :Goyo<cr>
+let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
 """ Disabled Plugs
 
