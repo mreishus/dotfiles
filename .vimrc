@@ -101,6 +101,7 @@ nnoremap <leader>gs :Gstatus<cr>
 Plug 'tpope/vim-surround/' 
 Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
+Plug 'janko/vim-test'
 
 """ Filetypes
 Plug 'sheerun/vim-polyglot'
