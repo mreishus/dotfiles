@@ -26,8 +26,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-""" Airline - status bar
-
+" Airline - Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='papercolor'
@@ -36,18 +35,13 @@ let g:airline_powerline_fonts = 1
 " do not show the buffer when only one tab exists
 let g:airline#extensions#tabline#show_buffers=0
 
-""" File Searching
-
+" Fzf - File Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 "let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
 nnoremap <c-p> :FZF<cr>
 
-""" Searching
-
 Plug 'jremmen/vim-ripgrep'
-
-""" Syntax checking
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -65,21 +59,18 @@ map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 Plug 'w0rp/ale'
+let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
-
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_delay = 250
 
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_insert_leave = 0
 
-" disable the Ale HTML linters
-" Disable flow for javascript
-"let g:ale_linters = {
-"\   'html': [],
-"\   'javascript': ['eslint'],
-"\}
-"let g:ale_set_highlights = 0
+" let g:ale_set_highlights = 0
+
+let g:ale_javascript_prettier_use_local_config = 1
+let g:airline#extensions#ale#enabled = 1
 
 let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
@@ -92,12 +83,8 @@ let g:ale_fixers = {
   \       'mix_format',
   \   ],
   \}
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-let g:airline#extensions#ale#enabled = 1
 
 """ File Tree - Nerd Tree (ctrl-n)
-
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 map <C-n> :NERDTreeTabsToggle<cr>
@@ -105,7 +92,6 @@ map <C-n> :NERDTreeTabsToggle<cr>
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 """ Enhance editor commands
-
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>gd :Gdiff<cr>
@@ -117,12 +103,10 @@ Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
 
 """ Filetypes
-
 Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 """  Color schemes
-
 Plug 'nanotech/jellybeans.vim'
 Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -134,27 +118,15 @@ Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
 
 """ Session related
-
 Plug 'mhinz/vim-startify'
 nnoremap <leader>s :Startify<CR>
 Plug 'tpope/vim-obsession'
 if has('win32') || has('win64')
-        nnoremap <leader>o :Obsess $HOME\vimfiles\session\
+  nnoremap <leader>o :Obsess $HOME\vimfiles\session\
 else
-        nnoremap <leader>o :Obsess ~/.vim/session/
+  nnoremap <leader>o :Obsess ~/.vim/session/
 endif
 nnoremap <leader>O :Obsess!
-
-""" Snippets
-"Disabled while working out deoplete setup
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-" Trigger configuration. Do not use <tab> if you use Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
-"let g:UltiSnipsEditSplit="vertical"
 
 " Tabnine completion
 Plug 'zxqfl/tabnine-vim'
@@ -163,73 +135,12 @@ Plug 'zxqfl/tabnine-vim'
 Plug 'dermusikman/sonicpi.vim'
 
 " Pandoc
-
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
-""" Disabled Plugs
-
-"Plug 'maksimr/vim-jsbeautify'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'mattn/webapi-vim'
-"Plug 'mattn/gist-vim'
-"Plug 'goldfeld/vim-seek'
-"Plug 'joonty/vdebug'
-
-"NerdCommenter - comment block commands
-"Plug 'scrooloose/nerdcommenter'
-
-"TagBar - ctags support
-"Plug 'majutsushi/tagbar'
-
-" tagbars config
-let g:tagbar_autofocus = 1   " auto focus after opening tagbar
-let g:tagbar_autoclose = 1   " auto close after choosing a tag
-
-"todo: usetagbar to figure out the current view to open
-"function! sdfg()
-    "let l:foo = tagbar#currenttag('%s', '')
-"endfunction
-
 "Matchit - % bounces on html tags
 Plug 'vim-scripts/matchit.zip'
-
-"Gundo - Visual undo tree
-"Plug 'http://github.com/sjl/gundo.vim.git'
-
-"Dispatch - Run Tests in background
-"Plug 'tpope/vim-dispatch'
-
-"SimpleNote Sync
-"Plug 'mrtazz/simplenote.vim'
-" Simplenote password goes in here (s3kr3t, not managed by git)
-"if filereadable($HOME."/.vim-simplenoterc")
-"    exec ":source ". $HOME . "/.vim-simplenoterc"
-"endif
-"nnoremap <leader>l :Simplenote -l<CR>
-"nnoremap <leader>n :Simplenote -n<CR>
-
-"Autoclose - Automatically close brackets - not worth it imo
-"Plug 'Townk/vim-autoclose/'
-
-"Evervim - evernote integration - doesn't seem to work.
-"Plug 'kakkyz81/evervim'
-
-"Supertab - Changes the way ^n/^p works, no me gusta
-"Plug 'ervandew/supertab'
-
-"clang_complete - only for c/c++, no use for now.
-"Plug 'Rip-Rip/clang_complete'
-"sudo apt-get install libclang1 libclang-dev
-
-"Vim pad - Note taking - I like the idea but it's buggy atm.
-"Plug 'fmoralesc/vim-pad'
-" vimpad
-"let g:pad_dir = "~/notes/"
-"let g:pad_format = "text"
-"let g:pad_window_height = 12
-"let g:pad_search_backend = "ack"
 
 " Zen mode
 Plug 'junegunn/goyo.vim'
@@ -304,51 +215,20 @@ map :Q :q
 
 " allow cross-session copy paste with _Y _P
 if has('win32') || has('win64')
-  nmap    _Y      :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
-  vmap    _Y      :w! $HOME/_vi_tmp<CR>
-  nmap    _P      :r $HOME/_vi_tmp<CR>
+  nmap _Y :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
+  vmap _Y :w! $HOME/_vi_tmp<CR>
+  nmap _P :r $HOME/_vi_tmp<CR>
 else
-  nmap    _Y      :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
-  vmap    _Y      :w! ~/.vi_tmp<CR>
-  nmap    _P      :r ~/.vi_tmp<CR>
+  nmap _Y :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
+  vmap _Y :w! ~/.vi_tmp<CR>
+  nmap _P :r ~/.vi_tmp<CR>
 endif
 
 " color, syntax highlighting
-filetype plugin indent on                   " enable ft+plugin detect
-syntax on                                   " syntax highlighting
-set t_Co=256                                " 256-colors
-set background=dark                         " we're using a dark bg
-
-"" Need to test/consolidate these conemu sections
-
-" I think this is the w/o chcp 65001 section
-if !empty($CONEMUBUILD)
-  set term=pcansi
-  set t_Co=256
-  let &t_AB="\e[48;5;%dm"
-  let &t_AF="\e[38;5;%dm"
-  set bs=indent,eol,start
-endif
-
-" ConEmu
-" for this section, you must run "chcp 65001" before running vim
-if !empty($CONEMUBUILD)
-    " echom "Running in conemu"
-    set termencoding=utf8
-    set term=xterm
-    set t_Co=256
-    let &t_AB="\e[48;5;%dm"
-    let &t_AF="\e[38;5;%dm"
-    inoremap <Char-0x07F> <BS>
-    nnoremap <Char-0x07F> <BS>
-    " termcap codes for cursor shape changes on entry and exit to
-    " /from insert mode
-    " doesn't work
-    "let &t_ti="\e[1 q"
-    "let &t_SI="\e[5 q"
-    "let &t_EI="\e[1 q"
-    "let &t_te="\e[0 q"
-endif
+filetype plugin indent on " enable ft+plugin detect
+syntax on                 " syntax highlighting
+set t_Co=256              " 256-colors
+set background=dark       " we're using a dark bg
 
 let g:solarized_termcolors=256
 "let g:jellybeans_use_lowcolor_black = 1
@@ -398,12 +278,7 @@ nnoremap <leader>vr :source $MYVIMRC<CR>
 " nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
 
 if has("gui_running")
-    "set guifont=Fantasque_Sans_Mono:h12:cANSI
-    "set guifont=Fantasque_Sans_Mono:h12:cANSI
-    "set guifont=Iosevka_Term:h12:cANSI:qDRAFT
-    set guifont=Iosevka\ Term\ 14
-    "set renderoptions=type:directx " vim isn't compiled with it
-    "set guiFont=Fira_Code:h11:cANSI:qDRAFT
+  set guifont=Iosevka\ Term\ 12
 endif
 
 " Guifont Fantasque Sans Mono:h12
