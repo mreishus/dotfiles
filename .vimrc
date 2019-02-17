@@ -118,27 +118,8 @@ Plug 'airblade/vim-gitgutter'
 
 """ Filetypes
 
-Plug 'elixir-editors/vim-elixir'
-Plug 'tpope/vim-haml'
-Plug 'wavded/vim-stylus'
-Plug 'pangloss/vim-javascript'
-let g:javascript_plugin_flow = 1
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-" let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-" let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-" let g:javascript_conceal_noarg_arrow_function = "🞅"
-" let g:javascript_conceal_underscore_arrow_function = "🞅"
-" set conceallevel=1
-Plug 'mxw/vim-jsx'
+Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-"Plug 'OrangeT/vim-csharp'
 
 """  Color schemes
 
