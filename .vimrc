@@ -38,7 +38,7 @@ let g:airline#extensions#tabline#show_buffers=0
 
 """ File Searching
 
-"Plug 'https://github.com/ctrlpvim/ctrlp.vim/' " Outdone by FZF
+"Plug 'ctrlpvim/ctrlp.vim/' " Outdone by FZF
 "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:25,results:25'
 "let g:ctrlp_custom_ignore = {
 "\ 'dir': 'tmp',
@@ -105,8 +105,8 @@ let g:airline#extensions#ale#enabled = 1
 
 """ File Tree - Nerd Tree (ctrl-n)
 
-Plug 'https://github.com/scrooloose/nerdtree'
-Plug 'https://github.com/jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 map <C-n> :NERDTreeTabsToggle<cr>
 "let g:NERDTreeHijackNetrw=0
 let g:nerdtree_tabs_open_on_gui_startup=0
@@ -114,23 +114,23 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 """ Enhance editor commands
 
 Plug 'wellle/targets.vim'
-Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
-Plug 'https://github.com/tpope/vim-surround/' 
-Plug 'https://github.com/tpope/vim-sleuth'
-Plug 'https://github.com/airblade/vim-gitgutter'
+Plug 'tpope/vim-surround/' 
+Plug 'tpope/vim-sleuth'
+Plug 'airblade/vim-gitgutter'
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
 """ Filetypes
 
 Plug 'elixir-editors/vim-elixir'
-Plug 'https://github.com/tpope/vim-haml'
-Plug 'https://github.com/wavded/vim-stylus'
-Plug 'https://github.com/pangloss/vim-javascript'
+Plug 'tpope/vim-haml'
+Plug 'wavded/vim-stylus'
+Plug 'pangloss/vim-javascript'
 let g:javascript_plugin_flow = 1
 let g:javascript_conceal_function             = "ƒ"
 let g:javascript_conceal_null                 = "ø"
@@ -145,27 +145,27 @@ let g:javascript_conceal_arrow_function       = "⇒"
 " let g:javascript_conceal_noarg_arrow_function = "🞅"
 " let g:javascript_conceal_underscore_arrow_function = "🞅"
 " set conceallevel=1
-Plug 'https://github.com/mxw/vim-jsx'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-Plug 'https://github.com/OrangeT/vim-csharp'
+Plug 'OrangeT/vim-csharp'
 
 """  Color schemes
 
-Plug 'https://github.com/nanotech/jellybeans.vim'
-Plug 'https://github.com/w0ng/vim-hybrid'
+Plug 'nanotech/jellybeans.vim'
+Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plug 'https://github.com/tomasr/molokai'
-Plug 'https://github.com/sjl/badwolf'
-Plug 'https://github.com/gregsexton/Muon'
-Plug 'https://github.com/altercation/vim-colors-solarized'
-Plug 'https://github.com/mreishus/vim-mnemosyne'
-Plug 'https://github.com/mreishus/vim-astraios'
+Plug 'tomasr/molokai'
+Plug 'sjl/badwolf'
+Plug 'gregsexton/Muon'
+Plug 'altercation/vim-colors-solarized'
+Plug 'mreishus/vim-mnemosyne'
+Plug 'mreishus/vim-astraios'
 
 """ Session related
 
-Plug 'https://github.com/mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 nnoremap <leader>s :Startify<CR>
-Plug 'https://github.com/tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 if has('win32') || has('win64')
 	nnoremap <leader>o :Obsess $HOME\vimfiles\session\
 else
@@ -175,9 +175,9 @@ nnoremap <leader>O :Obsess!
 
 """ Snippets
 "Disabled while working out deoplete setup
-"Plug 'https://github.com/SirVer/ultisnips'
-"Plug 'https://github.com/honza/vim-snippets'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsJumpForwardTrigger="<tab>"
 "let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -201,19 +201,19 @@ let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
 """ Disabled Plugs
 
-"Plug 'https://github.com/maksimr/vim-jsbeautify'
+"Plug 'maksimr/vim-jsbeautify'
 "Plug 'puppetlabs/puppet-syntax-vim'
 "Plug 'Valloric/YouCompleteMe'
-"Plug 'https://github.com/mattn/webapi-vim'
-"Plug 'https://github.com/mattn/gist-vim'
-"Plug 'https://github.com/goldfeld/vim-seek'
-"Plug 'https://github.com/joonty/vdebug'
+"Plug 'mattn/webapi-vim'
+"Plug 'mattn/gist-vim'
+"Plug 'goldfeld/vim-seek'
+"Plug 'joonty/vdebug'
 
 "NerdCommenter - comment block commands
-"Plug 'https://github.com/scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
 
 "TagBar - ctags support
-"Plug 'https://github.com/majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 " tagbars config
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
@@ -230,10 +230,10 @@ let g:tagbar_autoclose = 1   " auto close after choosing a tag
 "Plug 'http://github.com/sjl/gundo.vim.git'
 
 "Dispatch - Run Tests in background
-"Plug 'https://github.com/tpope/vim-dispatch'
+"Plug 'tpope/vim-dispatch'
 
 "SimpleNote Sync
-"Plug 'https://github.com/mrtazz/simplenote.vim'
+"Plug 'mrtazz/simplenote.vim'
 " Simplenote password goes in here (s3kr3t, not managed by git)
 "if filereadable($HOME."/.vim-simplenoterc")
 "    exec ":source ". $HOME . "/.vim-simplenoterc"
@@ -243,20 +243,20 @@ let g:tagbar_autoclose = 1   " auto close after choosing a tag
 
 
 "Autoclose - Automatically close brackets - not worth it imo
-"Plug 'https://github.com/Townk/vim-autoclose/'
+"Plug 'Townk/vim-autoclose/'
 
 "Evervim - evernote integration - doesn't seem to work.
-"Plug 'https://github.com/kakkyz81/evervim'
+"Plug 'kakkyz81/evervim'
 
 "Supertab - Changes the way ^n/^p works, no me gusta
-"Plug 'https://github.com/ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 "clang_complete - only for c/c++, no use for now.
-"Plug 'https://github.com/Rip-Rip/clang_complete'
+"Plug 'Rip-Rip/clang_complete'
 "sudo apt-get install libclang1 libclang-dev
 
 "Vim pad - Note taking - I like the idea but it's buggy atm.
-"Plug 'https://github.com/fmoralesc/vim-pad'
+"Plug 'fmoralesc/vim-pad'
 " vimpad
 "let g:pad_dir = "~/notes/"
 "let g:pad_format = "text"
