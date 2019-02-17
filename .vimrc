@@ -40,7 +40,7 @@ let g:airline#extensions#tabline#show_buffers=0
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
+"let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
 nnoremap <c-p> :FZF<cr>
 
 """ Searching
@@ -115,8 +115,6 @@ nnoremap <leader>gs :Gstatus<cr>
 Plug 'tpope/vim-surround/' 
 Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
 
 """ Filetypes
 
@@ -140,7 +138,7 @@ let g:javascript_conceal_arrow_function       = "⇒"
 " set conceallevel=1
 Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-Plug 'OrangeT/vim-csharp'
+"Plug 'OrangeT/vim-csharp'
 
 """  Color schemes
 
@@ -160,9 +158,9 @@ Plug 'mhinz/vim-startify'
 nnoremap <leader>s :Startify<CR>
 Plug 'tpope/vim-obsession'
 if has('win32') || has('win64')
-	nnoremap <leader>o :Obsess $HOME\vimfiles\session\
+        nnoremap <leader>o :Obsess $HOME\vimfiles\session\
 else
-	nnoremap <leader>o :Obsess ~/.vim/session/
+        nnoremap <leader>o :Obsess ~/.vim/session/
 endif
 nnoremap <leader>O :Obsess!
 
@@ -191,11 +189,7 @@ let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
 """ Disabled Plugs
 
-
-""" Disabled Plugs
-
 "Plug 'maksimr/vim-jsbeautify'
-"Plug 'puppetlabs/puppet-syntax-vim'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'mattn/webapi-vim'
 "Plug 'mattn/gist-vim'
@@ -207,6 +201,7 @@ let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
 "TagBar - ctags support
 "Plug 'majutsushi/tagbar'
+
 " tagbars config
 let g:tagbar_autofocus = 1   " auto focus after opening tagbar
 let g:tagbar_autoclose = 1   " auto close after choosing a tag
@@ -217,7 +212,7 @@ let g:tagbar_autoclose = 1   " auto close after choosing a tag
 "endfunction
 
 "Matchit - % bounces on html tags
-"Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 
 "Gundo - Visual undo tree
 "Plug 'http://github.com/sjl/gundo.vim.git'
@@ -233,7 +228,6 @@ let g:tagbar_autoclose = 1   " auto close after choosing a tag
 "endif
 "nnoremap <leader>l :Simplenote -l<CR>
 "nnoremap <leader>n :Simplenote -n<CR>
-
 
 "Autoclose - Automatically close brackets - not worth it imo
 "Plug 'Townk/vim-autoclose/'
@@ -274,7 +268,7 @@ set vb t_vb=       " visual bell off
 if has("autocmd") && has("gui")
     au GUIEnter * set t_vb=
 endif
-set encoding=utf-8 " utf8
+set encoding=utf-8
 
 "files
 set backup                     " make backups
@@ -329,17 +323,16 @@ map :Q :q
 
 " allow cross-session copy paste with _Y _P
 if has('win32') || has('win64')
-    nmap    _Y      :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
-    vmap    _Y      :w! $HOME/_vi_tmp<CR>
-    nmap    _P      :r $HOME/_vi_tmp<CR>
+  nmap    _Y      :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
+  vmap    _Y      :w! $HOME/_vi_tmp<CR>
+  nmap    _P      :r $HOME/_vi_tmp<CR>
 else
-    nmap    _Y      :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
-    vmap    _Y      :w! ~/.vi_tmp<CR>
-    nmap    _P      :r ~/.vi_tmp<CR>
+  nmap    _Y      :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
+  vmap    _Y      :w! ~/.vi_tmp<CR>
+  nmap    _P      :r ~/.vi_tmp<CR>
 endif
 
 " color, syntax highlighting
-au BufRead,BufNewFile *.ctp setfiletype phtml " ctp, must be before filetype plugin. not 100%, % doesn't work on tags..
 filetype plugin indent on                   " enable ft+plugin detect
 syntax on                                   " syntax highlighting
 set t_Co=256                                " 256-colors
@@ -349,11 +342,11 @@ set background=dark                         " we're using a dark bg
 
 " I think this is the w/o chcp 65001 section
 if !empty($CONEMUBUILD)
-	set term=pcansi
-	set t_Co=256
-	let &t_AB="\e[48;5;%dm"
-	let &t_AF="\e[38;5;%dm"
-	set bs=indent,eol,start
+  set term=pcansi
+  set t_Co=256
+  let &t_AB="\e[48;5;%dm"
+  let &t_AF="\e[38;5;%dm"
+  set bs=indent,eol,start
 endif
 
 " ConEmu
@@ -437,15 +430,6 @@ set noincsearch
 
 set backupcopy=yes "For webpack
 set tabpagemax=100
-
-" My work laptop needs this to make vimdiff work?
-"set diffexpr=MyDiff()
-"function MyDiff()
-"  let opt = ''
-"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-"  silent execute '!"'.$VIMRUNTIME.'\diff" -a ' . opt . v:fname_in . ' ' . v:fname_new . ' > ' . v:fname_out
-"endfunction
 
 "" For my mac only
 set rtp+=/usr/local/opt/fzf
