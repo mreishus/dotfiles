@@ -270,6 +270,9 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 nnoremap <leader>z :Goyo<CR>
 
+" Sneak
+Plug 'justinmk/vim-sneak'
+
 call plug#end()
 
 "basics
@@ -302,8 +305,8 @@ set shiftround     " << >> find the nearest 'tabstop'
 set smarttab       " pressing tab also rounds to nearest (?unsure if i should keep this?)
 "" These are commented out because I'm using vim-sleuth.
 "set noexpandtab    " put tabs in files.
-"set expandtab      " don't put tabs in files, convert to spaces.
-"set softtabstop=4  " also use this when using spaces.
+set expandtab      " don't put tabs in files, convert to spaces.
+set softtabstop=4  " also use this when using spaces.
 
 " interface
 set laststatus=2 " always show status line
@@ -470,3 +473,6 @@ autocmd BufWinEnter * silent! :%foldopen!
 
 hi ALEWarning ctermbg=4
 
+" When I'm working on markdown, I use these
+" :set tw=72 fo=cqt wm=0
+" :let g:ycm_auto_trigger = 0
