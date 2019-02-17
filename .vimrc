@@ -56,31 +56,6 @@ Plug 'jremmen/vim-ripgrep'
 
 """ Syntax checking
 
-"Plug 'https://github.com/vim-syntastic/syntastic' " Trying ALE
-"let g:syntastic_javascript_checkers = ['eslint']
-
-"Plug 'https://github.com/neomake/neomake'         " Trying ALE
-"let g:neomake_javascript_enabled_makers = ['eslint']
-"augroup my_neomake_signs
-"    au!
-"    autocmd ColorScheme *
-"        \ hi NeomakeErrorSign ctermfg=white |
-"        \ hi NeomakeWarningSign ctermfg=yellow
-"augroup END
-"let g:neomake_error_sign = {'text': 'x', 'texthl': 'ErrorMsg'}
-"let g:neomake_warning_sign = {
-"    \   'text': 'W',
-"    \   'texthl': 'NeomakeWarningSign',
-"    \ }
-"let g:neomake_message_sign = {
-"    \   'text': '➤',
-"    \   'texthl': 'NeomakeMessageSign',
-"    \ }
-"let g:neomake_info_sign = {'text': 'i', 'texthl': 'NeomakeInfoSign'}
-
-"autocmd! BufWritePost,BufEnter * Neomake
-
-
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': './install.sh'
