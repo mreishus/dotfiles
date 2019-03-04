@@ -9,7 +9,7 @@ my $h = $ENV{HOME};
 system("mkdir -p $h/.ssh/sockets");
 
 # old files - .screenrc .tmux.conf
-foreach my $file (qw(.vimrc .ackrc .ctags .ssh/config .eslintrc .tmux.conf.local)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf.local)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
