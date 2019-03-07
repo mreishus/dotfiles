@@ -43,10 +43,10 @@ nnoremap <c-p> :FZF<cr>
 
 Plug 'jremmen/vim-ripgrep'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': './install.sh'
+"    \ }
 "set rtp+=~/.vim/pack/XXX/start/LanguageClient-neovim
 let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -61,11 +61,11 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_delay = 250
+"let g:ale_lint_on_text_changed = 'always'
+"let g:ale_lint_delay = 250
 
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 
 " let g:ale_set_highlights = 0
 
@@ -81,6 +81,12 @@ let g:ale_fixers = {
   \   ],
   \   'elixir': [
   \       'mix_format',
+  \   ],
+  \   'haskell': [
+  \       'hfmt',
+  \   ],
+  \   'rust': [
+  \       'rustfmt',
   \   ],
   \}
 
@@ -117,6 +123,7 @@ Plug 'gregsexton/Muon'
 Plug 'altercation/vim-colors-solarized'
 Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
+Plug 'rakr/vim-one'
 
 """ Session related
 Plug 'mhinz/vim-startify'
@@ -310,3 +317,34 @@ hi ALEWarning ctermbg=4
 " When I'm working on markdown, I use these
 " :set tw=72 fo=cqt wm=0
 " :let g:ycm_auto_trigger = 0
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+colorscheme one
+call one#highlight('normal', 'cccccc', '000000', 'none')"
+
+
+" ? - shows preview
+" enter - opens file
+" t - opens in new tab(?)
+" https://github.com/junegunn/fzf.vim
+" https://github.com/gvaughn/dotfiles/blob/master/config/nvim/init.vim
+" https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+command! -bang -nargs=* Fzgrep
+  \ call fzf#vim#grep(
+  \  'rg --column --line-number --no-heading --color "always" '.shellescape(<q-args>), 1,
+  \  <bang>0 ? fzf#vim#with_preview('up:60%')
+  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \ <bang>0)
+" search project for word under cursor
+nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
