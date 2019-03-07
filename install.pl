@@ -39,9 +39,24 @@ if (!-d "$h/txt/logbook") {
     system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
     system("$h/txt/logbook/install.pl");
 }
+
 # pandoc-starter
 if (!-d "$h/txt/pandoc-starter") {
     system("git clone git\@github.com:mreishus/pandoc-starter.git $h/txt/pandoc-starter");
+}
+
+# fish functions
+system("mkdir -p $h/.config/fish");
+my $fun = ".config/fish/functions";
+if (!-l "$h/$fun") { # Do nothing if it's already linked
+    if (-e "$h/$fun") {
+        chomp(my $dt = `date --rfc-3339=seconds`);
+        $dt =~ s/ /-/g;
+        move("$h/$fun", "$h/$fun.bak.$dt");
+        say "Moved $h/$fun to $h/$fun.bak.$dt to make way";
+    }
+    system("ln -s $h/dotfiles/fish-functions $h/$fun");
+    say "Added link $h/$fun -> $h/dotfiles/fish-functions";
 }
 
 say "\nSetting git name+email...\n";
