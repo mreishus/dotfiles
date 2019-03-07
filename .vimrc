@@ -332,3 +332,19 @@ endif
 
 colorscheme one
 call one#highlight('normal', 'cccccc', '000000', 'none')"
+
+
+" ? - shows preview
+" enter - opens file
+" t - opens in new tab(?)
+" https://github.com/junegunn/fzf.vim
+" https://github.com/gvaughn/dotfiles/blob/master/config/nvim/init.vim
+" https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+command! -bang -nargs=* Fzgrep
+  \ call fzf#vim#grep(
+  \  'rg --column --line-number --no-heading --color "always" '.shellescape(<q-args>), 1,
+  \  <bang>0 ? fzf#vim#with_preview('up:60%')
+  \          : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \ <bang>0)
+" search project for word under cursor
+nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
