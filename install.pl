@@ -7,9 +7,10 @@ use File::Copy;
 my $h = $ENV{HOME};
 
 system("mkdir -p $h/.ssh/sockets");
+system("mkdir -p $h/.config/nvim");
 
 # old files - .screenrc .tmux.conf
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf.local)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf.local .config/nvim/init.vim)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
