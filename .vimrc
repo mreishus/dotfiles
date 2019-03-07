@@ -43,10 +43,10 @@ nnoremap <c-p> :FZF<cr>
 
 Plug 'jremmen/vim-ripgrep'
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': './install.sh'
+"    \ }
 "set rtp+=~/.vim/pack/XXX/start/LanguageClient-neovim
 let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -61,11 +61,11 @@ map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_delay = 250
+"let g:ale_lint_on_text_changed = 'always'
+"let g:ale_lint_delay = 250
 
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 
 " let g:ale_set_highlights = 0
 
@@ -81,6 +81,12 @@ let g:ale_fixers = {
   \   ],
   \   'elixir': [
   \       'mix_format',
+  \   ],
+  \   'haskell': [
+  \       'hfmt',
+  \   ],
+  \   'rust': [
+  \       'rustfmt',
   \   ],
   \}
 
