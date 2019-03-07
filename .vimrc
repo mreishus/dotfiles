@@ -24,7 +24,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 """ END vim-plug autoinstall
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Airline - Status Bar
 Plug 'vim-airline/vim-airline'
