@@ -8,8 +8,9 @@ function fish_greeting
 
 	if type -q lolcat; and type -q fortune
 		fortune -a | lolcat
+		echo ""
 	else if type -q fortune
 		fortune -a
+		echo ""
 	end
-	echo ""
 end
