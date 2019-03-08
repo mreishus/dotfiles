@@ -9,8 +9,7 @@ my $h = $ENV{HOME};
 system("mkdir -p $h/.ssh/sockets");
 system("mkdir -p $h/.config/nvim");
 
-# old files - .screenrc .tmux.conf
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf.local .config/nvim/init.vim)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
@@ -24,12 +23,6 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf.local .config/nvim/init.vim))
     }
     system("ln -s $h/dotfiles/$file $h/$file");
     say "Added link $h/$file -> $h/dotfiles/$file";
-}
-
-# oh-my-tmux
-if (!-d "$h/.tmux") {
-    system("git clone https://github.com/gpakosz/.tmux.git $h/.tmux");
-    system("ln -s $h/.tmux/.tmux.conf $h/.tmux.conf");
 }
 
 # logbook
