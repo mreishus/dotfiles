@@ -26,6 +26,8 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
 " Airline - Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'

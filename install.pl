@@ -8,6 +8,7 @@ my $h = $ENV{HOME};
 
 system("mkdir -p $h/.ssh/sockets");
 system("mkdir -p $h/.config/nvim");
+system("mkdir -p $h/.tmux/plugins");
 
 foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
@@ -53,6 +54,13 @@ if (!-l "$h/$fun") { # Do nothing if it's already linked
     say "Added link $h/$fun -> $h/dotfiles/fish-functions";
 }
 
+# tmux plugin manager
+if (!-d "$h/.tmux/plugins/tpm") {
+    system("git clone https://github.com/tmux-plugins/tpm $h/.tmux/plugins/tpm");
+}
+
 say "\nSetting git name+email...\n";
 system("git config --global user.name \"Matthew Reishus\"");
 system("git config --global user.email \"mreishus\@users.noreply.github.com\"");
+
+# set -U fish_color_cwd cyan
