@@ -6,6 +6,12 @@
 :set guioptions-=e  "remove gui tab
 :set guioptions+=c  "use console
 
+" This is for putty using termguicolors
+" outside of tmux - not sure if it breaks
+" my other settings yet
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 let g:ascii = [
     \ '        __',
     \ '.--.--.|__|.--.--.--.',
