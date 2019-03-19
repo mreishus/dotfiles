@@ -91,6 +91,7 @@ let g:ale_fixers = {
   \       'rustfmt',
   \   ],
   \}
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 """ File Tree - Nerd Tree (ctrl-n)
 Plug 'scrooloose/nerdtree'
