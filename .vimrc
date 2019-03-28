@@ -43,6 +43,9 @@ let g:airline_powerline_fonts = 1
 " do not show the buffer when only one tab exists
 let g:airline#extensions#tabline#show_buffers=0
 
+let airline#extensions#tabline#tabs_label = ''
+let airline#extensions#tabline#show_splits = 0
+
 " Fzf - File Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -113,7 +116,7 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
-Plug 'tpope/vim-surround/' 
+Plug 'tpope/vim-surround/'
 Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
 Plug 'janko/vim-test'
@@ -153,7 +156,7 @@ Plug 'dermusikman/sonicpi.vim'
 
 " Pandoc
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax' 
+Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
 
 "Matchit - % bounces on html tags
