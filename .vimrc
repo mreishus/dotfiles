@@ -119,7 +119,22 @@ nnoremap <leader>gs :Gstatus<cr>
 Plug 'tpope/vim-surround/'
 Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-dispatch'
 Plug 'janko/vim-test'
+nnoremap <leader>tn :TestNearest<cr>
+nnoremap <leader>tf :TestFile<cr>
+nnoremap <leader>ts :TestSuite<cr>
+nnoremap <leader>tt :TestSuite<cr>
+nnoremap <leader>tb :TestSuite -strategy=dispatch_background<cr>
+nnoremap <leader>tl :TestLast<cr>
+nnoremap <leader>tg :TestVisit<cr>
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
+"let test#strategy = "dispatch_background"
+let test#strategy = "dispatch"
+
+"let test#strategy = "vimux"
+"Plug 'benmills/vimux'
 
 """ Filetypes
 Plug 'sheerun/vim-polyglot'
