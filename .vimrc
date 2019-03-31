@@ -122,9 +122,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-dispatch'
 Plug 'janko/vim-test'
 nnoremap <leader>tn :TestNearest<cr>
+nnoremap <leader>TN :TestNearest -strategy=basic<cr>
 nnoremap <leader>tf :TestFile<cr>
+nnoremap <leader>TF :TestFile -strategy=basic<cr>
 nnoremap <leader>ts :TestSuite<cr>
 nnoremap <leader>tt :TestSuite<cr>
+nnoremap <leader>TT :TestSuite -strategy=basic<cr>
 nnoremap <leader>tb :TestSuite -strategy=dispatch_background<cr>
 nnoremap <leader>tl :TestLast<cr>
 nnoremap <leader>tg :TestVisit<cr>
