@@ -38,6 +38,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='base16_spacemacs'
+"let g:airline_theme='one'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " do not show the buffer when only one tab exists
@@ -190,7 +191,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-nnoremap <leader>z :Goyo<CR>
+"nnoremap <leader>z :Goyo<CR>
+nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
 
 " Sneak
 Plug 'justinmk/vim-sneak'
@@ -366,8 +368,8 @@ if (has("termguicolors"))
 endif
 
 colorscheme one
-call one#highlight('normal', 'cccccc', '000000', 'none')"
-
+set background=dark
+call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
 
 " ? - shows preview
 " enter - opens file
