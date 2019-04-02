@@ -37,8 +37,12 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 "let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
 nnoremap <c-p> :FZF<cr>
+let g:fzf_layout = { 'down': '~65%' }
 
 Plug 'jremmen/vim-ripgrep'
+
+" Menus - Part 1 (We define them after plug ends)
+Plug 'skywind3000/quickmenu.vim'
 
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
@@ -117,8 +121,13 @@ nnoremap <leader>TT :TestSuite -strategy=basic<cr>
 nnoremap <leader>tb :TestSuite -strategy=dispatch_background<cr>
 nnoremap <leader>tl :TestLast<cr>
 nnoremap <leader>tg :TestVisit<cr>
+
+" Quickfix
 nnoremap <leader>co :copen<cr>
 nnoremap <leader>cc :cclose<cr>
+nmap <leader>j :cnext<cr>
+nmap <leader>k :cprevious<cr>
+
 "let test#strategy = "dispatch_background"
 let test#strategy = "dispatch"
 
@@ -370,3 +379,6 @@ command! -bang -nargs=* Fzgrep
 
 " search project for word under cursor
 nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
+
+" Menus - part 2
+source ~/.config/nvim/vimrc/menu.vim
