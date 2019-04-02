@@ -6,22 +6,6 @@
 :set guioptions-=e  "remove gui tab
 :set guioptions+=c  "use console
 
-" This is for putty using termguicolors
-" outside of tmux - not sure if it breaks
-" my other settings yet
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-let g:ascii = [
-    \ '        __',
-    \ '.--.--.|__|.--.--.--.',
-    \ '|  |  ||  ||        |',
-    \ ' \___/ |__||__|__|__|',
-    \ ''
-    \]
-let g:startify_custom_header =
-        \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
-
 """ BEGIN vim-plug auto install
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -32,18 +16,19 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Allow FocusGained/FocusLost events to work in tmux,
+" used by autoread (file has changed), gitgutter, fugitive, etc.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " Airline - Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='base16_spacemacs'
-"let g:airline_theme='one'
+let g:airline_theme='one'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " do not show the buffer when only one tab exists
 let g:airline#extensions#tabline#show_buffers=0
-
+" Turn off the top right file display
 let airline#extensions#tabline#tabs_label = ''
 let airline#extensions#tabline#show_splits = 0
 
@@ -160,10 +145,20 @@ let g:Hexokinase_virtualText = '███'
 "let g:Hexokinase_ftAutoload = ['*'] " Enable for all filetypes
 let g:Hexokinase_ftAutoload = ['css', 'xml'] " Enable for css and xml
 
-
-""" Session related
+" Startify - Splash screen.
 Plug 'mhinz/vim-startify'
 nnoremap <leader>s :Startify<CR>
+let g:ascii = [
+    \ '        __',
+    \ '.--.--.|__|.--.--.--.',
+    \ '|  |  ||  ||        |',
+    \ ' \___/ |__||__|__|__|',
+    \ ''
+    \]
+let g:startify_custom_header =
+        \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
+
+
 Plug 'tpope/vim-obsession'
 if has('win32') || has('win64')
   nnoremap <leader>o :Obsess $HOME\vimfiles\session\
@@ -254,7 +249,7 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
-" i can't type
+" common typos
 map :W :w
 map :Q :q
 
@@ -274,21 +269,6 @@ filetype plugin indent on " enable ft+plugin detect
 syntax on                 " syntax highlighting
 set t_Co=256              " 256-colors
 set background=dark       " we're using a dark bg
-
-let g:solarized_termcolors=256
-"let g:jellybeans_use_lowcolor_black = 1
-"colors jellybeans                           " select colorscheme
-"colors hybrid
-"colors Tomorrow-Night
-"colors Tomorrow-Night-Eighties
-"colors Tomorrow-Night-Blue
-"colors Tomorrow-Night-Bright
-"colors mnemosyne
-colors astraios
-
-"highlight Normal ctermbg=NONE               " use terminal background
-"highlight nonText ctermbg=NONE              " use terminal background
-"highlight Search ctermfg=0 ctermbg=102      " i don't like jellybeans default search higlighting colors
 
 au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
 
@@ -355,18 +335,22 @@ hi ALEWarning ctermbg=4
 " :set tw=72 fo=cqt wm=0
 " :let g:ycm_auto_trigger = 0
 
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+" This is for putty using termguicolors
+" outside of tmux
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Use 24-bit (true-color) mode in Vim/Neovim when ~~outside tmux~~.
+" Check vim-one's README for more info here. I modified to work inside tmux,
+" too.
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
 if (has("termguicolors"))
   set termguicolors
 endif
 
+" Use vim-one, but customize to have black background
 colorscheme one
 set background=dark
 call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
@@ -383,5 +367,6 @@ command! -bang -nargs=* Fzgrep
   \  <bang>0 ? fzf#vim#with_preview('up:60%')
   \          : fzf#vim#with_preview('right:50%:hidden', '?'),
   \ <bang>0)
+
 " search project for word under cursor
 nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
