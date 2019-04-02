@@ -41,6 +41,13 @@ let g:nuake_position = 'top'
 let g:nuake_size = 0.40
 let g:nuake_per_tab = 1
 
+" Snips
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/TabNine
+let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
+nnoremap <c-f> :Snippets<cr>
+
 " Fzf - File Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
