@@ -32,6 +32,15 @@ let g:airline#extensions#tabline#show_buffers=0
 let airline#extensions#tabline#tabs_label = ''
 let airline#extensions#tabline#show_splits = 0
 
+" Nuake - Quake console terminal
+Plug 'Lenovsky/nuake'
+nnoremap <F4> :Nuake<CR>
+inoremap <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <F4> <C-\><C-n>:Nuake<CR>
+let g:nuake_position = 'top'
+let g:nuake_size = 0.40
+let g:nuake_per_tab = 1
+
 " Fzf - File Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
