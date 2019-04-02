@@ -154,6 +154,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
 Plug 'rakr/vim-one'
+Plug 'RRethy/vim-hexokinase' " Show colors inline
+let g:Hexokinase_virtualText = '███'
+"let g:Hexokinase_ftAutoload = ['*'] " Enable for all filetypes
+let g:Hexokinase_ftAutoload = ['css', 'xml'] " Enable for css and xml
+
 
 """ Session related
 Plug 'mhinz/vim-startify'
