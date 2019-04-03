@@ -6,6 +6,7 @@ call quickmenu#current(0)
 call quickmenu#reset()
 call quickmenu#append('# Main', '')
 call quickmenu#append('FZF...', 'call quickmenu#toggle(1)', 'open the FZF menu...')
+call quickmenu#append('Emmet Expand', 'call emmet#expandAbbr(3,"")', 'Emmet expand abbreviations.  (Keybinding = Ctrl-Y, then comma)')
 call quickmenu#append('Echo 1', ':echo 1', 'Echo the number 1 to screen.')
 call quickmenu#append('Echo 2', ':echo 2', 'Echo the number 2 to screen.')
 

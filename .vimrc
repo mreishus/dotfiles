@@ -48,6 +48,8 @@ let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
 
+Plug 'mattn/emmet-vim'
+
 " Fzf - File Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
