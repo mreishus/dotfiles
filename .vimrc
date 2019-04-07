@@ -32,7 +32,7 @@ let g:airline#extensions#tabline#show_buffers=0
 let airline#extensions#tabline#tabs_label = ''
 let airline#extensions#tabline#show_splits = 0
 
-" Nuake - Quake console terminal
+" Nuake - Quake console terminal - Press F4.
 Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
@@ -41,16 +41,27 @@ let g:nuake_position = 'top'
 let g:nuake_size = 0.40
 let g:nuake_per_tab = 1
 
-" Snips
+" Keys that are safe to rebind in insert mode.
+" Great comment here:
+" https://old.reddit.com/r/vim/comments/4w0lib/do_you_use_insert_mode_keybindings/d63baic/
+
+" UltiSnips - Type the beginning of a snippet, then C-J.  C-F in insert or normal
+" mode shows possible snippets.
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/TabNine
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
 
+" Emmet - (insert-mode) C-K, then comma to expand a emmet abbreviation like:
+" div.column>(span+div>ui>li*3)
+" This plugin has other functions I haven't learned yet.
 Plug 'mattn/emmet-vim'
+let g:user_emmet_leader_key="<c-k>"
 
 " Fzf - File Finder
+" C-P to find files.  Many other commands like :Buffers, :Marks, etc.  Press
+" F12.
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 "let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
@@ -62,6 +73,7 @@ Plug 'jremmen/vim-ripgrep'
 " Menus - Part 1 (We define them after plug ends)
 Plug 'skywind3000/quickmenu.vim'
 
+" Language Server - currently disabled.
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': './install.sh'
@@ -77,17 +89,15 @@ map <Leader>lb :call LanguageClient#textDocument_references()<CR>
 map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
+" Ale - Automatic Linting/Fixing.
 Plug 'w0rp/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 "let g:ale_lint_on_text_changed = 'always'
 "let g:ale_lint_delay = 250
-
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
-
 " let g:ale_set_highlights = 0
-
 let g:ale_javascript_prettier_use_local_config = 1
 let g:airline#extensions#ale#enabled = 1
 
@@ -112,13 +122,17 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 
 """ File Tree - Nerd Tree (ctrl-n)
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-map <C-n> :NERDTreeTabsToggle<cr>
+map <C-n> :NERDTreeToggle<cr>
+"Plug 'jistr/vim-nerdtree-tabs'    " Makes tree appear on all tabs - slow.
+"map <C-n> :NERDTreeTabsToggle<cr>
+
 "let g:NERDTreeHijackNetrw=0
 let g:nerdtree_tabs_open_on_gui_startup=0
 
 """ Enhance editor commands
+ " Adds additional text objects.  cia = Change in argumentlist. Adds seeking.
 Plug 'wellle/targets.vim'
+" Git commands.
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
@@ -186,6 +200,7 @@ let g:startify_custom_header =
         \ 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
 
 
+" Session management
 Plug 'tpope/vim-obsession'
 if has('win32') || has('win64')
   nnoremap <leader>o :Obsess $HOME\vimfiles\session\
