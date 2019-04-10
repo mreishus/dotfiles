@@ -68,6 +68,12 @@ Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<cr>
 let g:fzf_layout = { 'down': '~65%' }
 
+" Tell FZF to use RG - so we can skip .gitignore files even if not using
+" :GitFiles search
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+" If you want gitignored files:
+"let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden'
+
 Plug 'jremmen/vim-ripgrep'
 
 " Menus - Part 1 (We define them after plug ends)
