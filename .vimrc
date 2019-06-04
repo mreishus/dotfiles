@@ -225,6 +225,12 @@ Plug 'dermusikman/sonicpi.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
+let g:pandoc#formatting#mode = "hA"
+" default = "s"
+"  h: use hard wraps
+"  a: autoformat
+"  A: smart autoformatting
+"  s: use soft wraps
 
 "Matchit - % bounces on html tags
 Plug 'vim-scripts/matchit.zip'
