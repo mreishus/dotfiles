@@ -34,7 +34,7 @@ let airline#extensions#tabline#show_splits = 0
 
 " Nuake - Quake console terminal - Press F4.
 " Turn off on some systems
-Plug 'Lenovsky/nuake'
+" Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
