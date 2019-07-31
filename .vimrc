@@ -123,6 +123,9 @@ let g:ale_fixers = {
   \   'rust': [
   \       'rustfmt',
   \   ],
+  \   'python': [
+  \       'black',
+  \   ],
   \}
 let g:ale_ruby_rubocop_executable = 'bundle'
 
