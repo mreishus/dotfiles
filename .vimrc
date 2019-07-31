@@ -33,7 +33,8 @@ let airline#extensions#tabline#tabs_label = ''
 let airline#extensions#tabline#show_splits = 0
 
 " Nuake - Quake console terminal - Press F4.
-Plug 'Lenovsky/nuake'
+" Turn off on some systems
+" Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
@@ -147,9 +148,17 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
-Plug 'tpope/vim-surround/'
+
+" Plug 'tpope/vim-surround/'
+" Surround alternative: sandwich
+Plug 'machakann/vim-sandwich'
+
 Plug 'tpope/vim-sleuth'
-Plug 'airblade/vim-gitgutter'
+
+" Plug 'airblade/vim-gitgutter'
+" Gitgutter alternative: Signify
+Plug 'mhinz/vim-signify'
+
 Plug 'tpope/vim-dispatch'
 Plug 'janko/vim-test'
 nnoremap <leader>tn :TestNearest<cr>
@@ -220,6 +229,8 @@ nnoremap <leader>O :Obsess!
 
 " Tabnine completion
 Plug 'zxqfl/tabnine-vim'
+" Another completion using language servers: Coc
+" https://github.com/neoclide/coc.nvim
 
 " Sonic-pi
 Plug 'dermusikman/sonicpi.vim'
@@ -228,6 +239,8 @@ Plug 'dermusikman/sonicpi.vim'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
+" Automatic linewrapping in pandoc:
+" Sometimes, this needs to be turned off
 let g:pandoc#formatting#mode = "hA"
 " default = "s"
 "  h: use hard wraps
