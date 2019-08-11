@@ -340,8 +340,6 @@ syntax on                 " syntax highlighting
 set t_Co=256              " 256-colors
 set background=dark       " we're using a dark bg
 
-au BufRead,BufNewFile *.txt set ft=sh       " opens .txt w/highlight
-
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/obj/*,*/node_modules/*
 
 " tabs
