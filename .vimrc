@@ -149,6 +149,9 @@ nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
 
+" Block comment (gc)
+Plug 'tpope/vim-commentary'
+
 " Plug 'tpope/vim-surround/'
 " Surround alternative: sandwich
 Plug 'machakann/vim-sandwich'
@@ -158,6 +161,9 @@ Plug 'tpope/vim-sleuth'
 " Plug 'airblade/vim-gitgutter'
 " Gitgutter alternative: Signify
 Plug 'mhinz/vim-signify'
+let g:signify_realtime = 1
+let g:signify_cursorhold_normal = 0
+let g:signify_cursorhold_insert = 0
 
 Plug 'tpope/vim-dispatch'
 Plug 'janko/vim-test'
@@ -229,6 +235,7 @@ nnoremap <leader>O :Obsess!
 
 " Tabnine completion
 Plug 'zxqfl/tabnine-vim'
+
 " Another completion using language servers: Coc
 " https://github.com/neoclide/coc.nvim
 
@@ -241,7 +248,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
 " Automatic linewrapping in pandoc:
 " Sometimes, this needs to be turned off
-let g:pandoc#formatting#mode = "hA"
+"let g:pandoc#formatting#mode = "hA"
 " default = "s"
 "  h: use hard wraps
 "  a: autoformat
