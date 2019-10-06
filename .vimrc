@@ -54,11 +54,17 @@ let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
 
+" Add some
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-react
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-redux
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-es6-react
+
 " Emmet - (insert-mode) C-K, then comma to expand a emmet abbreviation like:
 " div.column>(span+div>ui>li*3)
 " This plugin has other functions I haven't learned yet.
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key="<c-k>"
+autocmd FileType html,css,javascript.jsx,javascript.jsx_pretty,jsx_pretty EmmetInstall
 
 " Fzf - File Finder
 " C-P to find files.  Many other commands like :Buffers, :Marks, etc.  Press
@@ -448,3 +454,10 @@ nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
 
 " Menus - part 2
 source ~/.config/nvim/vimrc/menu.vim
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
