@@ -118,6 +118,9 @@ let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \}
 let g:ale_fixers = {
+  \   'typescript': [
+  \       'prettier', 'eslint'
+  \   ],
   \   'javascript': [
   \       'prettier', 'eslint'
   \   ],
