@@ -50,6 +50,7 @@ let g:nuake_per_tab = 1
 " mode shows possible snippets.
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'mreishus/vim-mmr-snippets'
 let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/TabNine
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
@@ -58,6 +59,10 @@ nnoremap <c-f> :Snippets<cr>
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-react
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-redux
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-es6-react
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-es6-react
+autocmd FileType javascript UltiSnipsAddFiletypes javascript-react-hook
+autocmd FileType typescript UltiSnipsAddFiletypes typescript-react-hook
+autocmd FileType typescript.tsx UltiSnipsAddFiletypes typescript-react-hook
 
 " Emmet - (insert-mode) C-K, then comma to expand a emmet abbreviation like:
 " div.column>(span+div>ui>li*3)
