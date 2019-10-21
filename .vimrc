@@ -454,10 +454,17 @@ if (has("termguicolors"))
 endif
 
 " Use vim-one, but customize to have black background
-"colorscheme one
-colorscheme jellybeans
+" colorscheme one
+" set background=dark
+" call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
+
 set background=dark
-"call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
+let g:jellybeans_overrides = {
+\    'Type': { 'guifg': 'd787d7' },
+\}
+colorscheme jellybeans
+highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
+"call jellybeans#X("Type","ffb964","","","Yellow","")
 
 " ? - shows preview
 " enter - opens file
@@ -484,3 +491,19 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" <leader>sp - Show highlight groups under cursor
+nmap <leader>sp :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" <leader>so - Show highlight group and translation
+nmap <leader>so :call SynGroup()<CR>
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
