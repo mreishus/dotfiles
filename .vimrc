@@ -169,6 +169,15 @@ Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-surround/'
 " Surround alternative: sandwich
 Plug 'machakann/vim-sandwich'
+Plug 'machakann/vim-highlightedyank' " Highlight what's yanked
+let g:highlightedyank_highlight_duration = 350
+Plug 'machakann/vim-swap' " Swap function arguments with g< g>
+" Text objects for function arguments
+omap i, <Plug>(swap-textobject-i)
+xmap i, <Plug>(swap-textobject-i)
+omap a, <Plug>(swap-textobject-a)
+xmap a, <Plug>(swap-textobject-a)
+
 
 Plug 'tpope/vim-sleuth'
 
@@ -219,6 +228,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
 Plug 'rakr/vim-one'
+Plug 'ciaranm/inkpot'
+let g:inkpot_black_background = 1
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -283,7 +294,8 @@ autocmd! User GoyoLeave Limelight!
 nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
 
 " Sneak
-Plug 'justinmk/vim-sneak'
+"Plug 'justinmk/vim-sneak'
+" Commented - this is conflicting with sandwich sometimes
 
 call plug#end()
 
@@ -442,9 +454,10 @@ if (has("termguicolors"))
 endif
 
 " Use vim-one, but customize to have black background
-colorscheme one
+"colorscheme one
+colorscheme jellybeans
 set background=dark
-call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
+"call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
 
 " ? - shows preview
 " enter - opens file
