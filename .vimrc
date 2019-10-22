@@ -107,8 +107,11 @@ map <Leader>lb :call LanguageClient#textDocument_references()<CR>
 map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
 map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
+" Timestamp - Set Created/Last Modified timestamps
+Plug 'vim-scripts/timestamp.vim'
+
 " Ale - Automatic Linting/Fixing.
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 "let g:ale_lint_on_text_changed = 'always'
@@ -119,6 +122,20 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_javascript_prettier_use_local_config = 1
 let g:airline#extensions#ale#enabled = 1
 
+"" ALE For markdown:
+"" yarn global add prettier
+"" gem install mdl
+"" (make sure gem bin is in your path)
+
+" remark-lint requires remark..
+" neither of them have binaries,
+" also they need a config file.  Only worth
+" using in javascript projects?
+  " \   'markdown': [
+  " \       'remark-lint',
+  " \   ],
+
+let g:ale_linter_aliases = {'pandoc': ['markdown']}
 let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \}
@@ -128,6 +145,12 @@ let g:ale_fixers = {
   \   ],
   \   'javascript': [
   \       'prettier', 'eslint'
+  \   ],
+  \   'markdown': [
+  \       'prettier',
+  \   ],
+  \   'pandoc': [
+  \       'prettier',
   \   ],
   \   'elixir': [
   \       'mix_format',
@@ -275,7 +298,8 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#modules#disabled = [ "spell", "folding" ]
 " Automatic linewrapping in pandoc:
 " Sometimes, this needs to be turned off
-"let g:pandoc#formatting#mode = "hA"
+" Trying to rely on prettier instead. hA is just too buggy.
+" let g:pandoc#formatting#mode = "hA"
 " default = "s"
 "  h: use hard wraps
 "  a: autoformat
