@@ -640,7 +640,14 @@ let g:jellybeans_overrides = {
 \    'background': { 'guibg': '000000', 'ctermbg': 'none', '256ctermbg': 'none' },
 \    'Type': { 'guifg': 'd787d7' },
 \}
-let g:jellybeans_use_term_italics = 1
+
+let hostname = substitute(system('hostname'), '\n', '', '')
+if hostname == "atlus"
+    let g:jellybeans_use_term_italics = 1
+else
+    let g:jellybeans_use_term_italics = 0
+endif
+
 colorscheme jellybeans
 highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
 "call jellybeans#X("Type","ffb964","","","Yellow","")
