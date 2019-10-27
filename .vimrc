@@ -558,6 +558,11 @@ nnoremap <C-t> :tabnew<cr>
 nnoremap <C-y> :tabclose<cr>
 
 " misc filetype
+
+" When I'm working on markdown, I use these
+" :let g:ycm_auto_trigger = 0
+
+autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
@@ -609,10 +614,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 autocmd BufWinEnter * silent! :%foldopen!
 
 hi ALEWarning ctermbg=4
-
-" When I'm working on markdown, I use these
-" :set tw=72 fo=cqt wm=0
-" :let g:ycm_auto_trigger = 0
 
 " This is for putty using termguicolors
 " outside of tmux
