@@ -255,8 +255,12 @@ Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
 Plug 'rakr/vim-one'
 Plug 'ciaranm/inkpot'
-Plug 'challenger-deep-theme/vim'
 let g:inkpot_black_background = 1
+Plug 'challenger-deep-theme/vim'
+Plug 'morhetz/gruvbox'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+let g:gruvbox_italic=1
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -548,7 +552,7 @@ endif
 " color, syntax highlighting
 filetype plugin indent on " enable ft+plugin detect
 syntax on                 " syntax highlighting
-set t_Co=256              " 256-colors
+"set t_Co=256              " 256-colors
 set background=dark       " we're using a dark bg
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/obj/*,*/node_modules/*
@@ -642,9 +646,10 @@ let g:jellybeans_overrides = {
 \    'Type': { 'guifg': 'd787d7' },
 \}
 let g:jellybeans_use_term_italics = 1
-colorscheme jellybeans
-highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
+"colorscheme jellybeans
+"highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
 "call jellybeans#X("Type","ffb964","","","Yellow","")
+colo gruvbox
 
 " ? - shows preview
 " enter - opens file
