@@ -23,7 +23,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Airline - Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='one'
+"let g:airline_theme='one'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " do not show the buffer when only one tab exists
@@ -244,8 +244,9 @@ Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 """  Color schemes
+" https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
+" https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
 Plug 'nanotech/jellybeans.vim'
-Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'tomasr/molokai'
 Plug 'sjl/badwolf'
@@ -257,9 +258,17 @@ Plug 'rakr/vim-one'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
+Plug 'micke/vim-hybrid'
+Plug 'ayu-theme/ayu-vim'
+Plug 'romainl/Apprentice'
+Plug 'tpope/vim-vividchalk'
+Plug 'atelierbram/Base2Tone-vim'
+Plug 'KKPMW/moonshine-vim'
+Plug 'axvr/photon.vim'
+
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -469,8 +478,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-"nnoremap <leader>z :Goyo<CR>
-nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
+nnoremap <leader>z :Goyo<CR>
+"nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
 
 " Sneak
 "Plug 'justinmk/vim-sneak'
@@ -654,10 +663,43 @@ else
     let g:jellybeans_use_term_italics = 0
 endif
 
-colorscheme jellybeans
+"colorscheme jellybeans
 highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
+
 "call jellybeans#X("Type","ffb964","","","Yellow","")
-colo gruvbox
+
+"colo gruvbox
+
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
+"colorscheme apprentice
+"colorscheme vividchalk
+"colorscheme hybrid
+
+"colorscheme Base2Tone_EveningDark
+" or any of the other schemes:
+" colorscheme Base2Tone_MorningDark
+" colorscheme Base2Tone_SeaDark
+" colorscheme Base2Tone_SpaceDark
+" colorscheme Base2Tone_EarthDark
+" colorscheme Base2Tone_ForestDark
+" colorscheme Base2Tone_DesertDark
+" colorscheme Base2Tone_LakeDark
+" colorscheme Base2Tone_MeadowDark
+
+"colorscheme Base2Tone_DrawbridgeDark
+"let g:airline_theme='Base2Tone_DrawbridgeDark'
+
+" colorscheme Base2Tone_PoolDark
+" colorscheme Base2Tone_HeathDark
+" colorscheme Base2Tone_CaveDark
+"colorscheme moonshine
+colo photon
+
+
 
 " ? - shows preview
 " enter - opens file
