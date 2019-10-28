@@ -266,9 +266,8 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'romainl/Apprentice'
 Plug 'tpope/vim-vividchalk'
 Plug 'atelierbram/Base2Tone-vim'
-Plug 'KKPMW/moonshine-vim'
 Plug 'axvr/photon.vim'
-
+Plug 'chriskempson/base16-vim'
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -696,9 +695,8 @@ highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jell
 " colorscheme Base2Tone_PoolDark
 " colorscheme Base2Tone_HeathDark
 " colorscheme Base2Tone_CaveDark
-"colorscheme moonshine
-colo photon
-
+"colo photon
+color base16-default-dark
 
 
 " ? - shows preview
@@ -742,3 +740,5 @@ function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
+
+nnoremap <leader>c :Colors<CR>
