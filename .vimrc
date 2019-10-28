@@ -260,7 +260,6 @@ Plug 'challenger-deep-theme/vim'
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
-let g:gruvbox_italic=1
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -648,8 +647,10 @@ let g:jellybeans_overrides = {
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "atlus"
+    let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
 else
+    let g:gruvbox_italic=0
     let g:jellybeans_use_term_italics = 0
 endif
 
