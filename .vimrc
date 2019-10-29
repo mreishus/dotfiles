@@ -243,6 +243,7 @@ let test#strategy = "dispatch"
 Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
+Plug 'statox/colorscheme-changer.vim'
 """  Color schemes
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
@@ -254,7 +255,6 @@ Plug 'gregsexton/Muon'
 Plug 'altercation/vim-colors-solarized'
 Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
-Plug 'rakr/vim-one'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim'
@@ -477,7 +477,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-nnoremap <leader>z :Goyo<CR>
+nnoremap <leader>z :SignifyToggle<CR>:Goyo<CR>
 "nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
 
 " Sneak
@@ -641,11 +641,6 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-" Use vim-one, but customize to have black background
-" colorscheme one
-" set background=dark
-" call one#highlight('normal', 'cccccc', '000000', 'none') "000 background
-
 set background=dark
 let g:jellybeans_overrides = {
 \    'Pmenu': { 'guibg': '000040' },
@@ -696,8 +691,16 @@ highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jell
 " colorscheme Base2Tone_HeathDark
 " colorscheme Base2Tone_CaveDark
 "colo photon
-color base16-default-dark
+"color base16-default-dark
 
+"colo Base2Tone_DrawbridgeDark
+"let g:airline_theme='Base2Tone_DrawbridgeDark'
+"colo gruvbox
+
+let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
+let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
+let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
+let g:nightColorscheme  = 'gruvbox'
 
 " ? - shows preview
 " enter - opens file
@@ -741,4 +744,4 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
-nnoremap <leader>c :Colors<CR>
+nnoremap <leader>x :Colors<CR>
