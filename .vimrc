@@ -91,22 +91,6 @@ Plug 'jremmen/vim-ripgrep'
 " Menus - Part 1 (We define them after plug ends)
 Plug 'skywind3000/quickmenu.vim'
 
-" Language Server - currently disabled.
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': './install.sh'
-"    \ }
-"set rtp+=~/.vim/pack/XXX/start/LanguageClient-neovim
-let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-
 " Timestamp - Set Created/Last Modified timestamps
 Plug 'vim-scripts/timestamp.vim'
 
@@ -301,7 +285,7 @@ nnoremap <leader>O :Obsess!
 " Tabnine completion
 "Plug 'zxqfl/tabnine-vim'
 
-" Coc??
+" Coc - Extensive completion engine
 
 " Here are the extensions I have installed
 " coc-tabnine
@@ -447,10 +431,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""" COC END """"""""""""""""""""""""""""""
-
-
-" Another completion using language servers: Coc
-" https://github.com/neoclide/coc.nvim
 
 " Sonic-pi
 Plug 'dermusikman/sonicpi.vim'
