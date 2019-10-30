@@ -227,7 +227,7 @@ let test#strategy = "dispatch"
 Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-Plug 'statox/colorscheme-changer.vim'
+"Plug 'statox/colorscheme-changer.vim'
 """  Color schemes
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
@@ -675,12 +675,12 @@ highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jell
 
 "colo Base2Tone_DrawbridgeDark
 "let g:airline_theme='Base2Tone_DrawbridgeDark'
-"colo gruvbox
+colo gruvbox
 
-let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
-let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
-let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
-let g:nightColorscheme  = 'gruvbox'
+" let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
+" let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
+" let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
+" let g:nightColorscheme  = 'gruvbox'
 
 " ? - shows preview
 " enter - opens file
