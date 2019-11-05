@@ -16,6 +16,13 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+" Toggle bindings
+" [a and ]a - :n and :p
+" yob - Toggle dark/light background (or [ob and ]ob)
+" [op and ]op - Paste once (uses o or O)
+" yon - Set number (or [on and ]on)
+Plug 'tpope/vim-unimpaired'
+
 " Allow FocusGained/FocusLost events to work in tmux,
 " used by autoread (file has changed), gitgutter, fugitive, etc.
 Plug 'tmux-plugins/vim-tmux-focus-events'
@@ -34,7 +41,7 @@ let airline#extensions#tabline#show_splits = 0
 
 " Nuake - Quake console terminal - Press F4.
 " Turn off on some systems
-" Plug 'Lenovsky/nuake'
+Plug 'Lenovsky/nuake'
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
@@ -55,7 +62,7 @@ let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
 
-" Add some
+" Add some extra snippets
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-react
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-redux
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-es6-react
@@ -63,6 +70,7 @@ autocmd FileType javascript UltiSnipsAddFiletypes javascript-es6-react
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-react-hook
 autocmd FileType typescript UltiSnipsAddFiletypes typescript-react-hook
 autocmd FileType typescript.tsx UltiSnipsAddFiletypes typescript-react-hook
+autocmd FileType typescriptreact UltiSnipsAddFiletypes typescript-react-hook
 
 " Emmet - (insert-mode) C-K, then comma to expand a emmet abbreviation like:
 " div.column>(span+div>ui>li*3)
@@ -127,6 +135,9 @@ let g:ale_fixers = {
   \   'typescript': [
   \       'prettier', 'eslint'
   \   ],
+  \   'typescriptreact': [
+  \       'prettier', 'eslint'
+  \   ],
   \   'javascript': [
   \       'prettier', 'eslint'
   \   ],
@@ -188,9 +199,10 @@ xmap i, <Plug>(swap-textobject-i)
 omap a, <Plug>(swap-textobject-a)
 xmap a, <Plug>(swap-textobject-a)
 
-
+" Automatically guess tab/space settings when opening a file
 Plug 'tpope/vim-sleuth'
 
+" Marks in gutter about added/removed lines
 " Plug 'airblade/vim-gitgutter'
 " Gitgutter alternative: Signify
 Plug 'mhinz/vim-signify'
@@ -198,6 +210,7 @@ let g:signify_realtime = 1
 let g:signify_cursorhold_normal = 0
 let g:signify_cursorhold_insert = 0
 
+" Run tests from inside vim
 Plug 'tpope/vim-dispatch'
 Plug 'janko/vim-test'
 nnoremap <leader>tn :TestNearest<cr>
@@ -227,10 +240,11 @@ let test#strategy = "dispatch"
 Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-"Plug 'statox/colorscheme-changer.vim'
+Plug 'statox/colorscheme-changer.vim'
 """  Color schemes
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'tomasr/molokai'
@@ -624,21 +638,26 @@ endif
 set background=dark
 let g:jellybeans_overrides = {
 \    'Pmenu': { 'guibg': '000040' },
+\    'SignColumn': { 'guibg': '000000' },
 \    'background': { 'guibg': '000000', 'ctermbg': 'none', '256ctermbg': 'none' },
+\    'Search': { 'guifg': '000000', 'guibg': 'd4ff32', 'ctermfg': '0', 'ctermbg': '102' },
 \    'Type': { 'guifg': 'd787d7' },
 \}
+" :highlight SignColumn guibg=#000000
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "atlus"
     let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
+    let g:palenight_terminal_italics=1
 else
     let g:gruvbox_italic=0
     let g:jellybeans_use_term_italics = 0
+    let g:palenight_terminal_italics=0
 endif
 
 "colorscheme jellybeans
-highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
+"highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
 
 "call jellybeans#X("Type","ffb964","","","Yellow","")
 
@@ -675,12 +694,13 @@ highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jell
 
 "colo Base2Tone_DrawbridgeDark
 "let g:airline_theme='Base2Tone_DrawbridgeDark'
-colo gruvbox
+" colo gruvbox
 
-" let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
-" let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
-" let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
-" let g:nightColorscheme  = 'gruvbox'
+let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
+let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
+"let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
+let g:dayColorscheme    = 'jellybeans'
+let g:nightColorscheme  = 'gruvbox'
 
 " ? - shows preview
 " enter - opens file
@@ -724,4 +744,9 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
+" Reminder - Switching away from gruvbox completely wrecks
+" any other color scheme, and I don't know how to reset it.
+" If you want to try other colors, start a new session
+" where gruvbox isn't loaded
 nnoremap <leader>x :Colors<CR>
+nnoremap <leader>gg :highlight clear SignColumn<CR>
