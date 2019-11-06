@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
 " [op and ]op - Paste once (uses o or O)
 " yon - Set number (or [on and ]on)
 Plug 'tpope/vim-unimpaired'
+" \q - Close buffer
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 
 " Allow FocusGained/FocusLost events to work in tmux,
 " used by autoread (file has changed), gitgutter, fugitive, etc.
@@ -86,7 +88,9 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 "let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
 nnoremap <c-p> :FZF<cr>
+nnoremap <silent> <Leader>b  :Buffers<CR>
 let g:fzf_layout = { 'down': '~65%' }
+
 
 " Tell FZF to use RG - so we can skip .gitignore files even if not using
 " :GitFiles search
@@ -94,7 +98,13 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 " If you want gitignored files:
 "let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden'
 
-Plug 'jremmen/vim-ripgrep'
+" \rg - Search for word under cursor, or string currently selected
+nnoremap <silent> <Leader>rg       :Rg <C-R><C-W><CR>
+xnoremap <silent> <Leader>rg       y:Rg <C-R>"<CR>
+
+" This overwrites :Rg with something that doesn't work
+" Think I want to delete it
+" Plug 'jremmen/vim-ripgrep'
 
 " Menus - Part 1 (We define them after plug ends)
 Plug 'skywind3000/quickmenu.vim'
@@ -236,12 +246,33 @@ let test#strategy = "dispatch"
 "let test#strategy = "vimux"
 "Plug 'benmills/vimux'
 
+Plug 'mbbill/undotree'
+nnoremap <leader>u :UndotreeToggle<cr>
+
 """ Filetypes
 Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
+"" Golang - Disabled, letting coc extension coc-go handle this
+"" https://octetz.com/posts/vim-as-go-ide 
+"Plug 'fatih/vim-go'
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+"let g:go_def_mapping_enabled = 0
+
+"" <leader>mm to show minimap
+"" unfortunately it errors?
+"" Plug 'severin-lemaignan/vim-minimap'
+
+""" Fade inactive buffers
+""" Plug 'TaDaa/vimade'
+
 Plug 'statox/colorscheme-changer.vim'
 """  Color schemes
+" Plug 'Rigellute/shades-of-purple.vim'
+" Plug 'arzg/vim-corvine'
+" Plug 'jaredgorski/SpaceCamp'
+
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
 Plug 'drewtempelmeyer/palenight.vim'
@@ -404,6 +435,10 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
+" ? I don't know what this does
+nmap <leader>dc  <Plug>(coc-codelens-action)
+" Same - AC might include this and more
+nmap <leader>rc  <Plug>(coc-refactor)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
@@ -642,6 +677,7 @@ let g:jellybeans_overrides = {
 \    'background': { 'guibg': '000000', 'ctermbg': 'none', '256ctermbg': 'none' },
 \    'Search': { 'guifg': '000000', 'guibg': 'd4ff32', 'ctermfg': '0', 'ctermbg': '102' },
 \    'Type': { 'guifg': 'd787d7' },
+\    'CocCodeLens': { 'guifg': '777777' },
 \}
 " :highlight SignColumn guibg=#000000
 
