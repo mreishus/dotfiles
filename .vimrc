@@ -212,6 +212,9 @@ xmap a, <Plug>(swap-textobject-a)
 " Automatically guess tab/space settings when opening a file
 Plug 'tpope/vim-sleuth'
 
+" Signature - show marks in column, add some mark related bindings
+Plug 'kshenoy/vim-signature'
+
 " Marks in gutter about added/removed lines
 " Plug 'airblade/vim-gitgutter'
 " Gitgutter alternative: Signify
