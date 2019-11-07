@@ -213,7 +213,7 @@ xmap a, <Plug>(swap-textobject-a)
 Plug 'tpope/vim-sleuth'
 
 " Signature - show marks in column, add some mark related bindings
-Plug 'kshenoy/vim-signature'
+"Plug 'kshenoy/vim-signature'
 
 " Marks in gutter about added/removed lines
 " Plug 'airblade/vim-gitgutter'
@@ -340,6 +340,7 @@ nnoremap <leader>O :Obsess!
 " coc-tailwindcss
 " coc-highlight
 " coc-snippets
+" coc-go
 " coc-json
 " coc-tsserver
 " coc-elixir
@@ -789,3 +790,4 @@ endfun
 " where gruvbox isn't loaded
 nnoremap <leader>x :Colors<CR>
 nnoremap <leader>gg :highlight clear SignColumn<CR>
+nnoremap <leader>gb :highlight Normal ctermbg=16 guibg=#000000<CR>
