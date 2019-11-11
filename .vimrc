@@ -102,10 +102,6 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 nnoremap <silent> <Leader>rg       :Rg <C-R><C-W><CR>
 xnoremap <silent> <Leader>rg       y:Rg <C-R>"<CR>
 
-" This overwrites :Rg with something that doesn't work
-" Think I want to delete it
-" Plug 'jremmen/vim-ripgrep'
-
 " Menus - Part 1 (We define them after plug ends)
 Plug 'skywind3000/quickmenu.vim'
 
@@ -197,7 +193,6 @@ nnoremap <leader>gs :Gstatus<cr>
 " Block comment (gc)
 Plug 'tpope/vim-commentary'
 
-" Plug 'tpope/vim-surround/'
 " Surround alternative: sandwich
 Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-highlightedyank' " Highlight what's yanked
@@ -216,7 +211,6 @@ Plug 'tpope/vim-sleuth'
 "Plug 'kshenoy/vim-signature'
 
 " Marks in gutter about added/removed lines
-" Plug 'airblade/vim-gitgutter'
 " Gitgutter alternative: Signify
 Plug 'mhinz/vim-signify'
 let g:signify_realtime = 1
@@ -231,7 +225,7 @@ nnoremap <leader>TN :TestNearest -strategy=basic<cr>
 nnoremap <leader>tf :TestFile<cr>
 nnoremap <leader>TF :TestFile -strategy=basic<cr>
 nnoremap <leader>ts :TestSuite<cr>
-nnoremap <leader>tt :TestSuite<cr>
+nnoremap <leader>tt :TestSuite -strategy=dispatch_background<cr>
 nnoremap <leader>TT :TestSuite -strategy=basic<cr>
 nnoremap <leader>tb :TestSuite -strategy=dispatch_background<cr>
 nnoremap <leader>tl :TestLast<cr>
@@ -246,8 +240,7 @@ nmap <leader>k :cprevious<cr>
 "let test#strategy = "dispatch_background"
 let test#strategy = "dispatch"
 
-"let test#strategy = "vimux"
-"Plug 'benmills/vimux'
+"let test#strategy = "neovim"
 
 Plug 'mbbill/undotree'
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -257,7 +250,7 @@ Plug 'sheerun/vim-polyglot'
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 "" Golang - Disabled, letting coc extension coc-go handle this
-"" https://octetz.com/posts/vim-as-go-ide 
+"" https://octetz.com/posts/vim-as-go-ide
 "Plug 'fatih/vim-go'
 " disable vim-go :GoDef short cut (gd)
 " this is handled by LanguageClient [LC]
@@ -625,7 +618,8 @@ nnoremap <F6> :set list!<cr>                            " f6 toggles list
 " \W strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 nnoremap <leader>4 :set tabstop=4<CR>:set shiftwidth=4<CR>
-nnoremap <leader>ve :tabe $MYVIMRC<CR>
+"nnoremap <leader>ve :tabe $MYVIMRC<CR>
+nnoremap <leader>ve :tabe ~/.vimrc<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR>
 " \z close all other tabs
 " nnoremap <leader>z :w <bar> %bd <bar> e#<CR>
@@ -648,10 +642,6 @@ highlight ALEWarning ctermbg=DarkMagenta
 highlight ALEError  ctermbg=DarkMagenta
 "highlight SpellBad  ctermbg=DarkMagenta ctermfg=249
 highlight SpellBad  ctermbg=1 ctermfg=0
-
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Open folds when opening file
 "au BufRead * normal zR
@@ -683,7 +673,7 @@ let g:jellybeans_overrides = {
 \    'Type': { 'guifg': 'd787d7' },
 \    'CocCodeLens': { 'guifg': '777777' },
 \}
-" :highlight SignColumn guibg=#000000
+"call jellybeans#X("Type","ffb964","","","Yellow","")
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "atlus"
@@ -695,13 +685,6 @@ else
     let g:jellybeans_use_term_italics = 0
     let g:palenight_terminal_italics=0
 endif
-
-"colorscheme jellybeans
-"highlight Search guifg=#000000 guibg=#d4ff32 ctermfg=0 ctermbg=102 " Change jellybean's highlight color
-
-"call jellybeans#X("Type","ffb964","","","Yellow","")
-
-"colo gruvbox
 
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
@@ -729,14 +712,12 @@ endif
 " colorscheme Base2Tone_PoolDark
 " colorscheme Base2Tone_HeathDark
 " colorscheme Base2Tone_CaveDark
-"colo photon
-"color base16-default-dark
 
 "colo Base2Tone_DrawbridgeDark
 "let g:airline_theme='Base2Tone_DrawbridgeDark'
 " colo gruvbox
 
-let g:dayTime    = [8, 0, 0]    " Default 9:30:00 am
+let g:dayTime    = [6, 50, 0]    " Default 9:30:00 am
 let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
 "let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
 let g:dayColorscheme    = 'jellybeans'
@@ -761,12 +742,15 @@ nnoremap <silent> <leader>* :Fzgrep <C-R><C-W><CR>
 " Menus - part 2
 source ~/.config/nvim/vimrc/menu.vim
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" Alt J, Alt K, to move lines up down
+" I like using these bindings for tmux though,
+" What should I put them on?
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " <leader>sp - Show highlight groups under cursor
 nmap <leader>sp :call <SID>SynStack()<CR>
@@ -784,10 +768,15 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
+map <leader>si :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Reminder - Switching away from gruvbox completely wrecks
 " any other color scheme, and I don't know how to reset it.
 " If you want to try other colors, start a new session
 " where gruvbox isn't loaded
 nnoremap <leader>x :Colors<CR>
+" :highlight SignColumn guibg=#000000
 nnoremap <leader>gg :highlight clear SignColumn<CR>
-nnoremap <leader>gb :highlight Normal ctermbg=16 guibg=#000000<CR>
+nnoremap <leader>gf :highlight Normal ctermbg=16 guibg=#000000<CR>

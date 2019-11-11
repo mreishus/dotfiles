@@ -32,10 +32,14 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config
 if (!-d "$h/txt") {
     system("mkdir $h/txt");
 }
-if (!-d "$h/txt/logbook") {
-    system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
-    system("$h/txt/logbook/install.pl");
-}
+
+# logbook
+# put in keybase git - needs more manual setup
+#
+# if (!-d "$h/txt/logbook") {
+#     system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
+#     system("$h/txt/logbook/install.pl");
+# }
 
 # pandoc-starter
 if (!-d "$h/txt/pandoc-starter") {
