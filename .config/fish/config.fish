@@ -8,6 +8,9 @@ set -gx PATH $PATH ~/.gem/ruby/2.6.0/bin
 set -gx PATH $PATH ~/go/bin/
 set -gx GOPATH $HOME/go
 
+# Set GPG TTY
+set -x GPG_TTY (tty)
+
 # Doesn't work in konsole
 # Works in other terms, but none of those support
 # Iosevka ligatures.. :(
