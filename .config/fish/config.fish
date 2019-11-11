@@ -1,4 +1,7 @@
-source ~/anaconda3/etc/fish/conf.d/conda.fish
+if test -e ~/anaconda3/etc/fish/conf.d/conda.fish
+    source ~/anaconda3/etc/fish/conf.d/conda.fish
+end
+
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 set -gx PATH $PATH ~/.yarn/bin/
 set -gx PATH $PATH ~/.gem/ruby/2.6.0/bin
