@@ -138,6 +138,7 @@ let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \}
 let g:ale_fixers = {
+  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
   \   'typescript': [
   \       'prettier', 'eslint'
   \   ],
@@ -168,8 +169,17 @@ let g:ale_fixers = {
   \   'python': [
   \       'black',
   \   ],
+  \   'ruby': ['prettier'],
   \}
 let g:ale_ruby_rubocop_executable = 'bundle'
+
+" run "gem install prettier"
+augroup ale_ruby
+  au!
+  au FileType ruby let b:ale_javascript_prettier_executable = 'rbprettier'
+  " " Or:
+  " au FileType ruby let b:ale_javascript_prettier_options = '--parser ruby'
+augroup END
 
 """ File Tree - Nerd Tree (ctrl-n)
 Plug 'scrooloose/nerdtree'
@@ -602,6 +612,7 @@ nnoremap <C-y> :tabclose<cr>
 autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
 autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
+autocmd FileType crystal set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " crystal uses spaces with indent width of 2
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
 
 " clear search highlighting
