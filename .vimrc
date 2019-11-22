@@ -136,6 +136,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
+  \   'perl6': ['perl6'],
   \}
 let g:ale_fixers = {
   \   'typescript': [
@@ -148,7 +149,7 @@ let g:ale_fixers = {
   \       'prettier', 'eslint'
   \   ],
   \   'go': [
-  \       'gofmt',
+  \       'gofmt', 'goimports'
   \   ],
   \   'markdown': [
   \       'prettier',
