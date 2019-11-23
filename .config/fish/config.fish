@@ -11,6 +11,18 @@ set -gx GOPATH $HOME/go
 # Set GPG TTY
 set -x GPG_TTY (tty)
 
+
+## Run AutoJump if it exists (Ubuntu)
+
+begin
+    set --local AUTOJUMP_PATH_UBUNTU /usr/share/autojump/autojump.fish
+        if test -e $AUTOJUMP_PATH_UBUNTU
+        source $AUTOJUMP_PATH_UBUNTU
+    end
+end
+
+# https://t.co/R7mbz1kEmI?amp=1
+
 # Doesn't work in konsole
 # Works in other terms, but none of those support
 # Iosevka ligatures.. :(
