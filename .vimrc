@@ -162,7 +162,7 @@ let g:ale_fixers = {
   \       'mix_format',
   \   ],
   \   'haskell': [
-  \       'hfmt',
+  \       'brittany',
   \   ],
   \   'rust': [
   \       'rustfmt',
