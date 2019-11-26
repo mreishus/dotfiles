@@ -162,7 +162,7 @@ let g:ale_fixers = {
   \       'mix_format',
   \   ],
   \   'haskell': [
-  \       'hfmt',
+  \       'brittany',
   \   ],
   \   'rust': [
   \       'rustfmt',
@@ -613,8 +613,9 @@ nnoremap <C-y> :tabclose<cr>
 
 autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
-autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
-autocmd FileType crystal set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " crystal uses spaces with indent width of 2
+autocmd FileType ruby setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
+autocmd FileType crystal setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " crystal uses spaces with indent width of 2
+autocmd FileType make setlocal noexpandtab " Makefile uses tabs
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
 
 " clear search highlighting
