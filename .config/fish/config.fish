@@ -4,6 +4,7 @@ end
 
 set -gx ERL_AFLAGS "-kernel shell_history enabled"
 set -gx PATH $PATH ~/.yarn/bin/
+set -gx PATH $PATH ~/.cargo/bin/
 set -gx PATH $PATH ~/.gem/ruby/2.6.0/bin
 set -gx PATH $PATH ~/go/bin/
 set -gx GOPATH $HOME/go
