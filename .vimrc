@@ -274,7 +274,6 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 """ Fade inactive buffers
 """ Plug 'TaDaa/vimade'
 
-Plug 'statox/colorscheme-changer.vim'
 """  Color schemes
 " Plug 'Rigellute/shades-of-purple.vim'
 " Plug 'arzg/vim-corvine'
@@ -294,9 +293,6 @@ Plug 'mreishus/vim-astraios'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim'
-Plug 'gruvbox-community/gruvbox'
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
 Plug 'micke/vim-hybrid'
 Plug 'ayu-theme/ayu-vim'
 Plug 'romainl/Apprentice'
@@ -691,11 +687,9 @@ let g:jellybeans_overrides = {
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "atlus"
-    let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
     let g:palenight_terminal_italics=1
 else
-    let g:gruvbox_italic=0
     let g:jellybeans_use_term_italics = 0
     let g:palenight_terminal_italics=0
 endif
@@ -729,13 +723,8 @@ endif
 
 "colo Base2Tone_DrawbridgeDark
 "let g:airline_theme='Base2Tone_DrawbridgeDark'
-" colo gruvbox
 
-let g:dayTime    = [6, 50, 0]    " Default 9:30:00 am
-let g:nightTime  = [18, 0, 0]  " Default 6:30:00 pm
-"let g:dayColorscheme    = 'Base2Tone_DrawbridgeDark'
-let g:dayColorscheme    = 'jellybeans'
-let g:nightColorscheme  = 'gruvbox'
+colo jellybeans
 
 " ? - shows preview
 " enter - opens file
@@ -786,10 +775,6 @@ map <leader>si :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" Reminder - Switching away from gruvbox completely wrecks
-" any other color scheme, and I don't know how to reset it.
-" If you want to try other colors, start a new session
-" where gruvbox isn't loaded
 nnoremap <leader>x :Colors<CR>
 " :highlight SignColumn guibg=#000000
 nnoremap <leader>gg :highlight clear SignColumn<CR>
