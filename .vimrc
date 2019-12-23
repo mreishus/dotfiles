@@ -621,7 +621,9 @@ noremap <silent><leader><space> :nohls<CR>
 set pastetoggle=<F1>                                    " f1 toggles paste
 "nnoremap <F2> :AutoCloseToggle<cr>                      " f2 toggles autoclose
 nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>   " f5 toggles line numbers
-nnoremap <F6> :set list!<cr>                            " f6 toggles list
+nnoremap <F6> :SignifyToggle<cr>                        " f6 git gutter/signify
+nnoremap <F7> :ALEToggle<cr>                            " f7 toggles ALE
+nnoremap <F8> :set list!<cr>                            " f8 toggles list
 "nnoremap <F8> :TagbarToggle<cr>                         " f8 toggles tagbar
 "nnoremap <F9> :GundoToggle<cr>                          " f9 toggles Gundo
 
