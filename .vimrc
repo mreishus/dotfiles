@@ -174,6 +174,14 @@ let g:ale_fixers = {
   \}
 let g:ale_ruby_rubocop_executable = 'bundle'
 
+" Rust (Coc Extension):
+" coc-rust-analyzer
+"
+" in shell
+" git clone https://github.com/rust-analyzer/rust-analyzer && cd rust-analyzer
+" rustup component add rust-src
+" cargo xtask install --server
+
 " run "gem install prettier"
 augroup ale_ruby
   au!
