@@ -182,6 +182,13 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 " rustup component add rust-src
 " cargo xtask install --server
 
+" Python
+" conda install python-language-server
+" conda install jedi
+" not sure if this works
+" actually, I had to deactivate conda and run "pip install jedi --user" - vim
+" was not running my conda version of python
+
 " run "gem install prettier"
 augroup ale_ruby
   au!
