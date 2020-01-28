@@ -611,6 +611,7 @@ autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
 autocmd FileType ruby setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
 autocmd FileType crystal setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " crystal uses spaces with indent width of 2
+autocmd FileType python setlocal tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4 " Python uses spaces with indent width of 4
 autocmd FileType make setlocal noexpandtab " Makefile uses tabs
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
 
