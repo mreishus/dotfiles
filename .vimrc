@@ -308,6 +308,9 @@ Plug 'mreishus/vim-astraios'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim'
+Plug 'gruvbox-community/gruvbox'
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
 Plug 'micke/vim-hybrid'
 Plug 'ayu-theme/ayu-vim'
 Plug 'romainl/Apprentice'
@@ -524,8 +527,8 @@ Plug 'vim-scripts/matchit.zip'
 " Zen mode
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
 nnoremap <leader>z :SignifyToggle<CR>:Goyo<CR>
 "nnoremap <leader>z :Goyo<CR>:call one#highlight('normal', 'cccccc', '000000', 'none')<CR>
 
@@ -635,13 +638,45 @@ noremap <silent><leader><space> :nohls<CR>
 
 " f keys
 set pastetoggle=<F1>                                    " f1 toggles paste
-"nnoremap <F2> :AutoCloseToggle<cr>                      " f2 toggles autoclose
+
+" f5-f8 toggle display elements
+" f5: numbers | f6: invis chars f| 7: sign column
 nnoremap <F5> :set nonumber!<cr>:set foldcolumn=0<cr>   " f5 toggles line numbers
-nnoremap <F6> :SignifyToggle<cr>                        " f6 git gutter/signify
-nnoremap <F7> :ALEToggle<cr>                            " f7 toggles ALE
-nnoremap <F8> :set list!<cr>                            " f8 toggles list
-"nnoremap <F8> :TagbarToggle<cr>                         " f8 toggles tagbar
-"nnoremap <F9> :GundoToggle<cr>                          " f9 toggles Gundo
+nnoremap <F6> :set list!<cr>                            " f8 toggles list
+nnoremap <F7> :call ToggleSignColumn()<cr>                            " f7 toggles ALE
+" nnoremap <F6> :SignifyToggle<cr>                        " f6 git gutter/signify
+"nnoremap <F7> :ALEToggle<cr>                            " f7 toggles ALE
+
+" f9: clean mode | f10: lots of info
+nnoremap <F9> :set nonumber<cr>:set nolist<cr>:set signcolumn=no<cr>:SignifyDisable<cr>:set laststatus=0<cr>
+nnoremap <F10> :set number<cr>:set list<cr>:set signcolumn=auto<cr>:SignifyEnable<cr>:set laststatus=2<cr>
+
+" Toggle signcolumn. Works only on vim>=8.0 or NeoVim
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=auto
+        let b:signcolumn_on=1
+    endif
+endfunction
+
+" toggle laststatus
+function! ToggleLaststatus()
+    if &laststatus == 2
+      set laststatus=1
+      echo "status line: multi-window"
+    elseif &laststatus == 1
+      set laststatus=0
+      echo "status line: never"
+    elseif &laststatus == 0
+      set laststatus=2
+      echo "status line: always"
+    endif
+    return
+endfunction
+nnoremap <f4> :call ToggleLaststatus()<cr>
 
 " \W strip all trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
@@ -705,9 +740,11 @@ let g:jellybeans_overrides = {
 
 let hostname = substitute(system('hostname'), '\n', '', '')
 if hostname == "atlus"
+    let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
     let g:palenight_terminal_italics=1
 else
+    let g:gruvbox_italic=0
     let g:jellybeans_use_term_italics = 0
     let g:palenight_terminal_italics=0
 endif
@@ -719,7 +756,7 @@ endif
 
 "colorscheme apprentice
 "colorscheme vividchalk
-"colorscheme hybrid
+colorscheme hybrid
 
 "colorscheme Base2Tone_EveningDark
 " or any of the other schemes:
@@ -739,10 +776,14 @@ endif
 " colorscheme Base2Tone_HeathDark
 " colorscheme Base2Tone_CaveDark
 
-"colo Base2Tone_DrawbridgeDark
-"let g:airline_theme='Base2Tone_DrawbridgeDark'
+" colo Base2Tone_DrawbridgeDark
+" let g:airline_theme='Base2Tone_DrawbridgeDark'
 
-colo jellybeans
+" colo jellybeans
+" colo challenger_deep
+
+" colo gruvbox
+" :highlight SignColumn guibg=#000000
 
 " ? - shows preview
 " enter - opens file
@@ -793,7 +834,17 @@ map <leader>si :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+" Reminder - Switching away from gruvbox completely wrecks
+" any other color scheme, and I don't know how to reset it.
+" If you want to try other colors, start a new session
+" where gruvbox isn't loaded
 nnoremap <leader>x :Colors<CR>
-" :highlight SignColumn guibg=#000000
+":highlight SignColumn guibg=#000000
 nnoremap <leader>gg :highlight clear SignColumn<CR>
 nnoremap <leader>gf :highlight Normal ctermbg=16 guibg=#000000<CR>
+
+" start in a more clean mode
+" set nonumber
+" set nolist
+" set signcolumn=no
+" set laststatus=0
