@@ -41,6 +41,32 @@ let g:airline#extensions#tabline#show_buffers=0
 let airline#extensions#tabline#tabs_label = ''
 let airline#extensions#tabline#show_splits = 0
 
+""" Racket / SICP """
+" Rainbow Parens
+Plug 'amdt/vim-niji'
+" Autobalance parenthesis
+" Plug 'vim-scripts/paredit.vim'
+" Send commands to Tmux
+Plug 'sjl/tslime.vim'
+let g:tslime_ensure_trailing_newlines = 1
+let g:tslime_normal_mapping = '<localleader>t'
+let g:tslime_visual_mapping = '<localleader>t'
+let g:tslime_vars_mapping = '<localleader>T'
+" Note: I hacked this version of tslime to paste quickly.
+" By default, it's slow enough to be annoying.
+
+" In TSLime.vim, above the "Look, I know this is horrifying"
+" Add this:
+
+" let oldbuffer = system("tmux show-buffer")
+" call <SID>set_tmux_buffer(a:text)
+" call system("tmux paste-buffer -t " . target)
+" call <SID>set_tmux_buffer(oldbuffer)
+
+" And comment out the for loop.
+" Maybe I should use the parent from the fork, but that doesn't have
+" customizable keybindings.
+
 " Nuake - Quake console terminal - Press F4.
 " Turn off on some systems
 Plug 'Lenovsky/nuake'
@@ -63,6 +89,7 @@ Plug 'mreishus/vim-mmr-snippets'
 let g:UltiSnipsExpandTrigger="<c-j>" " the default key, tab, conflicts with YCM/TabNine
 let g:UltiSnipsListSnippets="<c-f>" "See possible snippets while typing. Most ctrl binding keys are taken in insert mode
 nnoremap <c-f> :Snippets<cr>
+
 
 " Add some extra snippets
 autocmd FileType javascript UltiSnipsAddFiletypes javascript-react
@@ -188,6 +215,7 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 " not sure if this works
 " actually, I had to deactivate conda and run "pip install jedi --user" - vim
 " was not running my conda version of python
+" To Update: "pip install jedi --user --upgrade"
 
 " run "gem install prettier"
 augroup ale_ruby
@@ -351,6 +379,12 @@ nnoremap <leader>O :Obsess!
 
 " Tabnine completion
 "Plug 'zxqfl/tabnine-vim'
+
+" :NoTab turns off tab nine
+" I actually uninstalled it to stop it turning on my fan.
+" :CocInstall coc-tabnine
+" :CocUninstall coc-tabnine
+command! -nargs=0 NoTab :call CocAction('deactivateExtension', 'coc-tabnine')
 
 " Coc - Extensive completion engine
 
@@ -625,6 +659,12 @@ nnoremap <C-y> :tabclose<cr>
 " When I'm working on markdown, I use these
 " :let g:ycm_auto_trigger = 0
 
+
+" Racket formatter - Download from
+" http://www.ccs.neu.edu/home/dorai/scmindent/scmindent.rkt
+autocmd filetype lisp,scheme,art setlocal equalprg=scmindent.rkt
+autocmd filetype lisp,scheme,art setlocal formatprg=scmindent.rkt
+
 autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
 autocmd FileType ruby setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
@@ -784,6 +824,18 @@ colorscheme hybrid
 
 " colo gruvbox
 " :highlight SignColumn guibg=#000000
+
+" Lisp Rainbow Paren Colors
+let g:niji_dark_colours = [
+    \ [ '81', '#5fd7ff'],
+    \ [ '99', '#875fff'],
+    \ [ '1',  '#dc322f'],
+    \ [ '76', '#5fd700'],
+    \ [ '3',  '#b58900'],
+    \ [ '2',  '#859900'],
+    \ [ '6',  '#2aa198'],
+    \ [ '4',  '#268bd2'],
+    \ ]
 
 " ? - shows preview
 " enter - opens file

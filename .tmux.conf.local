@@ -299,7 +299,7 @@ tmux_conf_copy_to_os_clipboard=false
 # bind C-a send-prefix
 
 # move status line to top
-#set -g status-position top
+# set -g status-position top
 
 # --- matt -----------------------
 
