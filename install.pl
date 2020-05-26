@@ -34,12 +34,15 @@ if (!-d "$h/txt") {
 }
 
 # logbook
-# put in keybase git - needs more manual setup
-#
-# if (!-d "$h/txt/logbook") {
-#     system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
-#     system("$h/txt/logbook/install.pl");
-# }
+if (!-d "$h/txt/logbook") {
+    print "Install logbook? [y/n] \n"
+    chomp(my $ok = <>);
+    my $yes = 'y';
+    if ($ok eq $yes) {
+        system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
+        system("$h/txt/logbook/install.pl");
+    }
+}
 
 # pandoc-starter
 if (!-d "$h/txt/pandoc-starter") {
