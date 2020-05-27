@@ -12,7 +12,7 @@ system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.tmux/plugins");
 
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .spacemacs .config/fish/config.fish)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
@@ -68,13 +68,11 @@ if (!-d "$h/.tmux/plugins/tpm") {
     system("git clone https://github.com/tmux-plugins/tpm $h/.tmux/plugins/tpm");
 }
 
-# spacemacs
+# Doom Emacs
 if (!-d "$h/.emacs.d") {
-    system("git clone -b develop https://github.com/syl20bnr/spacemacs $h/.emacs.d");
-}
-# spacemacs-fzf
-if (!-d "$h/.emacs.d/private/fzf") {
-    system("git clone git\@github.com:ashyisme/fzf-spacemacs-layer.git $h/.emacs.d/private/fzf");
+    system("git clone --depth 1 https://github.com/hlissner/doom-emacs $h/.emacs.d");
+    system("$h/.emacs.d/bin/doom install");
+    say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
 }
 
 say "\nSetting git name+email...\n";
@@ -82,5 +80,3 @@ system("git config --global user.name \"Matthew Reishus\"");
 system("git config --global user.email \"mreishus\@users.noreply.github.com\"");
 
 # set -U fish_color_cwd cyan
-#
-# reminder to pull in the spacemacs directory and to regenerate the .spacemacs file sometimes (don't remember command that shows diff)
