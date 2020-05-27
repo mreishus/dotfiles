@@ -12,7 +12,7 @@ system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.tmux/plugins");
 
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish .doom.d/config.el  .doom.d/init.el  .doom.d/packages.el)) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
