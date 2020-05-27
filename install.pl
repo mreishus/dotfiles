@@ -35,7 +35,7 @@ if (!-d "$h/txt") {
 
 # logbook
 if (!-d "$h/txt/logbook") {
-    print "Install logbook? [y/n] \n"
+    print "Install logbook? [y/n] \n";
     chomp(my $ok = <>);
     my $yes = 'y';
     if ($ok eq $yes) {
