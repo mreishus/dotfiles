@@ -32,7 +32,8 @@
   doom-font (font-spec :family "Iosevka Term" :size 20)
   doom-big-font (font-spec :family "Iosevka Term" :size 36)
   doom-variable-pitch-font (font-spec :family "sans" :size 18)
-  projectile-project-search-path '("~/dev/" "~/edu/" "~/Sync/")
+  org-journal-file-type "monthly"
+  projectile-project-search-path '("~/dev/" "~/edu/" "~/Sync/" "~/txt/")
 )
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -69,3 +70,4 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+(load! "+bindings")
