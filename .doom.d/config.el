@@ -36,6 +36,7 @@
   org-log-done 'time
   projectile-project-search-path '("~/dev/" "~/edu/" "~/Sync/" "~/txt/")
 )
+;(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
