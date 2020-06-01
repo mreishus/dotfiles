@@ -32,7 +32,8 @@
   doom-font (font-spec :family "Iosevka Term" :size 20)
   doom-big-font (font-spec :family "Iosevka Term" :size 36)
   doom-variable-pitch-font (font-spec :family "sans" :size 18)
-  org-journal-file-type "monthly"
+  org-catch-invisible-edits "show-and-error"
+  org-journal-file-type 'monthly
   org-log-done 'time
   projectile-project-search-path '("~/dev/" "~/edu/" "~/Sync/" "~/txt/")
 )
