@@ -48,7 +48,7 @@ if (!-d "$h/txt/logbook") {
 
 # pandoc-starter
 if (!-d "$h/txt/pandoc-starter") {
-    system("git clone git\@github.com:mreishus/pandoc-starter.git $h/txt/pandoc-starter");
+    system("git clone git\@github.com:jez/pandoc-starter.git $h/txt/pandoc-starter");
 }
 
 # fish functions
