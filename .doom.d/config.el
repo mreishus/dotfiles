@@ -28,14 +28,13 @@
 (setq
   doom-theme 'doom-city-lights
   centaur-tabs-style "wave"
-  centaur-tabs-set-bar 'over
   doom-font (font-spec :family "Iosevka Term" :size 20)
   doom-big-font (font-spec :family "Iosevka Term" :size 36)
   doom-variable-pitch-font (font-spec :family "sans" :size 18)
   org-catch-invisible-edits "show-and-error"
   org-journal-file-type 'monthly
   org-log-done 'time
-  projectile-project-search-path '("~/dev/" "~/edu/" "~/Sync/" "~/txt/")
+  projectile-project-search-path '("~/h20/dev/" "~/h20/edu/" "~/Sync/" "~/h20/txt/" "~/h20/misc")
 )
 ;(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
@@ -50,7 +49,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/h20/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.

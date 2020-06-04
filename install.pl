@@ -30,25 +30,41 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config
     say "Added link $h/$file -> $h/dotfiles/$file";
 }
 
-# logbook
-if (!-d "$h/txt") {
-    system("mkdir $h/txt");
+# yearly sub homedir
+# ~/h20/     <- for 2020
+# ~/h21/     <- for 2021
+# etc
+my $year = 1900 + (localtime)[5] - 2000;
+my $base = "$h/h$year";
+if (!-d "$base") {
+    system("mkdir $base")
+}
+
+foreach my $thing (qw(dev edu misc txt)) {
+    if (!-d "$base/$thing") {
+        system("mkdir $base/$thing")
+    }
 }
 
 # logbook
-if (!-d "$h/txt/logbook") {
+if (!-d "$base/txt") {
+    system("mkdir $base/txt");
+}
+
+# logbook
+if (!-d "$base/txt/logbook") {
     print "Install logbook? [y/n] \n";
     chomp(my $ok = <>);
     my $yes = 'y';
     if ($ok eq $yes) {
         system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
-        system("$h/txt/logbook/install.pl");
+        system("$base/txt/logbook/install.pl");
     }
 }
 
 # pandoc-starter
-if (!-d "$h/txt/pandoc-starter") {
-    system("git clone git\@github.com:jez/pandoc-starter.git $h/txt/pandoc-starter");
+if (!-d "$base/txt/pandoc-starter") {
+    system("git clone git\@github.com:jez/pandoc-starter.git $base/txt/pandoc-starter");
 }
 
 # fish functions
