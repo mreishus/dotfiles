@@ -7,11 +7,14 @@ use File::Copy;
 my $h = $ENV{HOME};
 
 system("mkdir -p $h/.ssh/sockets");
+system("mkdir -p $h/.config/fish");
 system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.tmux/plugins");
 
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .spacemacs)) {
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish .doom.d/config.el  .doom.d/init.el  .doom.d/packages.el
+    .doom.d/+bindings.el
+    )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
         say "Can't find [$h/dotfiles/$file], quitting.  This isn't currently configurable, so put the git project here.\n";
@@ -27,18 +30,41 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config
     say "Added link $h/$file -> $h/dotfiles/$file";
 }
 
-# logbook
-if (!-d "$h/txt") {
-    system("mkdir $h/txt");
+# yearly sub homedir
+# ~/h20/     <- for 2020
+# ~/h21/     <- for 2021
+# etc
+my $year = 1900 + (localtime)[5] - 2000;
+my $base = "$h/h$year";
+if (!-d "$base") {
+    system("mkdir $base")
 }
-if (!-d "$h/txt/logbook") {
-    system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
-    system("$h/txt/logbook/install.pl");
+
+foreach my $thing (qw(dev edu misc txt)) {
+    if (!-d "$base/$thing") {
+        system("mkdir $base/$thing")
+    }
+}
+
+# logbook
+if (!-d "$base/txt") {
+    system("mkdir $base/txt");
+}
+
+# logbook
+if (!-d "$base/txt/logbook") {
+    print "Install logbook? [y/n] \n";
+    chomp(my $ok = <>);
+    my $yes = 'y';
+    if ($ok eq $yes) {
+        system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
+        system("$base/txt/logbook/install.pl");
+    }
 }
 
 # pandoc-starter
-if (!-d "$h/txt/pandoc-starter") {
-    system("git clone git\@github.com:mreishus/pandoc-starter.git $h/txt/pandoc-starter");
+if (!-d "$base/txt/pandoc-starter") {
+    system("git clone git\@github.com:jez/pandoc-starter.git $base/txt/pandoc-starter");
 }
 
 # fish functions
@@ -60,13 +86,11 @@ if (!-d "$h/.tmux/plugins/tpm") {
     system("git clone https://github.com/tmux-plugins/tpm $h/.tmux/plugins/tpm");
 }
 
-# spacemacs
+# Doom Emacs
 if (!-d "$h/.emacs.d") {
-    system("git clone -b develop https://github.com/syl20bnr/spacemacs $h/.emacs.d");
-}
-# spacemacs-fzf
-if (!-d "$h/.emacs.d/private/fzf") {
-    system("git clone git\@github.com:ashyisme/fzf-spacemacs-layer.git $h/.emacs.d/private/fzf");
+    system("git clone --depth 1 https://github.com/hlissner/doom-emacs $h/.emacs.d");
+    system("$h/.emacs.d/bin/doom install");
+    say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
 }
 
 say "\nSetting git name+email...\n";
@@ -74,5 +98,3 @@ system("git config --global user.name \"Matthew Reishus\"");
 system("git config --global user.email \"mreishus\@users.noreply.github.com\"");
 
 # set -U fish_color_cwd cyan
-#
-# reminder to pull in the spacemacs directory and to regenerate the .spacemacs file sometimes (don't remember command that shows diff)
