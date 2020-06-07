@@ -325,8 +325,16 @@ unbind-key M-8      ; bind-key -n M-8   select-window -t 8
 unbind-key M-9      ; bind-key -n M-9   select-window -t 9
 unbind-key M-0      ; bind-key -n M-0   select-window -t 10
 
+
 # pane navigation
 bind -n M-h select-pane -L
 bind -n M-l select-pane -R
 bind -n M-k select-pane -U
 bind -n M-j select-pane -D
+
+# Found in git conflict
+# Did these conflict with something, or were they just not used?
+#bind -n M-Left select-pane -L
+#bind -n M-Right select-pane -R
+#bind -n M-Up select-pane -U
+#bind -n M-Down select-pane -D
