@@ -33,11 +33,10 @@
   show-trailing-whitespace t                     ; Display trailing whitespaces
 )
 (setq
-  doom-theme 'doom-city-lights
   centaur-tabs-style "wave"
-  doom-font (font-spec :family "Iosevka Term" :size 22)
-  doom-big-font (font-spec :family "Iosevka Term" :size 36)
-  doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 22)
+  doom-font (font-spec :family "Iosevka Term" :size 16)
+  doom-big-font (font-spec :family "Iosevka Term" :size 26)
+  doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 16)
   org-catch-invisible-edits "show-and-error"
   org-journal-file-type 'monthly
   org-log-done 'time    ; Add timestamp when closing t0d0s
@@ -45,6 +44,40 @@
   truncate-string-ellipsis "…"
   which-key-idle-delay 0.5 ; Help me faster
 )
+
+(when (string= (system-name) "atlas")
+  (setq
+    doom-font (font-spec :family "Iosevka Term" :size 20)
+    doom-big-font (font-spec :family "Iosevka Term" :size 36)
+    doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 20)
+  )
+)
+
+;; Theme
+(setq doom-theme 'doom-wilmersdorf)
+;; Other possible themes
+;; (setq
+;;  doom-one-brighter-comments t
+;;  doom-one-comment-bg t
+;;  doom-one-brighter-modeline t
+;;  doom-theme 'doom-one)
+;; (setq doom-theme 'doom-tomorrow-night)
+;;(setq doom-theme 'doom-city-lights)
+;;(setq doom-theme 'doom-dark+)
+;; See more themes here: https://github.com/hlissner/emacs-doom-themes/tree/screenshots#doom-one
+;; (Some themes don't have screenshots)
+
+; Turn off Solaire Mode
+; This changes background color based on buffer type
+(after! solaire-mode
+  (solaire-global-mode -1))
+
+; Force BG color = black. Turn off highlighted current line
+(custom-set-faces
+  '(default ((t (:background "#000000"))))
+  '(hl-line ((t (:background "#000000"))))
+ )
+
 (after! evil (evil-escape-mode nil)) ; I don't need "jk" to leave insert mode.  This doesn't work :(
 
 (display-time-mode 1)                             ; Enable time in the mode-line
@@ -71,10 +104,6 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;;
-;; (setq doom-theme 'doom-one)
-;; (setq doom-theme 'doom-tomorrow-night)
-;; See more themes here: https://github.com/hlissner/emacs-doom-themes/tree/screenshots#doom-one
-;; (setq doom-theme 'doom-city-lights)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
