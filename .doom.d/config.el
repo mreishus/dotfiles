@@ -73,12 +73,19 @@
   (solaire-global-mode -1))
 
 ; Force BG color = black. Turn off highlighted current line
+;; (custom-set-faces
+;;   '(default ((t (:background "#000000"))))
+;;   '(hl-line ((t (:background "#000000"))))
+;;  )
 (custom-set-faces
-  '(default ((t (:background "#000000"))))
-  '(hl-line ((t (:background "#000000"))))
+  '(default ((t (:background "#111111"))))
+  '(hl-line ((t (:background "#111111"))))
+  '(org-block ((t (:background "#222222"))))
  )
 
-(after! evil (evil-escape-mode nil)) ; I don't need "jk" to leave insert mode.  This doesn't work :(
+; I don't need "jk" to leave insert mode.
+(setq evil-escape-unordered-key-sequence t)
+;(after! evil (evil-escape-mode nil)) ; Delete this if above works
 
 (display-time-mode 1)                             ; Enable time in the mode-line
 (display-battery-mode 1)                          ; On laptops it's nice to know how much power you have
@@ -128,6 +135,9 @@
 (map! :leader
   (:prefix "b"
     :desc "New empty ORG buffer" "o" #'evil-buffer-org-new))
+
+; If I want to disable smartparens
+; (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;

@@ -633,13 +633,13 @@ map :Q :q
 
 " allow cross-session copy paste with _Y _P
 if has('win32') || has('win64')
-  nmap _Y :!echo ""> $HOME/_vi_tmp<CR><CR>:w! $HOME/_vi_tmp<CR>
-  vmap _Y :w! $HOME/_vi_tmp<CR>
-  nmap _P :r $HOME/_vi_tmp<CR>
+  nmap _Y :!echo ""> $HOME/_editor_tmp<CR><CR>:w! $HOME/_editor_tmp<CR>
+  vmap _Y :w! $HOME/_editor_tmp<CR>
+  nmap _P :r $HOME/_editor_tmp<CR>
 else
-  nmap _Y :!echo ""> ~/.vi_tmp<CR><CR>:w! ~/.vi_tmp<CR>
-  vmap _Y :w! ~/.vi_tmp<CR>
-  nmap _P :r ~/.vi_tmp<CR>
+  nmap _Y :!echo ""> ~/.editor.tmp<CR><CR>:w! ~/.editor.tmp<CR>
+  vmap _Y :w! ~/.editor.tmp<CR>
+  nmap _P :r ~/.editor.tmp<CR>
 endif
 
 " color, syntax highlighting
