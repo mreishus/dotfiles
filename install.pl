@@ -14,6 +14,7 @@ system("mkdir -p $h/.tmux/plugins");
 
 foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish .doom.d/config.el  .doom.d/init.el  .doom.d/packages.el
     .doom.d/+bindings.el
+    .doom.d/+org.el
     )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
@@ -60,6 +61,23 @@ if (!-d "$base/txt/logbook") {
         system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
         system("$base/txt/logbook/install.pl");
     }
+}
+
+# orgbook
+if (!-d "$base/txt/orgbook") {
+    print "Install orgbook? [y/n] \n";
+    chomp(my $ok = <>);
+    my $yes = 'y';
+    if ($ok eq $yes) {
+        system("git clone git\@bitbucket.org:mreishus/orgbook.git $h/txt/orgbook");
+        #system("$base/txt/orgbook/install.pl");
+    }
+}
+
+# link ~/h20/org to ~/h20/txt/orgbook
+if (!-d "$base/org" && !-l "$base/org" && -d "$base/txt/orgbook") {
+    say "Added link $base/org -> $base/txt/orgbook";
+    system("ln -s $base/txt/orgbook $base/org");
 }
 
 # pandoc-starter

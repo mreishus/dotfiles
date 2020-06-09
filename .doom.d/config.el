@@ -55,6 +55,11 @@
 
 ;; Theme
 (setq doom-theme 'doom-wilmersdorf)
+;; Second fav
+;; (setq doom-theme 'doom-dark+
+;;      doom-dark+-blue-modeline t
+;; )
+
 ;; Other possible themes
 ;; (setq
 ;;  doom-one-brighter-comments t
@@ -63,7 +68,6 @@
 ;;  doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-tomorrow-night)
 ;;(setq doom-theme 'doom-city-lights)
-;;(setq doom-theme 'doom-dark+)
 ;; See more themes here: https://github.com/hlissner/emacs-doom-themes/tree/screenshots#doom-one
 ;; (Some themes don't have screenshots)
 
@@ -73,29 +77,21 @@
   (solaire-global-mode -1))
 
 ; Force BG color = black. Turn off highlighted current line
-;; (custom-set-faces
-;;   '(default ((t (:background "#000000"))))
-;;   '(hl-line ((t (:background "#000000"))))
-;;  )
 (custom-set-faces
   '(default ((t (:background "#111111"))))
   '(hl-line ((t (:background "#111111"))))
   '(org-block ((t (:background "#222222"))))
+  '(org-hide  ((t (:foreground "#111111"))))
  )
 
 ; I don't need "jk" to leave insert mode.
 (setq evil-escape-unordered-key-sequence t)
-;(after! evil (evil-escape-mode nil)) ; Delete this if above works
 
 (display-time-mode 1)                             ; Enable time in the mode-line
 (display-battery-mode 1)                          ; On laptops it's nice to know how much power you have
 
 ;(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
-; Turn on Word-Wrap in org mode (Insert newlines automatically). It's called ("auto fill" mode)
-(add-hook! 'org-mode-hook 'turn-on-auto-fill);
-; Variable width font, and pretty mode in org (unsure of what pretty mode does)
-(add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
 ; Variable width font in markdown
 (add-hook! (gfm-mode markdown-mode) #'mixed-pitch-mode)
 
@@ -112,29 +108,10 @@
 ;; `load-theme' function. This is the default:
 ;;
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/h20/org/")
-
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;; SPC b o - new org buffer
-(evil-define-command evil-buffer-org-new (count file)
-  "Creates a new ORG buffer replacing the current window, optionally
-   editing a certain FILE"
-  :repeat nil
-  (interactive "P<f>")
-  (if file
-      (evil-edit file)
-    (let ((buffer (generate-new-buffer "*new org*")))
-      (set-window-buffer nil buffer)
-      (with-current-buffer buffer
-        (org-mode)))))
-(map! :leader
-  (:prefix "b"
-    :desc "New empty ORG buffer" "o" #'evil-buffer-org-new))
 
 ; If I want to disable smartparens
 ; (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
@@ -155,4 +132,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+
 (load! "+bindings")
+(load! "+org")

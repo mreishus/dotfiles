@@ -1,4 +1,27 @@
 
+;; gh - Switch tab groups via popup
+(map! :n "gh" #'centaur-tabs-counsel-switch-group)
+
+;; gb/gB - switch tab groups back/forward
+(map! :n "gb" #'centaur-tabs-forward-group)
+(map! :n "gB" #'centaur-tabs-backward-group)
+
+;; SPC b o - new org buffer
+(evil-define-command evil-buffer-org-new (count file)
+  "Creates a new ORG buffer replacing the current window, optionally
+   editing a certain FILE"
+  :repeat nil
+  (interactive "P<f>")
+  (if file
+      (evil-edit file)
+    (let ((buffer (generate-new-buffer "*new org*")))
+      (set-window-buffer nil buffer)
+      (with-current-buffer buffer
+        (org-mode)))))
+(map! :leader
+  (:prefix "b"
+    :desc "New empty ORG buffer" "o" #'evil-buffer-org-new))
+
 ;;; Three journal bindings I got from a blog somewhere
 
 (map! :leader
