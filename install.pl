@@ -11,7 +11,8 @@ system("mkdir -p $h/.config/fish");
 system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.tmux/plugins");
-#
+system("mkdir -p $h/.backup");
+
 # Doom Emacs
 if (!-d "$h/.emacs.d") {
     system("git clone --depth 1 https://github.com/hlissner/doom-emacs $h/.emacs.d");
@@ -65,7 +66,7 @@ if (!-d "$base/txt/logbook") {
     chomp(my $ok = <>);
     my $yes = 'y';
     if ($ok eq $yes) {
-        system("git clone git\@bitbucket.org:mreishus/logbook.git $h/txt/logbook");
+        system("git clone git\@bitbucket.org:mreishus/logbook.git $base/txt/logbook");
         system("$base/txt/logbook/install.pl");
     }
 }
@@ -76,7 +77,7 @@ if (!-d "$base/txt/orgbook") {
     chomp(my $ok = <>);
     my $yes = 'y';
     if ($ok eq $yes) {
-        system("git clone git\@bitbucket.org:mreishus/orgbook.git $h/txt/orgbook");
+        system("git clone git\@bitbucket.org:mreishus/orgbook.git $base/txt/orgbook");
         #system("$base/txt/orgbook/install.pl");
     }
 }
