@@ -38,7 +38,9 @@
   doom-big-font (font-spec :family "Iosevka Term" :size 26)
   doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 16)
   org-catch-invisible-edits "show-and-error"
+  org-ctrl-k-protect-subtree t
   org-journal-file-type 'monthly
+  org-journal-enable-agenda-integration t
   org-log-done 'time    ; Add timestamp when closing t0d0s
   projectile-project-search-path '("~/h20/dev/" "~/h20/edu/" "~/Sync/" "~/h20/txt/" "~/h20/misc")
   truncate-string-ellipsis "…"
@@ -49,7 +51,7 @@
   (setq
     doom-font (font-spec :family "Iosevka Term" :size 20)
     doom-big-font (font-spec :family "Iosevka Term" :size 36)
-    doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 20)
+    doom-variable-pitch-font (font-spec :family "Iosevka Etoile" :size 20)
   )
 )
 
@@ -82,6 +84,10 @@
   '(hl-line ((t (:background "#111111"))))
   '(org-block ((t (:background "#222222"))))
   '(org-hide  ((t (:foreground "#111111"))))
+  '(outline-1 ((t (:height 1.21))))
+  '(outline-2 ((t (:height 1.14))))
+  '(outline-3 ((t (:height 1.07))))
+  '(minibuffer-prompt ((t (:height 1.14))))
  )
 
 ; I don't need "jk" to leave insert mode.
