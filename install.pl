@@ -12,6 +12,7 @@ system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.tmux/plugins");
 system("mkdir -p $h/.backup");
+system("mkdir -p $h/.xmonad");
 
 # Doom Emacs
 if (!-d "$h/.emacs.d") {
@@ -23,6 +24,8 @@ if (!-d "$h/.emacs.d") {
 foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish .doom.d/config.el  .doom.d/init.el  .doom.d/packages.el
     .doom.d/+bindings.el
     .doom.d/+org.el
+    .xmonad/startup-applications
+    .xmonad/xmonad.hs
     )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {

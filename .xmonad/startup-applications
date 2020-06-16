@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# create fifo
+if [ ! -p /tmp/.xmonad-log ]; then
+  rm -f /tmp/.xmonad-log
+  mkfifo /tmp/.xmonad-log
+fi
