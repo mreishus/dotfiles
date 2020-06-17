@@ -55,6 +55,7 @@ import qualified XMonad.Actions.FlexibleResize as FR
 import XMonad.Actions.GridSelect
 import XMonad.Actions.GroupNavigation
 import XMonad.Actions.SwapWorkspaces
+import XMonad.Actions.ShowText
 import XMonad.Config.Kde
 import XMonad.Layout.Dishes
 import XMonad.Layout.Drawer
@@ -83,6 +84,11 @@ import XMonad.Util.WorkspaceCompare
 main :: IO ()
 main = xmonad myConfig
 
+mySTConfig = def { st_font = "xft:Fira Code:size=28:antialias=true"
+                         , st_bg   = "black"
+                         , st_fg   = "green"
+                         }
+
 -- **Config**
 myConfig = kde4Config
     -- Behavior
@@ -101,7 +107,7 @@ myConfig = kde4Config
     , startupHook        = startupHook kde4Config >> myStartupHook
     , manageHook         = myManageHook      <+> manageHook kde4Config
     , logHook            = polybarLogHook    <+> logHook kde4Config
-    , handleEventHook    = myHandleEventHook <+> handleEventHook kde4Config
+    , handleEventHook    = myHandleEventHook <+> handleEventHook kde4Config <+> handleTimerEvent
 
     -- Bindings
     , keys               = myKeys            <+> keys kde4Config
@@ -111,7 +117,7 @@ myConfig = kde4Config
 -- **Bindings**
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- *Programs*
-    [ ((modm,                 xK_l),    unGrab >> safeSpawn "loginctl" ["lock-session"])
+    [ ((modm,                 xK_Escape),    unGrab >> safeSpawn "loginctl" ["lock-session"])
     , ((modm,                 xK_d),         safeSpawn "rofi" ["-show", "drun"] )
     , ((modm,                 xK_p),         safeSpawn "rofi" ["-show", "drun"] )
     , ((modm .|. controlMask, xK_p),         safeSpawnProg "bwmenu")
@@ -176,10 +182,21 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- TODO: Unminimize all
     -- , ((modm .|. controlMask, xK_n), {- TODO -})
 
+    -- Media keys
+      -- XF86AudioMute
+    , ((0, 0x1008ff12), flashText mySTConfig 1 "Toggle mute" >> safeSpawn "pactl" ["set-sink-mute",     "@DEFAULT_SINK@",   "toggle"])
+      -- XF86AudioRaiseVolume
+    , ((0, 0x1008ff13), flashText mySTConfig 1 "Vol up" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
+      -- XF86AudioLowerVolume
+    , ((0, 0x1008ff11), safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "-5%"] >> flashText mySTConfig 10 "Vol down")
+
     -- *Volume Control* fallback
+    , ((modm,                 xK_Page_Up),              flashText mySTConfig 1 "Vol up" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
+    , ((modm,                 xK_Page_Up),              flashText mySTConfig 1 "Vol down" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
     , ((modm,                 xK_Page_Up),              safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
     , ((modm,                 xK_Page_Down),            safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "-5%"])
     , ((modm,                 xK_BackSpace),            safeSpawn "pactl" ["set-sink-mute",     "@DEFAULT_SINK@",   "toggle"])
+
     , ((modm .|. shiftMask,   xK_Page_Up),              safeSpawn "pactl" ["set-source-volume", "@DEFAULT_SOURCE@", "+5%"])
     , ((modm .|. shiftMask,   xK_Page_Down),            safeSpawn "pactl" ["set-source-volume", "@DEFAULT_SOURCE@", "-5%"])
     , ((modm .|. shiftMask,   xK_BackSpace),            safeSpawn "pactl" ["set-source-mute",   "@DEFAULT_SOURCE@", "toggle"])
