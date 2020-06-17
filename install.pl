@@ -10,6 +10,8 @@ system("mkdir -p $h/.ssh/sockets");
 system("mkdir -p $h/.config/fish");
 system("mkdir -p $h/.config/nvim");
 system("mkdir -p $h/.config/nvim/vimrc");
+system("mkdir -p $h/.config/i3");
+system("mkdir -p $h/.config/plasma-workspace/env");
 system("mkdir -p $h/.tmux/plugins");
 system("mkdir -p $h/.backup");
 system("mkdir -p $h/.xmonad");
@@ -27,6 +29,7 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config
     .xmonad/startup-applications
     .xmonad/xmonad.hs
     .config/i3/config
+    .config/plasma-workspace/env/wm.sh
     )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
