@@ -6,6 +6,11 @@
 -- Diagram:
 -- https://wiki.haskell.org/File:Xmbindings.png
 
+-- Add full screen toggle?
+-- https://superuser.com/questions/238190/how-can-i-set-my-caps-lock-key-to-toggle-fullscreen-mode-in-xmonad/238454
+
+-- https://advancedweb.hu/lessons-learned-from-using-xmonad-for-a-year/
+
 -- Actions:
 --   * multi-head
 --     - XMonad.Actions.DynamicWorkspaceGroups
@@ -44,6 +49,7 @@ import Graphics.X11.ExtraTypes
 import System.IO
 
 import XMonad
+import qualified XMonad.StackSet as W
 import XMonad.Actions.CycleWS
 import qualified XMonad.Actions.FlexibleResize as FR
 import XMonad.Actions.GridSelect
@@ -52,13 +58,16 @@ import XMonad.Actions.SwapWorkspaces
 import XMonad.Config.Kde
 import XMonad.Layout.Dishes
 import XMonad.Layout.Drawer
+import XMonad.Layout.Fullscreen
 import XMonad.Layout.Hidden
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.Spacing
+import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
+import XMonad.Layout.ThreeColumns
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops
+--import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
@@ -102,7 +111,7 @@ myConfig = kde4Config
 -- **Bindings**
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- *Programs*
-    [ ((modm,                 xK_Escape),    unGrab >> safeSpawn "loginctl" ["lock-session"])
+    [ ((modm,                 xK_l),    unGrab >> safeSpawn "loginctl" ["lock-session"])
     , ((modm,                 xK_d),         safeSpawn "rofi" ["-show", "drun"] )
     , ((modm,                 xK_p),         safeSpawn "rofi" ["-show", "drun"] )
     , ((modm .|. controlMask, xK_p),         safeSpawnProg "bwmenu")
@@ -111,6 +120,13 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((modm .|. shiftMask,   xK_q),         kill)
     -- control-shift-win-q: Quit DE
     , ((modm .|. shiftMask .|. controlMask,   xK_q),         safeSpawn "qdbus" ["org.kde.ksmserver", "/KSMServer", "logout", "1", "3", "3"])
+    -- mod q: Reload settings
+    , ((modm              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
+
+    -- *Overrides*
+    -- Swap Enter and Shift Enter
+    , ((modm,               xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
+    , ((modm .|. shiftMask, xK_Return), windows W.swapMaster) -- %! Swap the focused window and the master window
 
     -- *Overrides*
     -- Prev: (modm, xK_c)
@@ -133,12 +149,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((modm .|. shiftMask,   xK_c),         shiftTo Next EmptyWS)
 
     -- *GridSelect*
-    , ((modm,                 xK_g),         goToSelected defaultGSConfig)
+    , ((modm,                 xK_g),         goToSelected def)
 
     -- *GroupNavigation*
     -- Same className navigation
     , ((modm,                 xK_f),         nextMatchWithThis Forward  className)
     , ((modm,                 xK_b),         nextMatchWithThis Backward className)
+
+    , ((modm .|. shiftMask,   xK_b),         sendMessage ToggleStruts)
 
     -- *SwapWorkspaces*
     -- Swap workspaces contents to (Next|Prev) workspace
@@ -265,14 +283,19 @@ windowHooks = applicationSpecificHook
 myLayoutHooks = simplifyName . avoidStruts . smartBorders . smartSpacing . hiddenWindows
     where
         simplifyName = renamed [CutWordsLeft 2]
-        smartSpacing = spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True
+        smartSpacing = spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True
+        --smartSpacing = spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True
 
-myLayouts = myTall ||| myDishes ||| myTabbed ||| myDrawer
+--myLayouts = myTall ||| myDishes ||| myTabbed ||| myDrawer
+myLayouts = myTall ||| myDishes ||| myTabbed ||| myDrawer ||| mySpiral ||| myThree ||| myFull
     where
         myTall       = renamed [Replace "tall"]        $ Tall 1 (2/100) (1/2)
         myDishes     = renamed [Replace "dishes"]      $ Dishes 2 (1/8)
         myTabbed     = renamed [Replace "tabbed"]      $ tabbedBottom shrinkText myTabConfig
         myDrawer     = renamed [Replace "drawer"]      $ onBottom (simpleDrawer 0.05 0.5 (ClassName "konsole")) (Tall 1 (2/100) 0.5)
+        mySpiral     = renamed [Replace "spiral"]      $ spiral (6/7)
+        myThree      = renamed [Replace "three"]       $ ThreeColMid 1 (3/100) (1/2)
+        myFull       = renamed [Replace "full"]        $ noBorders (fullscreenFull Full)
 
         myTabConfig = def
             { fontName            = "xft:Fira Code:size=10:antialias=true"
