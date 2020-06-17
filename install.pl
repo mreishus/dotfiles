@@ -26,6 +26,7 @@ foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config
     .doom.d/+org.el
     .xmonad/startup-applications
     .xmonad/xmonad.hs
+    .config/i3/config
     )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
