@@ -33,6 +33,8 @@
   show-trailing-whitespace t                     ; Display trailing whitespaces
 )
 (setq
+  conda-env-home-directory (expand-file-name "~/anaconda3/")
+  conda-anaconda-home (expand-file-name "~/anaconda3/")
   centaur-tabs-style "wave"
   doom-font (font-spec :family "Iosevka Term" :size 16)
   doom-big-font (font-spec :family "Iosevka Term" :size 26)
