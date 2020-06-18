@@ -59,7 +59,7 @@ import XMonad.Actions.ShowText
 import XMonad.Config.Kde
 import XMonad.Layout.Dishes
 import XMonad.Layout.Drawer
-import XMonad.Layout.Fullscreen
+import XMonad.Layout.Fullscreen as FS
 import XMonad.Layout.Hidden
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
@@ -68,7 +68,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Hooks.DynamicLog
---import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.ManageDocks
@@ -79,10 +79,11 @@ import XMonad.Hooks.WallpaperSetter
 import XMonad.Util.Run
 import XMonad.Util.Ungrab
 import XMonad.Util.WorkspaceCompare
+import XMonad.Util.SpawnOnce
 
 
 main :: IO ()
-main = xmonad myConfig
+main = xmonad $ ewmh myConfig
 
 mySTConfig = def { st_font = "xft:Fira Code:size=28:antialias=true"
                          , st_bg   = "black"
@@ -124,8 +125,10 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
 
     -- shift-win-q: Kill window
     , ((modm .|. shiftMask,   xK_q),         kill)
-    -- control-shift-win-q: Quit DE
+    -- control-shift-win-q: Quit DE (KDE)
     , ((modm .|. shiftMask .|. controlMask,   xK_q),         safeSpawn "qdbus" ["org.kde.ksmserver", "/KSMServer", "logout", "1", "3", "3"])
+    -- control-shift-win-w: Quit DE (Non-KDE)
+    -- Don't know how to do this!
     -- mod q: Reload settings
     , ((modm              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
 
@@ -142,6 +145,9 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- *CycleWS*
     -- Left-Right - Workspaces
     -- Up-Down - Screens
+
+    -- Example of flashing WS name:
+    -- nextWS >> logCurrent >>= flashText mySTConfig 1 . fromMaybe ""
     , ((modm,                 xK_Right),     nextWS)
     , ((modm,                 xK_Left),      prevWS)
     , ((modm .|. shiftMask,   xK_Right),     shiftToNext >> nextWS)
@@ -183,12 +189,15 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- , ((modm .|. controlMask, xK_n), {- TODO -})
 
     -- Media keys
-      -- XF86AudioMute
-    , ((0, 0x1008ff12), flashText mySTConfig 1 "Toggle mute" >> safeSpawn "pactl" ["set-sink-mute",     "@DEFAULT_SINK@",   "toggle"])
-      -- XF86AudioRaiseVolume
-    , ((0, 0x1008ff13), flashText mySTConfig 1 "Vol up" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
-      -- XF86AudioLowerVolume
-    , ((0, 0x1008ff11), safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "-5%"] >> flashText mySTConfig 10 "Vol down")
+    -- See program "pavucontrol" for a pulse audio control panel
+
+    -- Turning these off while I go back to kde
+    -- XF86AudioMute
+    -- , ((0, 0x1008ff12), flashText mySTConfig 1 "Toggle mute" >> safeSpawn "pactl" ["set-sink-mute",     "@DEFAULT_SINK@",   "toggle"])
+    -- -- XF86AudioRaiseVolume
+    -- , ((0, 0x1008ff13), flashText mySTConfig 1 "Vol up" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
+    -- -- XF86AudioLowerVolume
+    -- , ((0, 0x1008ff11), safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "-5%"] >> flashText mySTConfig 10 "Vol down")
 
     -- *Volume Control* fallback
     , ((modm,                 xK_Page_Up),              flashText mySTConfig 1 "Vol up" >> safeSpawn "pactl" ["set-sink-volume",   "@DEFAULT_SINK@",   "+5%"])
@@ -312,7 +321,7 @@ myLayouts = myTall ||| myDishes ||| myTabbed ||| myDrawer ||| mySpiral ||| myThr
         myDrawer     = renamed [Replace "drawer"]      $ onBottom (simpleDrawer 0.05 0.5 (ClassName "konsole")) (Tall 1 (2/100) 0.5)
         mySpiral     = renamed [Replace "spiral"]      $ spiral (6/7)
         myThree      = renamed [Replace "three"]       $ ThreeColMid 1 (3/100) (1/2)
-        myFull       = renamed [Replace "full"]        $ noBorders (fullscreenFull Full)
+        myFull       = renamed [Replace "full"]        $ noBorders (FS.fullscreenFull Full)
 
         myTabConfig = def
             { fontName            = "xft:Fira Code:size=10:antialias=true"
@@ -335,7 +344,7 @@ myLayouts = myTall ||| myDishes ||| myTabbed ||| myDrawer ||| mySpiral ||| myThr
             }
 
 -- **Hooks**
-myHandleEventHook = fullscreenEventHook
+myHandleEventHook = FS.fullscreenEventHook <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook
 
 myLogHook = xmobarLogHook -- <+> myFadeInactiveLogHook
     where
@@ -405,7 +414,13 @@ polybarPP = def
     , ppOutput = \str -> appendFile "/tmp/.xmonad-log" $ UTF8.decodeString (str ++ "\n")
     }
 
+-- pacman -Syu nitrogen picom trayer network-manager-applet
 myStartupHook = do
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "picom &"
+    -- spawnOnce "nm-applet &"
+    -- spawnOnce "volumeicon &"
+    -- spawnOnce "stalonetray &"
     unsafeSpawn "bash $HOME/.xmonad/startup-applications"
     setWMName "LG3D"
 
