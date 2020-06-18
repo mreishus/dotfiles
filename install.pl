@@ -6,6 +6,7 @@ use File::Copy;
 
 my $h = $ENV{HOME};
 
+system("mkdir -p $h/bin");
 system("mkdir -p $h/.ssh/sockets");
 system("mkdir -p $h/.config/fish");
 system("mkdir -p $h/.config/nvim");
@@ -23,7 +24,11 @@ if (!-d "$h/.emacs.d") {
     say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
 }
 
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish .doom.d/config.el  .doom.d/init.el  .doom.d/packages.el
+foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish
+    bin/up
+    .doom.d/config.el
+    .doom.d/init.el
+    .doom.d/packages.el
     .doom.d/+bindings.el
     .doom.d/+org.el
     .xmonad/startup-applications

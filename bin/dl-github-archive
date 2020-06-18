@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+/home/mmr/data/packages/arctee/arctee.py '/home/mmr/data/exports/github/{utcnow}.json.zstd' --compression zstd --retries 3 -- /home/mmr/data/packages/ghexport/export.py --secrets /home/mmr/data/packages/ghexport/secrets.py

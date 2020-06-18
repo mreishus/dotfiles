@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# This is a simple script that refines the output of checkupdates and
+# grabs the latest news from the Arch RSS news feed. The idea is to
+# have some extra info before committing to grabbing a fresh copy
+# of the package database via pacman -Sy.
+#
+# Prerequisites: bc, xmllint
+
+printf "Fetching data, please wait...\n\n"
+
+CULIST=$(checkupdates)
+if [[ $CULIST = "" ]]; then
+    echo "No new packages"
+    exit
+fi
+
+# calculate the number of packages
+IFS=$'\n'
+for i in $CULIST
+do
+    pacnum=$((pacnum+1))
+done
+echo "$pacnum new packages found"
+
+# extract package names and then feed them to pacman -Si
+PNAMES=""
+for i in $CULIST
+do
+    PNAMES+=$(printf "%s" "$i" | awk '{print $1}')" "
+done
+IFS=''
+PSI="pacman -Si $PNAMES"
+PSI="$(eval "$PSI")"
+
+# extract the relevant info from pacman -Si
+PSI=$(echo "$PSI" | grep -E 'Repository|Download Size')
+PSI=$(echo "$PSI" | \
+      awk -F ": " '{if (NR%2 == 0) printf "%s\n", $2; else printf "%s ", $2}')
+
+# combine pacman -Si info with the output of checkupdates
+OUT=$(paste <(echo "$PSI") <(echo "$CULIST") | column -t | tr -s " ")
+
+# calculate total download size and refine the output further
+IFS=$'\n'
+totsize_mb="0"
+for i in $OUT
+do
+    cursize_bib=$(echo "$i" | cut -d ' ' -f 2,3)
+
+    # generate appropriate conversion multipliers
+    if [ "$(echo "$cursize_bib" | awk '{print $2}')" = "KiB" ]; then
+        mul=0.001024
+    else # assumes MiB
+        mul=1.048576
+    fi
+
+    cursize_mb=$(echo "scale=1;($(echo "$cursize_bib" | \
+                 awk '{print $1}')*$mul)" | bc)
+    totsize_mb=$(echo "scale=1;$totsize_mb+$cursize_mb" | bc)
+done
+
+# final output for the checkupdate stage
+IFS=''
+printf "\n%s\n" "$(echo -e "$OUT" | cut -d ' ' --complement -f 2,3 | \
+        sort -d | column -t )"
+printf "\nTotal download size: %.2f MB or %.2f MiB\n" \
+       "$totsize_mb" "$(echo "$totsize_mb"*0.953674 | bc)"
+
+###############################################################################
+
+# arch news
+printf "\n==============================\n"
+printf "https://www.archlinux.org/news\n"
+printf "==============================\n"
+
+# nicked from some forum, not an ideal solution, but seems to work,
+# formatting has been a little bit improved here
+curl -s https://www.archlinux.org/feeds/news/ | \
+xmllint --xpath //item/title\ \|\ //item/pubDate /dev/stdin | \
+sed -r -e "s:<title>([^<]*?)</title><pubDate>([^<]*?)</pubDate>:\2 -- \1\n:g" | \
+sed -r "s:&gt;:>:" | \
+sed -r "s:&lt;:<:" | \
+tr -s " " | \
+cut -d " " --complement -f 1,5,6 | \
+head -n5 # 5 of the most recent news items seems reasonable?
+
+# syu prompt
+printf "\nLaunch sudo pacman -Syu? (y/N) "
+read -r CONT
+if [ "$CONT" = "y" ] || [ "$CONT" = "Y" ]; then
+    printf "\n"
+    sudo pacman -Syu
+else
+    printf "\nUpdate cancelled.\n"
+fi
