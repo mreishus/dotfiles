@@ -417,7 +417,8 @@ polybarPP = def
 -- pacman -Syu nitrogen picom trayer network-manager-applet
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "picom &"
+    spawnOnce "dunst &"
+    -- spawnOnce "picom &"
     -- spawnOnce "nm-applet &"
     -- spawnOnce "volumeicon &"
     -- spawnOnce "stalonetray &"
