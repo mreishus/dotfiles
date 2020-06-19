@@ -5,11 +5,38 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/h20/org/")
+(setq org-agenda-files (directory-files-recursively "~/h20/org/" "\\.org$"))
 
 ; Turn on Word-Wrap in org mode (Insert newlines automatically). It's called ("auto fill" mode)
 (add-hook! 'org-mode-hook 'turn-on-auto-fill);
 ; Variable width font, and pretty mode in org (unsure of what pretty mode does)
 (add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
+
+
+;; == Notifications for agenda events begin ==
+(require 'appt)
+(require 'notifications)
+(defun mr/appt-display (min-to-app new-time msg)
+   "Send notification."
+   (notifications-notify
+                         :title (format "Appointment in %s minutes." min-to-app)
+                         :body (format "%s" msg)
+                         :replaces-id nil
+                         :timeout 5000
+                         :sound-name "alarm-clock-elapsed"
+                         :desktop-entry "emacs"))
+
+(setq appt-disp-window-function (function mr/appt-display))
+;; (setq appt-delete-window-function (lambda ()))
+
+; Rebuild the reminders everytime the agenda is displayed
+(add-hook 'org-agenda-finalize-hook (lambda () (org-agenda-to-appt t)))
+; Run once when Emacs starts
+(org-agenda-to-appt t)
+; Activate appointments so we get notifications
+(appt-activate t)
+;; == Notifications for agenda events end ==
+
 
 ;; == org-journal begin ==
 
