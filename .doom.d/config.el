@@ -82,10 +82,10 @@
 
 ; Force BG color = black. Turn off highlighted current line
 (custom-set-faces
-  '(default ((t (:background "#111111"))))
-  '(hl-line ((t (:background "#111111"))))
-  '(org-block ((t (:background "#222222"))))
-  '(org-hide  ((t (:foreground "#111111"))))
+  ;; '(default ((t (:background "#111111"))))
+  ;; '(hl-line ((t (:background "#111111"))))
+  ;; '(org-block ((t (:background "#222222"))))
+  ;; '(org-hide  ((t (:foreground "#111111"))))
   '(outline-1 ((t (:height 1.21))))
   '(outline-2 ((t (:height 1.14))))
   '(outline-3 ((t (:height 1.07))))

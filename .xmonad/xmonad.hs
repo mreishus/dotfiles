@@ -119,8 +119,9 @@ myConfig = kde4Config
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- *Programs*
     [ ((modm,                 xK_Escape),    unGrab >> safeSpawn "loginctl" ["lock-session"])
-    , ((modm,                 xK_d),         safeSpawn "rofi" ["-show", "drun"] )
-    , ((modm,                 xK_p),         safeSpawn "rofi" ["-show", "drun"] )
+    , ((modm .|. shiftMask,   xK_w),         safeSpawn "rofi" ["-show-icons", "-show", "window", "-font", "Iosevka Aile 18"] )
+    , ((modm,                 xK_d),         safeSpawn "rofi" ["-show-icons", "-modi", "drun", "-show", "drun", "-font", "Iosevka Aile 18"] )
+    , ((modm,                 xK_p),         safeSpawn "rofi" ["-show-icons", "-modi", "drun", "-show", "drun"] )
     , ((modm .|. controlMask, xK_p),         safeSpawnProg "bwmenu")
 
     -- shift-win-q: Kill window
