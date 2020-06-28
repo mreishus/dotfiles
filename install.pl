@@ -25,7 +25,10 @@ if (!-d "$h/.emacs.d") {
     say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
 }
 
-foreach my $file (qw(.vimrc .ssh/config .tmux.conf .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish
+foreach my $file (qw(.vimrc .ssh/config
+    .tmux.conf
+    .tmux.conf.local
+    .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish
     bin/up
     .doom.d/config.el
     .doom.d/init.el
