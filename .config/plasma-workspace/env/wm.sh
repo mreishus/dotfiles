@@ -3,7 +3,7 @@
 # # Start Compton
 #picom &
 
-export KDEWM=/usr/bin/xmonad
+#export KDEWM=/usr/bin/xmonad
 
 # Compositor (Animations, Shadows, Transparency)
 # xcompmgr -C
