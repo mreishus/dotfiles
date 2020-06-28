@@ -42,3 +42,18 @@ if not functions -q fisher
 end
 
 # fisher add evanlucas/fish-kubectl-completions
+
+# ssh-agent integration
+if test -z (pgrep ssh-agent)
+    echo Starting ssh-agent..
+    eval (ssh-agent -c)
+    set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+    set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+else
+    if test -e $XDG_RUNTIME_DIR/ssh-agent.socket
+        #echo ssh-agent already running, guessing SSH_AUTH_SOCK
+        set -Ux SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
+    else
+        echo !!! ssh-agent is running, but we can\'t find it
+    end
+end
