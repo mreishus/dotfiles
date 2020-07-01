@@ -8,9 +8,10 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Matthew Reishus"
+      user-mail-address "mreishus@users.noreply.github.com")
 
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -32,6 +33,10 @@
   scroll-margin 3                                ; Add a margin when scrolling vertically
   show-trailing-whitespace t                     ; Display trailing whitespaces
 )
+
+;; Use pipes, fixes org export but causes other problems, possibly gnuplot?
+(setq process-connection-type nil)
+
 (setq
   conda-env-home-directory (expand-file-name "~/anaconda3/")
   conda-anaconda-home (expand-file-name "~/anaconda3/")
