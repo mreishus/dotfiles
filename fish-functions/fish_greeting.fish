@@ -13,4 +13,9 @@ function fish_greeting
 		fortune -a
 		echo ""
 	end
+
+	if type -q lolcat; and type -q toilet
+		hostname | toilet -f pagga |  lolcat -F 0.5
+		echo ""
+    end
 end
