@@ -1,0 +1,12 @@
+fish-functions/__bass.py
+fish-functions/__nvm_run.fish
+fish-functions/bass.fish
+fish-functions/br.fish
+fish-functions/fisher.fish
+fish-functions/node.fish
+fish-functions/npm.fish
+fish-functions/npx.fish
+fish-functions/nvm.fish
+fish-functions/nvm_alias_command.fish
+fish-functions/nvm_alias_function.fish
+fish-functions/yarn.fish
