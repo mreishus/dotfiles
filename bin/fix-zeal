@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+find ~/.local/share/Zeal/Zeal/docsets -name "react-main.*.js" -exec rm --interactive {} \;
