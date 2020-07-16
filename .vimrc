@@ -243,6 +243,7 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>ge :Gedit<cr>
 nnoremap <leader>gs :Gstatus<cr>
+Plug 'tpope/vim-rhubarb' " Fix :Gbrowse in fugitive
 
 " Block comment (gc)
 Plug 'tpope/vim-commentary'
