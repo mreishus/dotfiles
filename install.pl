@@ -31,6 +31,7 @@ foreach my $file (qw(.vimrc .ssh/config
     .config/nvim/init.vim .config/nvim/vimrc/menu.vim .config/fish/config.fish
     bin/up
     bin/fix-zeal
+    bin/what-swap
     .doom.d/config.el
     .doom.d/init.el
     .doom.d/packages.el
