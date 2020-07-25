@@ -11,6 +11,12 @@
 (setq user-full-name "Matthew Reishus"
       user-mail-address "mreishus@users.noreply.github.com")
 
+(use-package tramp
+  :config
+  (setq tramp-terminal-type "tramp"))
+
+
+
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
