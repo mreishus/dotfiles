@@ -165,8 +165,15 @@ let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \   'perl6': ['perl6'],
   \}
+let g:ale_php_phpcs_standard = 'WordPress'
+let g:ale_php_phpcbf_standard = 'WordPress'
+let g:ale_php_phpcbf_use_global = 1
+let g:ale_php_phpcs_use_global = 1
 let g:ale_fixers = {
   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \   'php': [
+  \       'phpcbf'
+  \   ],
   \   'typescript': [
   \       'prettier', 'eslint'
   \   ],
@@ -200,6 +207,13 @@ let g:ale_fixers = {
   \   'ruby': ['prettier'],
   \}
 let g:ale_ruby_rubocop_executable = 'bundle'
+
+" PHP
+" composer global require "squizlabs/php_codesniffer=*"
+" set -Ua fish_user_paths ~/.config/composer/vendor/bin/
+" cd ~
+" git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git wpcs
+" phpcs --config-set installed_paths ~/wpcs
 
 " Rust (Coc Extension):
 " coc-rust-analyzer
@@ -797,7 +811,8 @@ endif
 
 "colorscheme apprentice
 "colorscheme vividchalk
-colorscheme hybrid
+"colorscheme hybrid
+colorscheme jellybeans
 
 "colorscheme Base2Tone_EveningDark
 " or any of the other schemes:
