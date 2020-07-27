@@ -40,8 +40,11 @@
   show-trailing-whitespace t                     ; Display trailing whitespaces
 )
 
-;; Use pipes, fixes org export but causes other problems, possibly gnuplot?
-(setq process-connection-type nil)
+;; Use pipes, fixes org export automatically opening browser, but causes other
+;; problems, possibly gnuplot? It does break gnuplot. Setting this on x20 only..
+(when (string= (system-name) "x20")
+  (setq process-connection-type nil)
+)
 
 (setq
   conda-env-home-directory (expand-file-name "~/anaconda3/")
