@@ -54,6 +54,7 @@ else
         #echo ssh-agent already running, guessing SSH_AUTH_SOCK
         set -Ux SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
     else
-        echo !!! ssh-agent is running, but we can\'t find it
+        # This makes SCP fail!
+        # echo !!! ssh-agent is running, but we can\'t find it
     end
 end
