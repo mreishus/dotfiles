@@ -147,6 +147,9 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_javascript_prettier_use_local_config = 1
 let g:airline#extensions#ale#enabled = 1
 
+command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1 | echo g:ale_fix_on_save"
+nnoremap <leader>f :ALEToggleFixer<cr>
+
 "" ALE For markdown:
 "" yarn global add prettier
 "" gem install mdl
@@ -491,8 +494,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
