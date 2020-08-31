@@ -6,7 +6,7 @@ progs_with_instructions = {
     "gobuster": "go get github.com/OJ/gobuster",
     "wfuzz": "yay -Syu wfuzz",
     "burpsuite": "yay -Syu burpsuite",
-    "nmap": "yay -Syu fzf",
+    "nmap": "yay -Syu nmap",
     "fzf": "yay -Syu fzf",
     "rg": "yay -Syu rg",
     "nc": "yay -Syu gnu-netcat",
