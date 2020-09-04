@@ -168,8 +168,8 @@ let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \   'perl6': ['perl6'],
   \}
-let g:ale_php_phpcs_standard = 'WordPress'
-let g:ale_php_phpcbf_standard = 'WordPress'
+" let g:ale_php_phpcs_standard = 'WordPress'
+" let g:ale_php_phpcbf_standard = 'WordPress'
 let g:ale_php_phpcbf_use_global = 1
 let g:ale_php_phpcs_use_global = 1
 let g:ale_fixers = {
@@ -418,6 +418,8 @@ command! -nargs=0 NoTab :call CocAction('deactivateExtension', 'coc-tabnine')
 " coc-json
 " coc-tsserver
 " coc-elixir
+" coc-python   (pip install jedi --user)
+" coc-phpls    (yarn global add intelephense)
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 autocmd CursorHold * silent call CocActionAsync('highlight')
