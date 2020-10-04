@@ -14,6 +14,12 @@ progs_with_instructions = {
     "searchsploit": "git clone https://github.com/offensive-security/exploitdb.git /opt/exploitdb\nln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit",
     "msfdb": "yay -Syu metasploit\nThen set up postgres and make a DB by checking the arch wiki for both metasploit and postgres. (Not that hard, come on)",
     "hydra": "yay -Syu hydra",
+    "arp": "yay -Syu net-tools",
+    "sqlmap": "yay -Syu sqlmap",
+    "smbexec.py": "yay -Syu impacket",
+    "amass": "yay -Syu amass",
+    "sublister": "yay -Syu sublist3r-git",
+    "whatweb": "yay -Syu ruby-bundler\nhttps://github.com/urbanadventurer/WhatWeb/releases\nDownload, untar, sudo make install",
 }
 directories_with_instructions = {
     "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists" + "\nPossibly delete .git after to speed up shells",
