@@ -820,7 +820,7 @@ let g:jellybeans_overrides = {
 "call jellybeans#X("Type","ffb964","","","Yellow","")
 
 let hostname = substitute(system('hostname'), '\n', '', '')
-if hostname == "atlus"
+if hostname == "atlus" || hostname == "x20"
     let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
     let g:palenight_terminal_italics=1
@@ -830,14 +830,27 @@ else
     let g:palenight_terminal_italics=0
 endif
 
-"let ayucolor="light"  " for light version of theme
-"let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-"colorscheme ayu
+" "let ayucolor="light"  " for light version of theme
+" "let ayucolor="mirage" " for mirage version of theme
+
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
+" highlight ALEErrorSign guibg=#660033
+
+let g:palenight_color_overrides = {
+\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
+\}
+colorscheme palenight
+let g:airline_theme='palenight'
+hi Pmenu guibg=#212333
+hi PmenuSel guibg=#6A3EB5 guifg=#bfc7d5
+hi PmenuSbar guibg=#352B59 guifg=#352B59
+hi PmenuThumb guibg=#352B59 guifg=#352B59
+" hi jsVariableDef guifg=#82b1ff
 
 "colorscheme apprentice
 "colorscheme vividchalk
-" colorscheme hybrid
+"colorscheme hybrid
 "colorscheme jellybeans
 
 "colorscheme Base2Tone_EveningDark
@@ -864,8 +877,9 @@ endif
 " colo jellybeans
 " colo challenger_deep
 
-colo gruvbox
-:highlight SignColumn guibg=#1d2021
+let g:gruvbox_sign_column = 'bg0'
+"colo gruvbox
+":highlight SignColumn guibg=#1d2021
 ":highlight SignColumn guibg=#000000
 
 " Lisp Rainbow Paren Colors
