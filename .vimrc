@@ -373,6 +373,7 @@ Plug 'tpope/vim-vividchalk'
 Plug 'atelierbram/Base2Tone-vim'
 Plug 'axvr/photon.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
@@ -508,7 +509,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -824,10 +825,12 @@ if hostname == "atlus" || hostname == "x20"
     let g:gruvbox_italic=1
     let g:jellybeans_use_term_italics = 1
     let g:palenight_terminal_italics=1
+    let g:embark_terminal_italics = 1
 else
     let g:gruvbox_italic=0
     let g:jellybeans_use_term_italics = 0
     let g:palenight_terminal_italics=0
+    let g:embark_terminal_italics = 0
 endif
 
 " "let ayucolor="light"  " for light version of theme
@@ -837,16 +840,18 @@ endif
 " colorscheme ayu
 " highlight ALEErrorSign guibg=#660033
 
-let g:palenight_color_overrides = {
-\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
-\}
-colorscheme palenight
-let g:airline_theme='palenight'
-hi Pmenu guibg=#212333
-hi PmenuSel guibg=#6A3EB5 guifg=#bfc7d5
-hi PmenuSbar guibg=#352B59 guifg=#352B59
-hi PmenuThumb guibg=#352B59 guifg=#352B59
-" hi jsVariableDef guifg=#82b1ff
+colo embark
+
+" let g:palenight_color_overrides = {
+" \    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
+" \}
+" colorscheme palenight
+" let g:airline_theme='palenight'
+" hi Pmenu guibg=#212333
+" hi PmenuSel guibg=#6A3EB5 guifg=#bfc7d5
+" hi PmenuSbar guibg=#352B59 guifg=#352B59
+" hi PmenuThumb guibg=#352B59 guifg=#352B59
+" " hi jsVariableDef guifg=#82b1ff
 
 "colorscheme apprentice
 "colorscheme vividchalk
