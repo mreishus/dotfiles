@@ -168,8 +168,8 @@ let g:ale_linters = {
   \   'elixir': ['credo', 'mix'],
   \   'perl6': ['perl6'],
   \}
-" let g:ale_php_phpcs_standard = 'WordPress'
-" let g:ale_php_phpcbf_standard = 'WordPress'
+"let g:ale_php_phpcs_standard = 'WordPress'
+"let g:ale_php_phpcbf_standard = 'WordPress'
 let g:ale_php_phpcbf_use_global = 1
 let g:ale_php_phpcs_use_global = 1
 let g:ale_fixers = {
@@ -220,6 +220,12 @@ let g:ale_ruby_rubocop_executable = 'bundle'
 " cd ~
 " git clone -b master https://github.com/WordPress/WordPress-Coding-Standards.git wpcs
 " phpcs --config-set installed_paths ~/wpcs
+"
+" ^ That's an old method
+" I have a script in ~/dotfiles/ that needs to be run, that sets
+" all of the installed_paths.
+"
+" Also, for
 
 " Rust (Coc Extension):
 " coc-rust-analyzer
@@ -420,6 +426,18 @@ command! -nargs=0 NoTab :call CocAction('deactivateExtension', 'coc-tabnine')
 " coc-elixir
 " coc-python   (pip install jedi --user)
 " coc-phpls    (yarn global add intelephense)
+"
+" For PHP, you also need to:
+" composer global require php-stubs/wordpress-globals
+" composer global require php-stubs/wordpress-stubs
+" composer global require php-stubs/woocommerce-stubs
+"
+" Then :CocConfig
+" Change: intelephense.stubs": [ .. ]
+" You should be able to use tab completion to get the default list
+" (it's quite lengthy).  Add "wordpress".
+"
+" I ended up making CocConfig blank to fix lots of weird errors.
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 autocmd CursorHold * silent call CocActionAsync('highlight')
