@@ -837,8 +837,8 @@ endif
 
 "colorscheme apprentice
 "colorscheme vividchalk
-"colorscheme hybrid
-colorscheme jellybeans
+" colorscheme hybrid
+"colorscheme jellybeans
 
 "colorscheme Base2Tone_EveningDark
 " or any of the other schemes:
@@ -864,8 +864,9 @@ colorscheme jellybeans
 " colo jellybeans
 " colo challenger_deep
 
-" colo gruvbox
-" :highlight SignColumn guibg=#000000
+colo gruvbox
+:highlight SignColumn guibg=#1d2021
+":highlight SignColumn guibg=#000000
 
 " Lisp Rainbow Paren Colors
 let g:niji_dark_colours = [
