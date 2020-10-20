@@ -783,6 +783,7 @@ set tabpagemax=100
 set rtp+=/usr/local/opt/fzf
 
 " Tweak
+" Better way to override colors: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 highlight ALEWarning ctermbg=DarkMagenta
 highlight ALEError  ctermbg=DarkMagenta
 "highlight SpellBad  ctermbg=DarkMagenta ctermfg=249
