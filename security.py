@@ -20,10 +20,12 @@ progs_with_instructions = {
     "amass": "yay -Syu amass",
     "sublister": "yay -Syu sublist3r-git",
     "whatweb": "yay -Syu ruby-bundler\nhttps://github.com/urbanadventurer/WhatWeb/releases\nDownload, untar, sudo make install",
+    "zaproxy": "yay -Syu zaproxy (or zaproxy-weekly)",
 }
 directories_with_instructions = {
-    "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists" + "\nPossibly delete .git after to speed up shells",
-    "/opt/privilege-escalation-awesome-scripts-suite": "git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite /opt/privilege-escalation-awesome-scripts-suite"
+    "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists"
+    + "\nPossibly delete .git after to speed up shells",
+    "/opt/privilege-escalation-awesome-scripts-suite": "git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite /opt/privilege-escalation-awesome-scripts-suite",
 }
 if __name__ == "__main__":
     for prog, instructions in progs_with_instructions.items():
