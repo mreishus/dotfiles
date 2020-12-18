@@ -4,8 +4,8 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/h20/org/")
-(setq org-agenda-files (directory-files-recursively "~/h20/org/" "\\.org$"))
+(setq org-directory "~/h21/org/")
+(setq org-agenda-files (directory-files-recursively "~/h21/org/" "\\.org$"))
 
 ; Turn on Word-Wrap in org mode (Insert newlines automatically). It's called ("auto fill" mode)
 (add-hook! 'org-mode-hook 'turn-on-auto-fill);
