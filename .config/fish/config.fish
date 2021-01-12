@@ -58,3 +58,6 @@ else
         # echo !!! ssh-agent is running, but we can\'t find it
     end
 end
+
+# eval (direnv hook fish)
+fzf_key_bindings
