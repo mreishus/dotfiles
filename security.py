@@ -21,6 +21,7 @@ progs_with_instructions = {
     "sublister": "yay -Syu sublist3r-git",
     "whatweb": "yay -Syu ruby-bundler\nhttps://github.com/urbanadventurer/WhatWeb/releases\nDownload, untar, sudo make install",
     "zaproxy": "yay -Syu zaproxy (or zaproxy-weekly)",
+    "john": "yay -Syu john",
 }
 directories_with_instructions = {
     "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists"
