@@ -44,7 +44,7 @@ end
 # fisher add evanlucas/fish-kubectl-completions
 
 # ssh-agent integration
-if test -z (pgrep ssh-agent)
+if test -z (pgrep -u (whoami) ssh-agent)
     echo Starting ssh-agent..
     eval (ssh-agent -c)
     set -Ux SSH_AGENT_PID $SSH_AGENT_PID
