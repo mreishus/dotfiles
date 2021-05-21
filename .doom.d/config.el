@@ -47,13 +47,13 @@
   (setq process-connection-type nil)
 )
 
+  ; doom-big-font (font-spec :family "Iosevka Term" :size 26)
 (setq
   conda-env-home-directory (expand-file-name "~/anaconda3/")
+  doom-font (font-spec :family "Iosevka Term" :size 16)
+  doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 16)
   conda-anaconda-home (expand-file-name "~/anaconda3/")
   centaur-tabs-style "wave"
-  doom-font (font-spec :family "Iosevka Term" :size 16)
-  doom-big-font (font-spec :family "Iosevka Term" :size 26)
-  doom-variable-pitch-font (font-spec :family "Iosevka Aile" :size 16)
   org-catch-invisible-edits "show-and-error"
   org-ctrl-k-protect-subtree t
   org-journal-file-type 'monthly
