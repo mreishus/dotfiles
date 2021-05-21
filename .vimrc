@@ -362,7 +362,7 @@ Plug 'mreishus/vim-mnemosyne'
 Plug 'mreishus/vim-astraios'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
-Plug 'challenger-deep-theme/vim'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
@@ -374,6 +374,7 @@ Plug 'atelierbram/Base2Tone-vim'
 Plug 'axvr/photon.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'rainglow/vim', { 'as': 'rainglow' }
 
 " It wants me to manually run "make" in its directory.  Way too annoying.
 " Plug 'RRethy/vim-hexokinase' " Show colors inline
