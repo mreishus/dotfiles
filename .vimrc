@@ -588,6 +588,27 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""" COC END """"""""""""""""""""""""""""""
 
+"Requires neovim 0.5?
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'glepnir/lspsaga.nvim'
+" https://github.com/glepnir/lspsaga.nvim
+
+"Requires neovim 0.5?
+"" Lightbulb, show lightbulb when code actions available
+"Plug 'kosayoda/nvim-lightbulb'
+"" autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+
+""Telescope
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
+"nnoremap <leader>ff <cmd>Telescope find_files<cr>
+"nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+"nnoremap <leader>fb <cmd>Telescope buffers<cr>
+"nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+"nnoremap <leader>fa <cmd>Telescope lsp_code_actions<cr>
+"nnoremap <leader>f* <cmd>Telescope grep_string<cr>
+
 " Sonic-pi
 Plug 'dermusikman/sonicpi.vim'
 
