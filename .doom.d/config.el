@@ -11,9 +11,9 @@
 (setq user-full-name "Matthew Reishus"
       user-mail-address "mreishus@users.noreply.github.com")
 
-(use-package tramp
-  :config
-  (setq tramp-terminal-type "tramp"))
+; (use-package tramp
+;   :config
+;   (setq tramp-terminal-type "tramp"))
 
 
 
