@@ -29,6 +29,14 @@ map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 " used by autoread (file has changed), gitgutter, fugitive, etc.
 Plug 'tmux-plugins/vim-tmux-focus-events'
 
+" Vimwiki - \ww to launch wiki, Enter to create link, Backspace to go back
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/h21/txt/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" Integrate vimwiki with taskwarrior
+" Heading like "## Home tasks | project:Home" will auto sync with taskwarrior tasks
+Plug 'tools-life/taskwiki'
+" yay -Syu task python-tasklib python-six vit
+
 " Airline - Status Bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -499,7 +507,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " Open definition in new tab:
 " In coc-settings.json (:CocConfig)
-"{  
+"{
 "    "coc.preferences.jumpCommand": "tab drop"
 "}
 
