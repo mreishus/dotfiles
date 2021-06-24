@@ -12,6 +12,7 @@
 ; Variable width font, and pretty mode in org (unsure of what pretty mode does)
 (add-hook! 'org-mode-hook #'+org-pretty-mode #'mixed-pitch-mode)
 
+(require 'org-tempo)
 
 ;; == Notifications for agenda events begin ==
 (require 'appt)
