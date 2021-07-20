@@ -269,10 +269,9 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 Plug 'wellle/targets.vim'
 " Git commands.
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>ge :Gedit<cr>
-nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gdiffsplit<cr>
+nnoremap <leader>gb :Git blame -wMC<cr>
+nnoremap <leader>gs :Git<cr>
 Plug 'tpope/vim-rhubarb' " Fix :Gbrowse in fugitive
 
 " Block comment (gc)
