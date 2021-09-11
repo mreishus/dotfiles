@@ -4,6 +4,7 @@ import os
 
 progs_with_instructions = {
     "gobuster": "go get github.com/OJ/gobuster",
+    "ffuf": "go get -u github.com/ffuf/ffuf",
     "wfuzz": "yay -Syu wfuzz",
     "burpsuite": "yay -Syu burpsuite",
     "nmap": "yay -Syu nmap\nAlso install python2? Lots of scripts fail, not sure",
@@ -22,6 +23,8 @@ progs_with_instructions = {
     "whatweb": "yay -Syu ruby-bundler\nhttps://github.com/urbanadventurer/WhatWeb/releases\nDownload, untar, sudo make install",
     "zaproxy": "yay -Syu zaproxy (or zaproxy-weekly)",
     "john": "yay -Syu john",
+    "wireshark": "yay -Syu wireshark-qt ; usermod -aG wireshark myuser",
+    "uudecode": "yay -Syu sharutils",
 }
 directories_with_instructions = {
     "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists"
