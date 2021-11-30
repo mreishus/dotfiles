@@ -32,6 +32,7 @@ foreach my $file (qw(.vimrc .ssh/config
     bin/up
     bin/fix-zeal
     bin/what-swap
+    bin/magit
     .doom.d/config.el
     .doom.d/init.el
     .doom.d/packages.el
