@@ -429,7 +429,7 @@ command! -nargs=0 NoTab :call CocAction('deactivateExtension', 'coc-tabnine')
 " coc-json
 " coc-tsserver
 " coc-elixir
-" coc-python   (pip install jedi --user)
+" coc-pyright  (pip install jedi --user (Might no longer be needed))
 " coc-phpls    (yarn global add intelephense)
 "
 " For PHP, you also need to:
