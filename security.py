@@ -25,6 +25,7 @@ progs_with_instructions = {
     "john": "yay -Syu john",
     "wireshark": "yay -Syu wireshark-qt ; usermod -aG wireshark myuser",
     "uudecode": "yay -Syu sharutils",
+    "sqsh": "yay -Syu sqsh # mssql client",
 }
 directories_with_instructions = {
     "/opt/seclists": "git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/seclists"
