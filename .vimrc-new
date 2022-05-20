@@ -1,0 +1,361 @@
+" See https://github.com/VonHeikemen/lsp-zero.nvim/
+
+""" BEGIN vim-plug auto install
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+""" END vim-plug autoinstall
+call plug#begin('~/.vim/plugged')
+
+let g:polyglot_disabled = ['sensible']  " I don't want incsearch.
+Plug 'sheerun/vim-polyglot'
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+"" May 2022: Not including Treesitter because it doesn't do autoindent well,
+"" and running both treesitter and polyglot seems like a waste.
+
+" Pandoc
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+let g:pandoc#modules#disabled = [ "spell", "folding" ]
+" Automatic linewrapping in pandoc:
+" Sometimes, this needs to be turned off
+" Trying to rely on prettier instead. hA is just too buggy.
+" let g:pandoc#formatting#mode = "hA"
+" default = "s"
+"  h: use hard wraps
+"  a: autoformat
+"  A: smart autoformatting
+"  s: use soft wraps
+
+"""""""""""""' lsp-zero start
+" LSP Support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+
+Plug 'VonHeikemen/lsp-zero.nvim'
+"""""""""""""""" lsp-zero end
+
+" Color Schemes
+Plug 'rebelot/kanagawa.nvim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+
+Plug 'RRethy/vim-illuminate' " Illuminate word under cursor
+Plug 'rhysd/git-messenger.vim' " Press \gm to see git blame in floating window, then again to go inside, then o/O to scroll in time
+
+" Telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+" Plug 'junegunn/fzf'
+" Plug 'junegunn/fzf.vim'
+
+Plug 'ray-x/lsp_signature.nvim'
+
+" Block comment (gc)
+Plug 'tpope/vim-commentary'
+
+" Surround alternative: sandwich
+Plug 'machakann/vim-sandwich'
+
+" Automatically guess tab/space settings when opening a file
+Plug 'tpope/vim-sleuth'
+
+" Git commands.
+Plug 'tpope/vim-fugitive'
+nnoremap <leader>gd :Gdiffsplit<cr>
+nnoremap <leader>gb :Git blame -wMC<cr>
+nnoremap <leader>gs :Git<cr>
+Plug 'tpope/vim-rhubarb' " Fix :Gbrowse in fugitive
+
+" Toggle bindings
+" [a and ]a - :n and :p
+" yob - Toggle dark/light background (or [ob and ]ob)
+" [op and ]op - Paste once (uses o or O)
+" yon - Set number (or [on and ]on)
+Plug 'tpope/vim-unimpaired'
+
+" Git markers
+Plug 'lewis6991/gitsigns.nvim'
+
+" Prettier
+Plug 'sbdchd/neoformat'
+
+" Plug 'feline-nvim/feline.nvim'
+Plug 'nanozuki/tabby.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'arkav/lualine-lsp-progress'
+
+Plug 'kosayoda/nvim-lightbulb'
+
+call plug#end()
+
+let g:Illuminate_delay = 350 
+let g:git_messenger_include_diff = "all"
+
+" Highlight on yank
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=350}
+
+" lsp-zero
+lua <<EOF
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+local cmp = require('cmp')
+local cmp_mappings = lsp.defaults.cmp_mappings()
+
+cmp_mappings['<CR>'] = cmp.mapping.confirm({select = false})
+cmp_mappings['<C-p>'] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select})
+cmp_mappings['<C-n>'] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select})
+
+lsp.setup_nvim_cmp({
+  completion = {
+    completeopt = 'menu,menuone,noinsert,noselect'
+  },
+  mapping = cmp_mappings,
+  sources = {
+    {name = 'buffer', keyword_length = 3},
+    {name = 'path'},
+    {name = 'nvim_lsp', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+	{name = 'nvim_lua'},
+  }
+})
+lsp.setup()
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename', 'lsp_progress'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+
+local signature_config = {
+  hint_enable = true,
+  handler_opts = { border = "single" },
+  max_width = 100,
+}
+require("lsp_signature").setup(signature_config)
+
+-- automatically show diagnostics on cursor hold
+--vim.cmd('autocmd CursorHold * lua vim.lsp.diagnostic.open_float()')
+vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float()')
+vim.o.updatetime = 300
+
+require('gitsigns').setup()
+require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+EOF
+
+" Keybinds Added by LSP-ZERO:
+" map('n', 'K', lsp 'buf.hover()')
+" map('n', 'gd', lsp 'buf.definition()')
+" map('n', 'gD', lsp 'buf.declaration()')
+" map('n', 'gi', lsp 'buf.implementation()')
+" map('n', 'go', lsp 'buf.type_definition()')
+" map('n', 'gr', lsp 'buf.references()')
+" map('n', '<C-k>', lsp 'buf.signature_help()')
+" map('n', '<F2>', lsp 'buf.rename()')
+" map('n', '<F4>', lsp 'buf.code_action()')
+" map('x', '<F4>', lsp 'buf.range_code_action()')
+" map('n', 'gl', diagnostic 'open_float()')
+" map('n', '[d', diagnostic 'goto_prev()')
+" map('n', ']d', diagnostic 'goto_next()')
+
+" telescope
+" nnoremap <c-p> <cmd>Telescope find_files theme=ivy<cr>
+" nnoremap <leader>ff <cmd>Telescope find_files theme=ivy<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep theme=ivy<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers theme=ivy<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags theme=ivy<cr>
+" nnoremap <leader>* <cmd>Telescope grep_string theme=ivy<cr>
+" nnoremap <leader>b <cmd>Telescope buffers theme=ivy<cr>
+" nnoremap <leader>t <cmd>Telescope builtin theme=ivy<cr>
+nnoremap <c-p> <cmd>Telescope find_files <cr>
+nnoremap <leader>ff <cmd>Telescope find_files <cr>
+nnoremap <leader>fg <cmd>Telescope live_grep <cr>
+nnoremap <leader>fb <cmd>Telescope buffers <cr>
+nnoremap <leader>fh <cmd>Telescope help_tags <cr>
+nnoremap <leader>* <cmd>Telescope grep_string <cr>
+nnoremap <leader>b <cmd>Telescope buffers <cr>
+nnoremap <leader>t <cmd>Telescope builtin <cr>
+
+" neoformat
+let g:neoformat_try_node_exe = 1 " Use local version
+
+augroup MyJSFixer
+  autocmd!
+  autocmd BufWritePre,InsertLeave *.js,*.jsx,*.ts,*.tsx if get(g:, 'mmr_fix_js_on_save', 1) | Neoformat prettier | endif
+  autocmd BufWritePre,InsertLeave *.php if get(g:, 'mmr_fix_js_on_save', 1) | Neoformat phpcbf | endif
+augroup END
+
+command! ToggleMyJSFixer execute "let g:mmr_fix_js_on_save = get(g:, 'mmr_fix_js_on_save', 0) ? 0 : 1 | echo g:mmr_fix_js_on_save"
+nnoremap <leader>f :ToggleMyJSFixer<cr>
+let g:mmr_fix_js_on_save = 0
+
+" This is for putty using termguicolors
+" outside of tmux
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+" Use 24-bit (true-color) mode in Vim/Neovim when ~~outside tmux~~.
+" Check vim-one's README for more info here. I modified to work inside tmux,
+" too.
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+if (has("termguicolors"))
+  set termguicolors
+endif
+set background=dark
+
+" colorscheme jellybeans
+colo kanagawa
+"colorscheme catppuccin
+
+lua <<EOF
+require("tabby").setup({})
+
+local options = {
+   defaults = {
+      vimgrep_arguments = {
+         "rg",
+         "--color=never",
+         "--no-heading",
+         "--with-filename",
+         "--line-number",
+         "--column",
+         "--smart-case",
+      },
+      prompt_prefix = "   ",
+      selection_caret = "  ",
+      entry_prefix = "  ",
+      initial_mode = "insert",
+      selection_strategy = "reset",
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+         horizontal = {
+            prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
+         },
+         vertical = {
+            mirror = false,
+         },
+         width = 0.87,
+         height = 0.80,
+         preview_cutoff = 120,
+      },
+      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      file_ignore_patterns = { "node_modules" },
+      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      path_display = { "truncate" },
+      winblend = 0,
+      border = {},
+      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      color_devicons = true,
+      use_less = true,
+      set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      -- Developer configurations: Not meant for general override
+      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      mappings = {
+         n = { ["q"] = require("telescope.actions").close },
+      },
+   },
+
+   extensions_list = { "themes", "terms" },
+}
+
+  require('telescope').setup{
+    defaults = {
+      layout_strategy = 'vertical',
+      layout_config = { height = 0.95 },
+    },
+  }
+require("telescope").setup(options)
+EOF
+
+set noincsearch
+set number
+set signcolumn=yes " always show signcolumns
+
+set tabstop=4      " indent is 4 chars wide
+set shiftwidth=4   " << >> use 4
+set softtabstop=4  " also use this when using spaces.
+
+" make search results appear in the middle of the screen
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
+
+" common typos
+map :W :w
+map :Q :q
+
+" Quickfix
+nnoremap <leader>co :copen<cr>
+nnoremap <leader>cc :cclose<cr>
+nmap <leader>j :cnext<cr>
+nmap <leader>k :cprevious<cr>
+
+" allow cross-session copy paste with _Y _P
+if has('win32') || has('win64')
+  nmap _Y :!echo ""> $HOME/_editor_tmp<CR><CR>:w! $HOME/_editor_tmp<CR>
+  vmap _Y :w! $HOME/_editor_tmp<CR>
+  nmap _P :r $HOME/_editor_tmp<CR>
+else
+  nmap _Y :!echo ""> ~/.editor.tmp<CR><CR>:w! ~/.editor.tmp<CR>
+  vmap _Y :w! ~/.editor.tmp<CR>
+  nmap _P :r ~/.editor.tmp<CR>
+endif
+
+" tabs
+nnoremap <C-t> :tabnew<cr>
+nnoremap <C-y> :tabclose<cr>
+
+set pumblend=20 " see through completion windows
+autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
