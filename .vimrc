@@ -753,6 +753,9 @@ autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be a
 " clear search highlighting
 noremap <silent><leader><space> :nohls<CR>
 
+" Tab = fold
+nnoremap <tab> za
+
 " f keys
 set pastetoggle=<F1>                                    " f1 toggles paste
 
