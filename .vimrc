@@ -697,6 +697,7 @@ set showmatch                 " show matching brackets
 set showcmd                   " show when typing leader, etc.
 set ttyfast                   " fast connection
 set scrolloff=3               " keep 3 lines on the screen when scrolling
+set mouse=
 
 " make search results appear in the middle of the screen
 nmap n nzz
