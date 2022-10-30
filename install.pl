@@ -136,4 +136,6 @@ say "\nSetting git name+email...\n";
 system("git config --global user.name \"Matthew Reishus\"");
 system("git config --global user.email \"mreishus\@users.noreply.github.com\"");
 
+say "\nConsider running...\nyarn config set --home enableTelemetry 0\n";
+
 # set -U fish_color_cwd cyan
