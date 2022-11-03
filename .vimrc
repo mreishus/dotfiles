@@ -356,6 +356,9 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
+
+" https://github.com/sainnhe/gruvbox-material
+" https://github.com/sainnhe/sonokai
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -372,7 +375,7 @@ Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 Plug 'micke/vim-hybrid'
-Plug 'ayu-theme/ayu-vim'
+Plug 'Luxed/ayu-vim'
 Plug 'romainl/Apprentice'
 Plug 'tpope/vim-vividchalk'
 Plug 'atelierbram/Base2Tone-vim'
