@@ -376,6 +376,11 @@ Plug 'mreishus/vim-astraios'
 Plug 'ciaranm/inkpot'
 let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+Plug 'sainnhe/everforest'
+let g:everforest_background = 'hard'
+let g:everforest_diagnostic_text_highlight = 1
+"let g:everforest_colors_override = {'bg0': ['#202020', '234'], 'bg2': ['#282828', '235']}
+let g:everforest_colors_override = {'bg0': ['#000000', '16'], 'bg1': ['#202020', '234'], 'bg2': ['#282828', '235']}
 Plug 'gruvbox-community/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
@@ -906,7 +911,10 @@ endif
 " hi PmenuThumb guibg=#352B59 guifg=#352B59
 " hi jsVariableDef guifg=#82b1ff
 
-colo kanagawa
+"colo kanagawa
+
+colo everforest
+let g:airline_theme = 'everforest'
 
 "colorscheme apprentice
 "colorscheme vividchalk
