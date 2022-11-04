@@ -25,6 +25,9 @@ Plug 'tpope/vim-unimpaired'
 " \q - Close buffer
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
 
+" Allow FocusGained/FocusLost events to work in tmux,
+" used by autoread (file has changed), gitgutter, fugitive, etc.
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'nathangrigg/vim-beancount'
 
 " Vimwiki - \ww to launch wiki, Enter to create link, Backspace to go back
@@ -360,6 +363,7 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " https://github.com/sainnhe/gruvbox-material
 " https://github.com/sainnhe/sonokai
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'rebelot/kanagawa.nvim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plug 'tomasr/molokai'
@@ -751,6 +755,8 @@ autocmd filetype lisp,scheme,art setlocal formatprg=scmindent.rkt
 autocmd FileType pandoc set tw=78|set fo+=t
 autocmd FileType sass setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in sass (must be after filetype)
 autocmd FileType scss setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in scss
+autocmd FileType php setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in php
+autocmd FileType typescript setlocal noexpandtab shiftwidth=4 softtabstop=4 " Use tabs in typescript
 autocmd FileType ruby setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " Ruby uses spaces with indent width of 2
 autocmd FileType crystal setlocal tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2 " crystal uses spaces with indent width of 2
 autocmd FileType python setlocal tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4 " Python uses spaces with indent width of 4
