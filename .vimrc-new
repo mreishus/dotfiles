@@ -64,6 +64,16 @@ Plug 'nvim-telescope/telescope.nvim'
 " Plug 'junegunn/fzf'
 " Plug 'junegunn/fzf.vim'
 
+"FZF
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+"let g:fzf_layout = { 'window': '-tabnew' } " Helps on windows gvim? Not sure.
+nnoremap <c-p> :FZF<cr>
+nnoremap <silent> <Leader>b  :Buffers<CR>
+let g:fzf_layout = { 'down': '~65%' }
+
+
+
 Plug 'ray-x/lsp_signature.nvim'
 
 " Block comment (gc)
@@ -71,6 +81,7 @@ Plug 'tpope/vim-commentary'
 
 " Surround alternative: sandwich
 Plug 'machakann/vim-sandwich'
+" Plug 'tpope/vim-surround'
 
 " Automatically guess tab/space settings when opening a file
 Plug 'tpope/vim-sleuth'
@@ -172,6 +183,7 @@ local signature_config = {
   hint_enable = true,
   handler_opts = { border = "single" },
   max_width = 100,
+  hint_prefix = "",
 }
 require("lsp_signature").setup(signature_config)
 
@@ -359,3 +371,5 @@ nnoremap <C-y> :tabclose<cr>
 
 set pumblend=20 " see through completion windows
 autocmd FileType * setlocal formatoptions-=ro " Disable auto comments (must be after filetype)
+
+nnoremap <c-p> :FZF<cr>
