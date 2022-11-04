@@ -894,16 +894,18 @@ endif
 
 " colo embark
 
-let g:palenight_color_overrides = {
-\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
-\}
-colorscheme palenight
-let g:airline_theme='palenight'
-hi Pmenu guibg=#212333
-hi PmenuSel guibg=#6A3EB5 guifg=#bfc7d5
-hi PmenuSbar guibg=#352B59 guifg=#352B59
-hi PmenuThumb guibg=#352B59 guifg=#352B59
+" let g:palenight_color_overrides = {
+" \    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
+" \}
+" colorscheme palenight
+" let g:airline_theme='palenight'
+" hi Pmenu guibg=#212333
+" hi PmenuSel guibg=#6A3EB5 guifg=#bfc7d5
+" hi PmenuSbar guibg=#352B59 guifg=#352B59
+" hi PmenuThumb guibg=#352B59 guifg=#352B59
 " hi jsVariableDef guifg=#82b1ff
+
+colo kanagawa
 
 "colorscheme apprentice
 "colorscheme vividchalk
