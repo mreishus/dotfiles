@@ -359,6 +359,7 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " https://old.reddit.com/r/vim/comments/6rf9z6/what_is_your_favorite_colorscheme/
 " https://old.reddit.com/r/vim/comments/cffyoj/most_highquality_vim_color_schemes/
+" https://old.reddit.com/r/vim/comments/tdy77t/whats_your_favourite_colorscheme_in_vimneovim/
 
 " https://github.com/sainnhe/gruvbox-material
 " https://github.com/sainnhe/sonokai
