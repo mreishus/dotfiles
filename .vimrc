@@ -378,7 +378,6 @@ let g:inkpot_black_background = 1
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'sainnhe/everforest'
 let g:everforest_background = 'hard'
-let g:everforest_diagnostic_text_highlight = 1
 "let g:everforest_colors_override = {'bg0': ['#202020', '234'], 'bg2': ['#282828', '235']}
 let g:everforest_colors_override = {'bg0': ['#000000', '16'], 'bg1': ['#202020', '234'], 'bg2': ['#282828', '235']}
 Plug 'gruvbox-community/gruvbox'
