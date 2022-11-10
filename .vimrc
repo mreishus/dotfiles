@@ -163,6 +163,7 @@ nnoremap <leader>f :ALEToggleFixer<cr>
 "" yarn global add prettier
 "" gem install mdl
 "" (make sure gem bin is in your path)
+"" Alternative to mdl: yarn global add markdownlint-cli
 
 " remark-lint requires remark..
 " neither of them have binaries,
