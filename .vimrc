@@ -110,6 +110,8 @@ autocmd FileType typescript UltiSnipsAddFiletypes typescript-react-hook
 autocmd FileType typescript.tsx UltiSnipsAddFiletypes typescript-react-hook
 autocmd FileType typescriptreact UltiSnipsAddFiletypes typescript-react-hook
 
+Plug 'github/copilot.vim'
+
 " Emmet - (insert-mode) C-K, then comma to expand a emmet abbreviation like:
 " div.column>(span+div>ui>li*3)
 " This plugin has other functions I haven't learned yet.
@@ -155,6 +157,8 @@ let g:ale_lint_on_insert_leave = 0
 " let g:ale_set_highlights = 0
 let g:ale_javascript_prettier_use_local_config = 1
 let g:airline#extensions#ale#enabled = 1
+
+let g:ale_virtualtext_cursor = 0
 
 command! ALEToggleFixer execute "let g:ale_fix_on_save = get(g:, 'ale_fix_on_save', 0) ? 0 : 1 | echo g:ale_fix_on_save"
 nnoremap <leader>f :ALEToggleFixer<cr>
