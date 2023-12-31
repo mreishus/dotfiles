@@ -25,6 +25,12 @@ if (!-d "$h/.emacs.d") {
     say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
 }
 
+# .doom.d/config.el
+# .doom.d/init.el
+# .doom.d/packages.el
+# .doom.d/+bindings.el
+# .doom.d/+org.el
+
 foreach my $file (qw(.vimrc .ssh/config
     .tmux.conf
     .tmux.conf.local
@@ -33,11 +39,6 @@ foreach my $file (qw(.vimrc .ssh/config
     bin/fix-zeal
     bin/what-swap
     bin/magit
-    .doom.d/config.el
-    .doom.d/init.el
-    .doom.d/packages.el
-    .doom.d/+bindings.el
-    .doom.d/+org.el
     .xmonad/startup-applications
     .xmonad/xmonad.hs
     .config/i3/config
