@@ -19,17 +19,11 @@ system("mkdir -p $h/.backup");
 system("mkdir -p $h/.xmonad");
 
 # Doom Emacs
-if (!-d "$h/.emacs.d") {
-    system("git clone --depth 1 https://github.com/hlissner/doom-emacs $h/.emacs.d");
-    system("$h/.emacs.d/bin/doom install");
-    say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
-}
-
-# .doom.d/config.el
-# .doom.d/init.el
-# .doom.d/packages.el
-# .doom.d/+bindings.el
-# .doom.d/+org.el
+# if (!-d "$h/.emacs.d") {
+#     system("git clone --depth 1 https://github.com/hlissner/doom-emacs $h/.emacs.d");
+#     system("$h/.emacs.d/bin/doom install");
+#     say "\nDoes 'doom sync' work from shell?\nConsider running..\nset -Ua fish_user_paths ~/.emacs.d/bin\n";
+# }
 
 foreach my $file (qw(.vimrc .ssh/config
     .tmux.conf
@@ -44,6 +38,13 @@ foreach my $file (qw(.vimrc .ssh/config
     .config/i3/config
     .config/plasma-workspace/env/wm.sh
     .config/dunst/dunstrc
+
+    .config/doom/+bindings.el
+    .config/doom/config.el
+    .config/doom/init.el
+    .config/doom/+org.el
+    .config/doom/packages.el
+
     )) {
     next if -l "$h/$file"; # Skip ones that are already linked, assumed that we made them
     if (!-e "$h/dotfiles/$file") {
