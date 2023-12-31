@@ -457,7 +457,7 @@ unbind-key M-0      ; bind-key -n M-0   select-window -t 10
 
 # Customized by matt:
 tmux_conf_theme_status_left=' #S '
-tmux_conf_theme_status_right='#{prefix}#{mouse}#{pairing}#{synchronized} , %R , %d %b , #{weather} | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{mouse}#{pairing}#{synchronized} , %R , %d %b , #{username}#{root} | #{hostname} '
 
 tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_12,$tmux_conf_theme_colour_13,$tmux_conf_theme_colour_14"
 tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_15,$tmux_conf_theme_colour_16,$tmux_conf_theme_colour_17"

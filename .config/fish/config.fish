@@ -60,4 +60,4 @@ else
 end
 
 # eval (direnv hook fish)
-fzf_key_bindings
+#fzf_key_bindings
