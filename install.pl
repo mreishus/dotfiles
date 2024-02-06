@@ -14,6 +14,8 @@ system("mkdir -p $h/.config/nvim/vimrc");
 system("mkdir -p $h/.config/i3");
 system("mkdir -p $h/.config/dunst");
 system("mkdir -p $h/.config/plasma-workspace/env");
+system("mkdir -p $h/.config/zellij");
+system("mkdir -p $h/.config/zellij/layouts");
 system("mkdir -p $h/.tmux/plugins");
 system("mkdir -p $h/.backup");
 system("mkdir -p $h/.xmonad");
@@ -33,11 +35,16 @@ foreach my $file (qw(.vimrc .ssh/config
     bin/fix-zeal
     bin/what-swap
     bin/magit
+    bin/zatt
     .xmonad/startup-applications
     .xmonad/xmonad.hs
     .config/i3/config
     .config/plasma-workspace/env/wm.sh
     .config/dunst/dunstrc
+
+    .config/zellij/layouts/my-layout.kdl
+    .config/zellij/config.kdl
+    .config/zellij/config-stock-0.39.2.kdl
 
     .config/doom/+bindings.el
     .config/doom/config.el

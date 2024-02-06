@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+# Manages Zellij terminal sessions. Automatically attaches to an existing session,
+# lets the user select a session if multiple are available, or prompts for a new session name if none exist.
+# Supports direct session name input as an argument for quick access or creation of a session.
+
+# Function to prompt for a session name
+prompt_for_session_name() {
+    read -rp "Enter session name: " session_name
+    echo "$session_name"
+}
+
+# Function to parse session name from zellij list-sessions
+parse_session_name() {
+    echo "$1" | sed -E 's/\x1b\[[0-9;]*m//g' | awk '{print $1}'
+}
+
+# Main script logic
+ZJ_SESSIONS=$(zellij list-sessions)
+NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | grep -c .) # Count sessions more accurately
+
+if [ "$#" -eq 1 ]; then
+    # If a session name is provided as an argument, use it directly and create a new one
+    SESSION_NAME=$1
+    zellij attach -c "${SESSION_NAME}"
+elif [ "${NO_SESSIONS}" -eq 1 ]; then
+    # If there is exactly one session, attach to it directly without using fzf
+    zellij attach
+elif [ "${NO_SESSIONS}" -gt 1 ]; then
+    # If there are 2 or more sessions, let the user choose one, stripping control codes
+    SELECTED_SESSION=$(echo "${ZJ_SESSIONS}" | fzf --ansi | awk '{print $1}')
+    zellij attach "$(parse_session_name "${SELECTED_SESSION}")"
+else
+    # Prompt for a session name if starting a new session
+    SESSION_NAME=$(prompt_for_session_name)
+    zellij attach -c "${SESSION_NAME}"
+fi
