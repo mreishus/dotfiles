@@ -61,3 +61,7 @@ end
 
 # eval (direnv hook fish)
 #fzf_key_bindings
+
+if type -q zellij
+    zellij setup --generate-completion fish | source
+end
