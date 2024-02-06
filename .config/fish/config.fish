@@ -65,3 +65,33 @@ end
 if type -q zellij
     zellij setup --generate-completion fish | source
 end
+
+function zt6
+    # Query the current number of tabs and count them
+    set -l current_tab_count (zellij action query-tab-names | wc -l)
+
+    # Calculate how many tabs need to be created to have 6
+    set -l tabs_to_create (math "6 - $current_tab_count")
+
+    # If we need to create tabs (tabs_to_create > 0), do so
+    if test $tabs_to_create -gt 0
+        for i in (seq $tabs_to_create)
+            zellij action new-tab
+        end
+    end
+end
+
+function zt9
+    # Query the current number of tabs and count them
+    set -l current_tab_count (zellij action query-tab-names | wc -l)
+
+    # Calculate how many tabs need to be created to have 6
+    set -l tabs_to_create (math "9 - $current_tab_count")
+
+    # If we need to create tabs (tabs_to_create > 0), do so
+    if test $tabs_to_create -gt 0
+        for i in (seq $tabs_to_create)
+            zellij action new-tab
+        end
+    end
+end

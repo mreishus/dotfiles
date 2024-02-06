@@ -134,6 +134,7 @@ keybinds {
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
+        bind "Ctrl a" { Write 1; SwitchToMode "Normal"; }
         bind "Ctrl b" { Write 2; SwitchToMode "Normal"; }
         bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
         bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
@@ -253,6 +254,7 @@ plugins {
 //   - false
 //
 // session_serialization false
+session_serialization false
 
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
@@ -290,6 +292,24 @@ plugins {
 // Default: default
 //
 // theme "default"
+
+themes {
+    tokyo-night-darker {
+        fg 169 177 214
+        bg 0 0 0
+        black 56 62 90
+        red 249 51 87
+        green 158 206 106
+        yellow 224 175 104
+        blue 122 162 247
+        magenta 187 154 247
+        cyan 42 195 222
+        white 192 202 245
+        orange 255 158 100
+    }
+}
+theme "tokyo-night-darker"
+
 
 // The name of the default layout to load on startup
 // Default: "default"
