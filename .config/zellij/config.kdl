@@ -1,5 +1,5 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
-keybinds {
+keybinds clear-defaults=true {
     normal {
         bind "Alt w" { ToggleFloatingPanes; SwitchToMode "Normal"; }
         // uncomment this and adjust key if using copy_on_select=false
@@ -154,7 +154,12 @@ keybinds {
         bind "o" { FocusNextPane; }
         bind "d" { Detach; }
         bind "Space" { NextSwapLayout; }
+        bind "Tab" { SwitchFocus; }
+        bind "Alt n" { NewPane; SwitchToMode "Normal"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt f" { TogglePaneFrames; SwitchToMode "Normal"; }
+        bind "Alt e" { TogglePaneEmbedOrFloating; SwitchToMode "Normal"; }
+        bind "Alt r" { SwitchToMode "RenamePane"; PaneNameInput 0; }
         bind "s" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -190,9 +195,9 @@ keybinds {
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
-    shared_except "pane" "locked" {
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-    }
+    // shared_except "pane" "locked" {
+    //    bind "Ctrl p" { SwitchToMode "Pane"; }
+    // }
     shared_except "resize" "locked" {
         bind "Ctrl n" { SwitchToMode "Resize"; }
     }
