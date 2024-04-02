@@ -95,3 +95,7 @@ function zt9
         end
     end
 end
+
+if type -q zoxide
+    zoxide init fish --cmd j | source
+end
