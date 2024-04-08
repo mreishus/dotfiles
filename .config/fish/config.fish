@@ -62,9 +62,6 @@ end
 # eval (direnv hook fish)
 #fzf_key_bindings
 
-if type -q zellij
-    zellij setup --generate-completion fish | source
-end
 
 function zt6
     # Query the current number of tabs and count them
@@ -96,6 +93,14 @@ function zt9
     end
 end
 
-if type -q zoxide
-    zoxide init fish --cmd j | source
+if status is-interactive
+    if type -q zellij
+        zellij setup --generate-completion fish | source
+    end
+    if type -q zoxide
+        zoxide init fish --cmd j | source
+    end
+    if type -q borgmatic
+        borgmatic --fish-completion | source
+    end
 end
