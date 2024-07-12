@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import os
+import sys
+import xml.sax.saxutils as saxutils
+import glob
+import argparse
+
+def get_files_recursively(directory, extensions):
+    files = []
+    for root, dirs, filenames in os.walk(directory):
+        # Skip node_modules directories
+        if 'node_modules' in dirs:
+            dirs.remove('node_modules')
+        for filename in filenames:
+            if any(filename.endswith(f'.{ext}') for ext in extensions):
+                files.append(os.path.join(root, filename))
+    return files
+
+def escape_xml(text):
+    return saxutils.escape(text)
+
+def create_xml_document(files):
+    xml_parts = ['<?xml version="1.0" encoding="UTF-8"?>\n<documents>']
+    
+    for idx, file in enumerate(files, start=1):
+        xml_parts.append(f'<document index="{idx}">')
+        xml_parts.append(f'<source>{escape_xml(file)}</source>')
+        xml_parts.append('<document_content><![CDATA[')
+        
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                file_content = f.read()
+            xml_parts.append(file_content)
+        except Exception as e:
+            xml_parts.append(str(e))  # Handle files that cannot be read
+        
+        xml_parts.append(']]></document_content>')
+        xml_parts.append('</document>')
+    
+    xml_parts.append('</documents>')
+    return '\n'.join(xml_parts)
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate XML from files.")
+    parser.add_argument("files_or_dirs", nargs="+", help="List of files or directories")
+    parser.add_argument("--extension", "-e", default="php", help="Comma-separated list of file extensions to search for in directories (default: php)")
+    
+    args = parser.parse_args()
+    
+    extensions = args.extension.split(',')
+    
+    files = []
+    for item in args.files_or_dirs:
+        if os.path.isdir(item):
+            # Add all files with the specified extensions recursively if the argument is a directory
+            files.extend(get_files_recursively(item, extensions))
+        else:
+            files.append(item)
+    
+    # Generate XML document
+    xml_content = create_xml_document(files)
+    
+    # Output the result
+    print(xml_content)
+
+if __name__ == "__main__":
+    main()
