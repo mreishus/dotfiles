@@ -46,7 +46,7 @@
   org-journal-file-type 'monthly
   org-journal-enable-agenda-integration t
   org-log-done 'time    ; Add timestamp when closing t0d0s
-  projectile-project-search-path '("~/h21/dev/" "~/h21/edu/" "~/h21/txt/" "~/h21/misc")
+  projectile-project-search-path '("~/h24/dev/" "~/h24/edu/" "~/h24/txt/" "~/h24/misc")
   truncate-string-ellipsis "…"
   which-key-idle-delay 0.5 ; Help me faster
 )

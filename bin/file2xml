@@ -5,12 +5,11 @@ import xml.sax.saxutils as saxutils
 import glob
 import argparse
 
-def get_files_recursively(directory, extensions):
+def get_files_recursively(directory, extensions, skip_dirs):
     files = []
     for root, dirs, filenames in os.walk(directory):
-        # Skip node_modules directories
-        if 'node_modules' in dirs:
-            dirs.remove('node_modules')
+        # Skip directories as specified in the command line
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
         for filename in filenames:
             if any(filename.endswith(f'.{ext}') for ext in extensions):
                 files.append(os.path.join(root, filename))
@@ -44,16 +43,17 @@ def main():
     parser = argparse.ArgumentParser(description="Generate XML from files.")
     parser.add_argument("files_or_dirs", nargs="+", help="List of files or directories")
     parser.add_argument("--extension", "-e", default="php", help="Comma-separated list of file extensions to search for in directories (default: php)")
+    parser.add_argument("--skip", "-s", default="", help="Comma-separated list of directory names to skip")
     
     args = parser.parse_args()
     
     extensions = args.extension.split(',')
+    skip_dirs = args.skip.split(',') if args.skip else []
     
     files = []
     for item in args.files_or_dirs:
         if os.path.isdir(item):
-            # Add all files with the specified extensions recursively if the argument is a directory
-            files.extend(get_files_recursively(item, extensions))
+            files.extend(get_files_recursively(item, extensions, skip_dirs))
         else:
             files.append(item)
     
@@ -65,3 +65,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
